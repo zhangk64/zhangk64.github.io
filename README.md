@@ -1,0 +1,1 @@
+由于网页要自动循环播放背景音乐，只有chrome浏览器不支持自动播放，需要修改默认设置才会有背景音乐的声音;可以修改chrome的默认设置，在浏览器输入 chrome://flags/#autoplay-policy,第一个选项 Autoplay policy ,设置为 no user gesture is required。用其它浏览器打开则可以播放背景音乐，可以换成其它浏览器打开效果更好。
