@@ -22,15 +22,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Solidity 安全：已知攻击方法和常见防御模式综合列表原文链接：https:&#x2F;&#x2F;blog.sigmaprime.io&#x2F;solidity-security.html  译者：爱上平顶山@慢雾安全团队 校对：keywolf@慢雾安全团队 虽然处于起步阶段，但是 Solidity 已被广泛采用，并被用于编译我们今天看到的许多以太坊智能合约中的字节码。相应地，开发者和用户也获得许多严酷的教训，例如发现">
+        <meta name="description" content="原文链接：https:&#x2F;&#x2F;blog.sigmaprime.io&#x2F;solidity-security.html  译者：爱上平顶山@慢雾安全团队 校对：keywolf@慢雾安全团队 虽然处于起步阶段，但是 Solidity 已被广泛采用，并被用于编译我们今天看到的许多以太坊智能合约中的字节码。相应地，开发者和用户也获得许多严酷的教训，例如发现语言和EVM的细微差别。这篇文章旨在作为一个相对深入和最新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fsociety&#39;s Blog">
+<meta property="og:title" content="Solidity 安全：已知攻击方法和常见防御模式综合列表">
 <meta property="og:url" content="https://zhangk64.github.io/2024/07/19/solidity-security-comprehensive-list-of-known-attack-vectors-and-common-anti-patterns_zh-cn/index.html">
 <meta property="og:site_name" content="Fsociety&#39;s Blog">
-<meta property="og:description" content="Solidity 安全：已知攻击方法和常见防御模式综合列表原文链接：https:&#x2F;&#x2F;blog.sigmaprime.io&#x2F;solidity-security.html  译者：爱上平顶山@慢雾安全团队 校对：keywolf@慢雾安全团队 虽然处于起步阶段，但是 Solidity 已被广泛采用，并被用于编译我们今天看到的许多以太坊智能合约中的字节码。相应地，开发者和用户也获得许多严酷的教训，例如发现">
+<meta property="og:description" content="原文链接：https:&#x2F;&#x2F;blog.sigmaprime.io&#x2F;solidity-security.html  译者：爱上平顶山@慢雾安全团队 校对：keywolf@慢雾安全团队 虽然处于起步阶段，但是 Solidity 已被广泛采用，并被用于编译我们今天看到的许多以太坊智能合约中的字节码。相应地，开发者和用户也获得许多严酷的教训，例如发现语言和EVM的细微差别。这篇文章旨在作为一个相对深入和最新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-19T08:53:00.379Z">
-<meta property="article:modified_time" content="2024-07-19T08:53:00.343Z">
+<meta property="article:modified_time" content="2024-07-23T05:56:23.555Z">
 <meta property="article:author" content="fsociety">
 <meta name="twitter:card" content="summary">
     
@@ -43,6 +43,8 @@
     <!--- Page Info-->
     
     <title>
+        
+            Solidity 安全：已知攻击方法和常见防御模式综合列表 -
         
         Fsociety&#39;s Blog
     </title>
@@ -270,7 +272,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -304,7 +306,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Solidity 安全：已知攻击方法和常见防御模式综合列表</h1>
                 </div>
             
             </div>
@@ -332,8 +334,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-19 16:53</span>
-            <span class="mobile">2024-07-19 16:53</span>
+            <span class="desktop">2024-07-23 13:56:23</span>
+            <span class="mobile">2024-07-23 13:56:23</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -360,143 +362,115 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h1 id="Solidity-安全：已知攻击方法和常见防御模式综合列表"><a href="#Solidity-安全：已知攻击方法和常见防御模式综合列表" class="headerlink" title="Solidity 安全：已知攻击方法和常见防御模式综合列表"></a>Solidity 安全：已知攻击方法和常见防御模式综合列表</h1><p>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://blog.sigmaprime.io/solidity-security.html" >https://blog.sigmaprime.io/solidity-security.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+            <p>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://blog.sigmaprime.io/solidity-security.html" >https://blog.sigmaprime.io/solidity-security.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>译者：爱上平顶山@慢雾安全团队</p>
 <p>校对：keywolf@慢雾安全团队</p>
 <p>虽然处于起步阶段，但是 Solidity 已被广泛采用，并被用于编译我们今天看到的许多以太坊智能合约中的字节码。相应地，开发者和用户也获得许多严酷的教训，例如发现语言和EVM的细微差别。这篇文章旨在作为一个相对深入和最新的介绍性文章，详述 Solidity 开发人员曾经踩过的坑，避免后续开发者重蹈覆辙。</p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><p><a href="#%E9%87%8D%E5%85%A5%E6%BC%8F%E6%B4%9E">重入漏洞</a></p>
-<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E9%87%8D%E5%85%A5%E6%BC%8F%E6%B4%9E">重入漏洞</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90dao">真实世界的例子：DAO</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90the-dao">真实的例子：The DAO</a></li>
 </ul>
 </li>
-<li><p><a href="#%E7%AE%97%E6%B3%95%E4%B8%8A%E4%B8%8B%E6%BA%A2%E5%87%BA">算法上下溢出</a></p>
-<ul>
+<li><a href="#%E7%AE%97%E6%B3%95%E4%B8%8A%E4%B8%8B%E6%BA%A2%E5%87%BA">算法上下溢出</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-1">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-1">预防技术</a></li>
-<li><a href="#%E5%AE%9E%E9%99%85%E7%A4%BA%E4%BE%8Bpowhc%E5%92%8C%E6%89%B9%E9%87%8F%E4%BC%A0%E8%BE%93%E6%BA%A2%E5%87%BAcve-2018-10299">实际示例：PoWHC和批量传输溢出（CVE-2018-10299）</a></li>
+<li><a href="#%E5%AE%9E%E9%99%85%E7%A4%BA%E4%BE%8Bpowhc-%E5%92%8C%E6%89%B9%E9%87%8F%E4%BC%A0%E8%BE%93%E6%BA%A2%E5%87%BAcve-2018-10299">实际示例：PoWHC 和批量传输溢出（CVE-2018-10299）</a></li>
 </ul>
 </li>
-<li><p><a href="#%E4%B8%8D%E6%9C%9F%E8%80%8C%E8%87%B3%E7%9A%84ether">不期而至的Ether</a></p>
-<ul>
+<li><a href="#%E4%B8%8D%E6%9C%9F%E8%80%8C%E8%87%B3%E7%9A%84-ether">不期而至的 Ether</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-2">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-2">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%E6%9C%AA%E7%9F%A5">真实世界的例子：未知</a></li>
 </ul>
 </li>
-<li><p><a href="#delegatecall">Delegatecall</a></p>
-<ul>
+<li><a href="#delegatecall">Delegatecall</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-3">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-3">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8Bparity-multisig-walletsecond-hack">真实世界的例子：Parity Multisig Wallet（Second Hack）</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8Bparity-multisig-walletsecond-hack">真实世界示例：Parity Multisig Wallet（Second Hack）</a></li>
 </ul>
 </li>
-<li><p><a href="#%E9%BB%98%E8%AE%A4%E5%8F%AF%E8%A7%81%E6%80%A7Visibility">默认可见性（Visibility）</a></p>
-<ul>
+<li><a href="#%E9%BB%98%E8%AE%A4%E5%8F%AF%E8%A7%81%E6%80%A7visibility">默认可见性（Visibility）</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-4">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-4">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8Bparity-multisig-wallet-first-hack">真实世界示例：Parity MultiSig Wallet（First Hack）</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8Bparity-multisig-walletfirst-hack">真实世界示例：Parity MultiSig Wallet（First Hack）</a></li>
 </ul>
 </li>
-<li><p><a href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E8%AF%AF%E5%8C%BA">随机数误区</a></p>
-<ul>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E8%AF%AF%E5%8C%BA">随机数误区</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-5">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-5">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E6%A1%88%E4%BE%8Bprng%E5%90%88%E7%BA%A6">真实案例：PRNG合约</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8Bprng-%E5%90%88%E7%BA%A6">真实世界示例：PRNG 合约</a></li>
 </ul>
 </li>
-<li><p><a href="#%E5%A4%96%E9%83%A8%E5%90%88%E7%BA%A6%E5%BC%95%E7%94%A8">外部合约引用</a></p>
-<ul>
+<li><a href="#%E5%A4%96%E9%83%A8%E5%90%88%E7%BA%A6%E5%BC%95%E7%94%A8">外部合约引用</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-6">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-6">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%E5%86%8D%E5%85%A5%E8%9C%9C%E7%BD%90">真实的例子：再入蜜罐</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%E5%8F%AF%E9%87%8D%E5%85%A5%E9%92%93%E9%B1%BC%E5%90%88%E7%BA%A6">真实世界的例子：可重入钓鱼合约</a></li>
 </ul>
 </li>
-<li><p><a href="#%E7%9F%AD%E5%9C%B0%E5%9D%80%E5%8F%82%E6%95%B0%E6%94%BB%E5%87%BB">短地址&#x2F;参数攻击</a></p>
-<ul>
+<li><a href="#%E7%9F%AD%E5%9C%B0%E5%9D%80%E5%8F%82%E6%95%B0%E6%94%BB%E5%87%BB">短地址&#x2F;参数攻击</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-7">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-7">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%E6%9C%AA%E7%9F%A5-1">真实世界的例子：未知</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%9C%AA%E6%A3%80%E6%9F%A5%E7%9A%84call%E8%BF%94%E5%9B%9E%E5%80%BC">未检查的CALL返回值</a></p>
-<ul>
+<li><a href="#%E4%B8%8D%E6%A3%80%E6%9F%A5-call-%E8%BF%94%E5%9B%9E%E5%80%BC">不检查 CALL 返回值</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-8">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-8">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90etherpot%E5%92%8C%E4%BB%A5%E5%A4%AA%E4%B9%8B%E7%8E%8B">真实的例子：Etherpot和以太之王</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90etherpot-%E5%92%8C-king-of-ether">真实的例子：Etherpot 和 King of Ether</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89/%E6%8A%A2%E5%85%88%E6%8F%90%E4%BA%A4">条件竞争&#x2F;抢先提交</a></p>
-<ul>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89%E6%8A%A2%E5%85%88%E6%8F%90%E4%BA%A4">条件竞争&#x2F;抢先提交</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-9">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-9">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90erc20%E5%92%8Cbancor">真实世界的例子：ERC20和Bancor</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90erc20-%E5%92%8C-bancor">真实世界的例子：ERC20 和 Bancor</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1dos">拒绝服务（DOS）</a></p>
-<ul>
+<li><a href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1dos">拒绝服务（DOS）</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-10">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-10">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90governmental">真实的例子：GovernMental</a></li>
 </ul>
 </li>
-<li><p><a href="#%E9%94%81%E5%AE%9A%E6%97%B6%E9%97%B4%E6%88%B3%E6%93%8D%E4%BD%9C">锁定时间戳操作</a></p>
-<ul>
+<li><a href="#%E6%93%8D%E7%BA%B5%E5%8C%BA%E5%9D%97%E6%97%B6%E9%97%B4%E6%88%B3">操纵区块时间戳</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-11">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-11">预防技术</a></li>
-<li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90governmental">真实的例子：GovernMental</a></li>
+<li><a href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90governmental-1">真实的例子：GovernMental</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%A4%B1%E6%8E%A7">构造函数失控</a></p>
-<ul>
+<li><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%A4%B1%E6%8E%A7">构造函数失控</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-12">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-12">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90rubixi">真实世界的例子：Rubixi</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%AD%98%E5%82%A8%E6%8C%87%E9%92%88">未初始化的存储指针</a></p>
-<ul>
+<li><a href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%AD%98%E5%82%A8%E6%8C%87%E9%92%88">未初始化的存储指针</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-13">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-13">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%E9%92%93%E9%B1%BCopenaddresslottery-%E5%92%8C-cryptoroulette">真实世界的例子：钓鱼：OpenAddressLottery 和 CryptoRoulette</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%B5%AE%E7%82%B9%E5%92%8C%E6%95%B0%E5%80%BC%E7%B2%BE%E5%BA%A6">浮点和数值精度</a></p>
-<ul>
+<li><a href="#%E6%B5%AE%E7%82%B9%E5%92%8C%E7%B2%BE%E5%BA%A6">浮点和精度</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-14">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-14">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90ethstick">真实世界的例子：Ethstick</a></li>
 </ul>
 </li>
-<li><p><a href="#txorigin%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">tx.origin身份验证</a></p>
-<ul>
+<li><a href="#txorigin-%E7%94%A8%E4%BD%9C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">Tx.Origin 用作身份验证</a><ul>
 <li><a href="#%E6%BC%8F%E6%B4%9E-15">漏洞</a></li>
 <li><a href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-15">预防技术</a></li>
 <li><a href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%E6%9C%AA%E7%9F%A5-2">真实世界的例子：未知</a></li>
 </ul>
 </li>
-<li><p><a href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%80%AA%E5%BC%82%E6%A8%A1%E5%BC%8F">以太坊怪异模式</a></p>
-<ul>
-<li><a href="#%E6%97%A0%E9%94%AEether">无键ether</a></li>
+<li><a href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%9C%BA%E5%85%B3">以太坊机关</a><ul>
+<li><a href="#%E6%97%A0%E5%AF%86%E9%92%A5%E7%9A%84-ether">无密钥的 ether</a></li>
 <li><a href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E5%9C%B0%E5%9D%80">一次性地址</a></li>
 </ul>
 </li>
-<li><p><a href="#%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%85%B3%E7%9A%84hacksbugs%E5%88%97%E8%A1%A8">有趣的加密相关的hacks&#x2F;bugs列表</a></p>
-</li>
-<li><p><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%9B%B4%E5%A4%9A%E9%98%85%E8%AF%BB%E5%88%97%E8%A1%A8">参考文献&#x2F;更多阅读列表</a></p>
-<ul>
-<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/ethereum/wiki/wiki/Safety" >Ethereum Wiki - Safety <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a href="solidity.readthedocs.io/en/latest/security-considerations.html">Solidity Docs - Security Considerations</a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://consensys.github.io/smart-contract-best-practices" >Consensus - Ethereum Smart Contract Best Practices <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://applicature.com/blog/history-of-ethereum-security-vulnerabilities-hacks-and-their-fixes" >History of Ethereum Security Vulnerabilities, Hacks and Their Fixes <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="http://www.dasp.co/" >Decentralized Application Security Project (DASP) Top 10 of 2018 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://eprint.iacr.org/2016/1007.pdf" >A Survey of attacks on Ethereum Smart Contracts <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://medium.com/cryptronics/ethereum-smart-contract-security-73b0ede73fa8" >Ethereum Smart Contract Security <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://medium.com/@chriseth/lessons-learnt-from-the-underhanded-solidity-contest-8388960e09b1" >Lessons Learnt from the Underhanded Solidity Contest <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-</li>
+<li><a href="#%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%85%B3%E7%9A%84hacksbugs%E5%88%97%E8%A1%A8">有趣的加密相关的hacks&#x2F;bugs列表</a></li>
+<li><a href="#%E8%87%B4%E8%B0%A2">致谢</a></li>
 </ul>
 <h2 id="重入漏洞"><a href="#重入漏洞" class="headerlink" title="重入漏洞"></a>重入漏洞</h2><p>以太坊智能合约的特点之一是能够调用和利用其他外部合约的代码。合约通常也处理 Ether，因此通常会将 Ether 发送给各种外部用户地址。调用外部合约或将以太网发送到地址的操作需要合约提交外部调用。这些外部调用可能被攻击者劫持，迫使合约执行进一步的代码（即通过回退函数），包括回调自身。因此代码执行“重新进入”合约。这种攻击被用于臭名昭著的 DAO 攻击。</p>
 <p>有关重入攻击的进一步阅读，请参阅<a class="link"   target="_blank" rel="noopener" href="https://medium.com/@gus_tavo_guim/reentrancy-attack-on-smart-contracts-how-to-identify-the-exploitable-and-an-example-of-an-attack-4470a2d8dfe4" >对智能合约的重入式攻击 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和 <a class="link"   target="_blank" rel="noopener" href="https://consensys.github.io/smart-contract-best-practices/known_attacks/#dos-with-unexpected-revert" >Consensus - 以太坊智能合约最佳实践 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
@@ -826,14 +800,14 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> </li>
+        <li><strong>标题:</strong> Solidity 安全：已知攻击方法和常见防御模式综合列表</li>
         <li><strong>作者:</strong> fsociety</li>
         <li><strong>创建于
                 :</strong> 2024-07-19 16:53:00</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-07-19 16:53:00
+                    :</strong> 2024-07-23 13:56:23
             </li>
         
         <li>
@@ -865,13 +839,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/07/19/02/"
+                        href="/2024/07/19/01/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-title-item">OAuth 2.0 是要通过什么方式解决什么问题？</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -948,8 +922,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title"></div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Solidity-%E5%AE%89%E5%85%A8%EF%BC%9A%E5%B7%B2%E7%9F%A5%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95%E5%92%8C%E5%B8%B8%E8%A7%81%E9%98%B2%E5%BE%A1%E6%A8%A1%E5%BC%8F%E7%BB%BC%E5%90%88%E5%88%97%E8%A1%A8"><span class="nav-text">Solidity 安全：已知攻击方法和常见防御模式综合列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="nav-text">重入漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AThe-DAO"><span class="nav-text">真实的例子：The DAO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%B8%8A%E4%B8%8B%E6%BA%A2%E5%87%BA"><span class="nav-text">算法上下溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-1"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-1"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E7%A4%BA%E4%BE%8B%EF%BC%9APoWHC-%E5%92%8C%E6%89%B9%E9%87%8F%E4%BC%A0%E8%BE%93%E6%BA%A2%E5%87%BA%EF%BC%88CVE-2018-10299%EF%BC%89"><span class="nav-text">实际示例：PoWHC 和批量传输溢出（CVE-2018-10299 ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E6%9C%9F%E8%80%8C%E8%87%B3%E7%9A%84-Ether"><span class="nav-text">不期而至的 Ether</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-2"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-2"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%9C%AA%E7%9F%A5"><span class="nav-text">真实世界的例子：未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delegatecall"><span class="nav-text">Delegatecall</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-3"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-3"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8B%EF%BC%9AParity-Multisig-Wallet%EF%BC%88Second-Hack%EF%BC%89"><span class="nav-text">真实世界示例：Parity Multisig Wallet（Second Hack）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%88Visibility%EF%BC%89"><span class="nav-text">默认可见性（Visibility）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-4"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-4"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8B%EF%BC%9AParity-MultiSig-Wallet%EF%BC%88First-Hack%EF%BC%89"><span class="nav-text">真实世界示例：Parity MultiSig Wallet（First Hack）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E8%AF%AF%E5%8C%BA"><span class="nav-text">随机数误区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-5"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-5"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8B%EF%BC%9APRNG-%E5%90%88%E7%BA%A6"><span class="nav-text">真实世界示例：PRNG 合约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E5%90%88%E7%BA%A6%E5%BC%95%E7%94%A8"><span class="nav-text">外部合约引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-6"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-6"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%8F%AF%E9%87%8D%E5%85%A5%E9%92%93%E9%B1%BC%E5%90%88%E7%BA%A6"><span class="nav-text">真实世界的例子：可重入钓鱼合约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E5%9C%B0%E5%9D%80-%E5%8F%82%E6%95%B0%E6%94%BB%E5%87%BB"><span class="nav-text">短地址&#x2F;参数攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-7"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-7"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%9C%AA%E7%9F%A5-1"><span class="nav-text">真实世界的例子：未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E6%A3%80%E6%9F%A5-CALL-%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">不检查 CALL 返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-8"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-8"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AEtherpot-%E5%92%8C-King-of-Ether"><span class="nav-text">真实的例子：Etherpot 和 King of Ether</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89-%E6%8A%A2%E5%85%88%E6%8F%90%E4%BA%A4"><span class="nav-text">条件竞争&#x2F;抢先提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-9"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-9"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AERC20-%E5%92%8C-Bancor"><span class="nav-text">真实世界的例子：ERC20 和 Bancor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%EF%BC%88DOS%EF%BC%89"><span class="nav-text">拒绝服务（DOS）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-10"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-10"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AGovernMental"><span class="nav-text">真实的例子：GovernMental</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E7%BA%B5%E5%8C%BA%E5%9D%97%E6%97%B6%E9%97%B4%E6%88%B3"><span class="nav-text">操纵区块时间戳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-11"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-11"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AGovernMental-1"><span class="nav-text">真实的例子：GovernMental</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%A4%B1%E6%8E%A7"><span class="nav-text">构造函数失控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-12"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-12"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9ARubixi"><span class="nav-text">真实世界的例子：Rubixi</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%AD%98%E5%82%A8%E6%8C%87%E9%92%88"><span class="nav-text">未初始化的存储指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-13"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-13"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E9%92%93%E9%B1%BC%EF%BC%9AOpenAddressLottery-%E5%92%8C-CryptoRoulette"><span class="nav-text">真实世界的例子：钓鱼：OpenAddressLottery 和 CryptoRoulette</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E5%92%8C%E7%B2%BE%E5%BA%A6"><span class="nav-text">浮点和精度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-14"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-14"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AEthstick"><span class="nav-text">真实世界的例子：Ethstick</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tx-Origin-%E7%94%A8%E4%BD%9C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="nav-text">Tx.Origin 用作身份验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-15"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-15"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%9C%AA%E7%9F%A5-2"><span class="nav-text">真实世界的例子：未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%9C%BA%E5%85%B3"><span class="nav-text">以太坊机关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%AF%86%E9%92%A5%E7%9A%84-ether"><span class="nav-text">无密钥的 ether</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E5%9C%B0%E5%9D%80"><span class="nav-text">一次性地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%85%B3%E7%9A%84hacks-bugs%E5%88%97%E8%A1%A8"><span class="nav-text">有趣的加密相关的hacks&#x2F;bugs列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-text">致谢</span></a></li></ol></li></ol>
+        <div class="page-title">Solidity 安全：已知攻击方法和常见防御模式综合列表</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="nav-text">重入漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AThe-DAO"><span class="nav-text">真实的例子：The DAO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E4%B8%8A%E4%B8%8B%E6%BA%A2%E5%87%BA"><span class="nav-text">算法上下溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-1"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-1"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E7%A4%BA%E4%BE%8B%EF%BC%9APoWHC-%E5%92%8C%E6%89%B9%E9%87%8F%E4%BC%A0%E8%BE%93%E6%BA%A2%E5%87%BA%EF%BC%88CVE-2018-10299%EF%BC%89"><span class="nav-text">实际示例：PoWHC 和批量传输溢出（CVE-2018-10299 ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E6%9C%9F%E8%80%8C%E8%87%B3%E7%9A%84-Ether"><span class="nav-text">不期而至的 Ether</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-2"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-2"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%9C%AA%E7%9F%A5"><span class="nav-text">真实世界的例子：未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delegatecall"><span class="nav-text">Delegatecall</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-3"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-3"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8B%EF%BC%9AParity-Multisig-Wallet%EF%BC%88Second-Hack%EF%BC%89"><span class="nav-text">真实世界示例：Parity Multisig Wallet（Second Hack）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%88Visibility%EF%BC%89"><span class="nav-text">默认可见性（Visibility）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-4"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-4"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8B%EF%BC%9AParity-MultiSig-Wallet%EF%BC%88First-Hack%EF%BC%89"><span class="nav-text">真实世界示例：Parity MultiSig Wallet（First Hack）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E8%AF%AF%E5%8C%BA"><span class="nav-text">随机数误区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-5"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-5"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%A4%BA%E4%BE%8B%EF%BC%9APRNG-%E5%90%88%E7%BA%A6"><span class="nav-text">真实世界示例：PRNG 合约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E5%90%88%E7%BA%A6%E5%BC%95%E7%94%A8"><span class="nav-text">外部合约引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-6"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-6"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%8F%AF%E9%87%8D%E5%85%A5%E9%92%93%E9%B1%BC%E5%90%88%E7%BA%A6"><span class="nav-text">真实世界的例子：可重入钓鱼合约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E5%9C%B0%E5%9D%80-%E5%8F%82%E6%95%B0%E6%94%BB%E5%87%BB"><span class="nav-text">短地址&#x2F;参数攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-7"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-7"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%9C%AA%E7%9F%A5-1"><span class="nav-text">真实世界的例子：未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E6%A3%80%E6%9F%A5-CALL-%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">不检查 CALL 返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-8"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-8"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AEtherpot-%E5%92%8C-King-of-Ether"><span class="nav-text">真实的例子：Etherpot 和 King of Ether</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89-%E6%8A%A2%E5%85%88%E6%8F%90%E4%BA%A4"><span class="nav-text">条件竞争&#x2F;抢先提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-9"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-9"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AERC20-%E5%92%8C-Bancor"><span class="nav-text">真实世界的例子：ERC20 和 Bancor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%EF%BC%88DOS%EF%BC%89"><span class="nav-text">拒绝服务（DOS）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-10"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-10"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AGovernMental"><span class="nav-text">真实的例子：GovernMental</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E7%BA%B5%E5%8C%BA%E5%9D%97%E6%97%B6%E9%97%B4%E6%88%B3"><span class="nav-text">操纵区块时间戳</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-11"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-11"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AGovernMental-1"><span class="nav-text">真实的例子：GovernMental</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%A4%B1%E6%8E%A7"><span class="nav-text">构造函数失控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-12"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-12"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9ARubixi"><span class="nav-text">真实世界的例子：Rubixi</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%AD%98%E5%82%A8%E6%8C%87%E9%92%88"><span class="nav-text">未初始化的存储指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-13"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-13"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E9%92%93%E9%B1%BC%EF%BC%9AOpenAddressLottery-%E5%92%8C-CryptoRoulette"><span class="nav-text">真实世界的例子：钓鱼：OpenAddressLottery 和 CryptoRoulette</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E5%92%8C%E7%B2%BE%E5%BA%A6"><span class="nav-text">浮点和精度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-14"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-14"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9AEthstick"><span class="nav-text">真实世界的例子：Ethstick</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tx-Origin-%E7%94%A8%E4%BD%9C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="nav-text">Tx.Origin 用作身份验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E-15"><span class="nav-text">漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%8A%80%E6%9C%AF-15"><span class="nav-text">预防技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E4%BE%8B%E5%AD%90%EF%BC%9A%E6%9C%AA%E7%9F%A5-2"><span class="nav-text">真实世界的例子：未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%9C%BA%E5%85%B3"><span class="nav-text">以太坊机关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%AF%86%E9%92%A5%E7%9A%84-ether"><span class="nav-text">无密钥的 ether</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E5%9C%B0%E5%9D%80"><span class="nav-text">一次性地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%85%B3%E7%9A%84hacks-bugs%E5%88%97%E8%A1%A8"><span class="nav-text">有趣的加密相关的hacks&#x2F;bugs列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-text">致谢</span></a></li></ol>
 
     </div>
 </div>
