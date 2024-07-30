@@ -584,15 +584,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>GAS优化（一）</title>
-    <url>/2024/07/22/GAS%20%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>![alt text]</p>
-]]></content>
-      <tags>
-        <tag>Excerpt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何安全、快速地接入 OAuth 2.0？</title>
     <url>/2024/07/19/05/</url>
     <content><![CDATA[<p>在 <a href="./03.md">第 3 讲</a>，我已经讲了授权服务的流程，如果你还记得的话，当时我特意强调了一点，就是 <strong>授权服务将 OAuth 2.0 的复杂性都揽在了自己身上</strong>，这也是授权服务为什么是 OAuth 2.0 体系的核心的原因之一。</p>
@@ -695,6 +686,15 @@
 <h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>如果使用刷新令牌 refresh_token 请求回来一个新的访问令牌 access_token，按照一般规则授权服务上旧的访问令牌应该要立即失效，但是如果在这之前已经有使用旧的访问令牌发出去的请求，不就受到影响了吗，这种情况下应该如何处理呢？</p>
 <p>笔者就遇到过这样的问题：微信开发平台的做法是延迟失效，刷新 token 之后，之前的旧 token 在 1~2 分钟内还是有效的。唯一不清楚的时候，使用 spring security 如何实现这个功能。</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>GAS优化（一）</title>
+    <url>/2024/07/22/GAS%20%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>![alt text]</p>
+]]></content>
+      <tags>
+        <tag>Excerpt</tag>
+      </tags>
   </entry>
   <entry>
     <title>除了授权码许可类型，OAuth 2.0 还支持什么授权流程？</title>
