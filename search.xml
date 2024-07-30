@@ -1,78 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>OAuth 2.0 是要通过什么方式解决什么问题？</title>
-    <url>/2024/07/19/01/</url>
-    <content><![CDATA[<p>我想先问你个问题。第一次使用极客时间 App 的时候，你是直接使用了第三方帐号（比如微信、微博）登录，还是选择了重新注册新用户？如果你选择了重新注册用户，那你还得上传头像、输入用户名等信息。但如果你选择了使用第三方帐号微信来登录，那极客时间会直接使用你微信的这些信息作为基础信息，你就能省心很多。</p>
-<p>到这里，我估计你会问，这是怎么实现的？微信把我的个人信息给了极客时间，它又是怎么保证我的数据安全的呢？</p>
-<p>其实，微信这一系列授权背后的原理都可以归到一个词上，那就是 OAuth 2.0。今天这节课，我们就来看看 OAuth 2.0 到底是什么、能干什么以及它是怎么干的。</p>
-<h2 id="OAuth-2-0-是什么？"><a href="#OAuth-2-0-是什么？" class="headerlink" title="OAuth 2.0 是什么？"></a>OAuth 2.0 是什么？</h2><p>用一句话总结来说，<strong>OAuth 2.0 就是一种授权协议</strong>。那如何理解这里的「授权」呢？</p>
-<p>我举个咱们生活中的例子。假如你是一名销售人员，你想去百度拜访你的大客户王总。到了百度的大楼之后，保安拦住了你，问你要工牌。你说：「保安大哥啊，我是来拜访王总的，哪里有什么工牌」。保安大哥说：「那你要去前台做个登记」。</p>
-<p>然后你就赶紧来到前台，前台美女问你是不是做了登记。你说王总秘书昨天有要你的手机号，说是已经做过预约。小姐姐确认之后往你的手机发了个验证码，你把验证码告诉了前台小姐姐之后，她给了你一张门禁卡，于是你就可以开心地去见王总了。</p>
-<p>你看，这个例子里面 <strong>就有一次授权</strong>。本来你是没有权限进入百度大楼的，但是经过前台小姐姐一系列的验证之后，她发现你确实是来拜访客户的，<strong>于是给了你一张临时工牌。这整个过程就是授权</strong>。</p>
-<p>我再举一个电商的场景，你估计更有感觉。假如你是一个卖家，在京东商城开了一个店铺，日常运营中你要将订单打印出来以便给用户发货。但打印这事儿也挺繁琐的，之前你总是手工操作，后来发现有个叫「小兔」的第三方软件，它可以帮你高效率地处理这事。</p>
-<p>但你想想，小兔是怎么访问到这些订单数据的呢？其实是这样，<strong>京东商城提供了开放平台，小兔通过京东商家开放平台的 API 就能访问到用户的订单数据</strong>。</p>
-<p>只要你在软件里点击同意，小兔就可以拿到一个访问令牌，通过访问令牌来获取到你的订单数据帮你干活儿了。你看，<strong>这里也是有一次授权</strong>。你要是不同意，平台肯定不敢把这些数据给到第三方软件。</p>
-<h2 id="为什么用-OAuth-2-0？"><a href="#为什么用-OAuth-2-0？" class="headerlink" title="为什么用 OAuth 2.0？"></a>为什么用 OAuth 2.0？</h2><p>基于上面两种场景的解决方案，关于授权我们最容易想到的方案就是提供钥匙。比如，你要去百度拜访王总，那前台小姐姐就给你张百度的工牌；小兔要获取你的订单信息，那你就把你的用户名和密码给它。但稍微有些安全意识，我们都不会这样做。</p>
-<p><strong>因为你有了百度工牌，那以后都可以随时自由地进出了</strong>，这显然不是百度想要的。所以，百度有一套完整的机制，<strong>通过给你一张临时工牌，实现在保证安全的情况下，还能让你去大楼里面见到王总</strong>。相应地，小兔软件请求访问你的订单数据的过程，也会涉及这样一套授权机制，那就是 OAuth 2.0。它通过给小兔软件一个访问令牌，而不是让小兔软件拿着你的用户名和密码，去获取你的订单数据帮你干活儿。</p>
-<p>其实，除了小兔软件这个场景，在如今的互联网世界里用到 OAuth 2.0 的地方非常多，只是因为它隐藏了实现细节，需要我们多做分析才能发现它。比如，当你使用微信登录其他网站或者 App 的时候，当你开始使用某个小程序的时候，你都在无感知的情况下用到了 OAuth 2.0。</p>
-<p>那总结来说，<strong>OAuth 2.0 这种授权协议，就是保证第三方（软件）只有在获得授权之后，才可以进一步访问授权者的数据</strong>。因此，我们常常还会听到一种说法，OAuth 2.0 是一种安全协议。现在你知道了，这种说法也是正确的。</p>
-<p>现在访问授权者的数据主要是通过 Web API，所以凡是要保护这种对外的 API 时，都需要这样授权的方式。而 OAuth 2.0 的这种颁发访问令牌的机制，是再合适不过的方法了。同时，这样的 Web API 还在持续增加，所以 OAuth 2.0 是目前 Web 上重要的安全手段之一了。</p>
-<h2 id="OAuth-2-0-是怎样运转的？"><a href="#OAuth-2-0-是怎样运转的？" class="headerlink" title="OAuth 2.0 是怎样运转的？"></a>OAuth 2.0 是怎样运转的？</h2><p>现在，我相信你已经对 OAuth 2.0 有了一个整体印象，接下来咱们再看看它是怎么运转的。</p>
-<p>我们还是来看上面提到的小兔打单软件的例子吧。假如小明在京东上面开了一个店铺，小明要管理他的店铺里面的订单，于是选择了使用小兔软件。</p>
-<p>现在，让我们把「小明」「小兔软件」「京东商家开放平台」放到一个对话里面，看看他们是怎么沟通的吧。</p>
-<ul>
-<li><p><strong>小明</strong>：你好，小兔软件。我正在 Google 浏览器上面，需要访问你来帮我处理我在京东商城店铺的订单。</p>
-</li>
-<li><p><strong>小兔软件</strong>：好的，小明，我需要你给我授权。现在我把你引导到京东商家开放平台上，你在那里给我授权吧。</p>
-</li>
-<li><p><strong>京东商家开放平台</strong>：你好，小明。我收到了小兔软件跳转过来的请求，现在已经准备好了一个授权页面。你登录并确认后，点击授权页面上面的授权按钮即可。</p>
-</li>
-<li><p><strong>小明</strong>：好的，京东商家开放平台。我看到了这个授权页面，已经点授权按钮啦😄</p>
-</li>
-<li><p><strong>京东商家开放平台</strong>：你好，小兔打单软件。我收到了小明的授权，现在要给你生成一个授权码 code 值，我通过浏览器重定向到你的回调 URL 地址上面了。</p>
-</li>
-<li><p><strong>小兔软件</strong>：好的，京东商家开放平台。我现在从浏览器上拿到了授权码，现在就用这个授权码来请求你，请给我一个访问令牌 access_token 吧。</p>
-</li>
-<li><p><strong>京东商家开放平台</strong>：好的，小兔打单软件，访问令牌已经发送给你了。</p>
-</li>
-<li><p><strong>小兔打单软件</strong>：太好了，我现在就可以使用访问令牌来获取小明店铺的订单了。</p>
-</li>
-<li><p><strong>小明</strong>：我已经能够看到我的订单了，现在就开始打单操作了。</p>
-</li>
-</ul>
-<p>下面，为了帮助你理解，我再用一张图来描述整个过程：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./assets/77197844a8f41a33cb68947b1dc9ee79.png"
-                      alt="img"
-                ></p>
-<p>再分析下这个流程，我们不难发现小兔软件最终的目的，是要获取一个叫做「访问令牌」的东西。从最后一步也能够看出来，在小兔软件获取到 <strong>访问令牌</strong> 之后，才有足够的 「能力」 去请求小明的店铺的订单，也就是才能够帮助小明打印订单。</p>
-<p>那么，小兔软件是怎么获取访问令牌的值的呢？我们会发现还有一个叫做「授权码」的东西，也就是说小兔软件是 拿<strong>授权码换取的访问令牌</strong>。</p>
-<p>小兔软件又是怎么拿到 <strong>授权码</strong> 的呢？从图中流程刚开始的那一步，我们就会发现，<strong>是在小明授权之后</strong>，才产生的授权码，上面流程中后续的一切动作，实际上都是在小明对小兔软件授权发生以后才产生的。其中主要的动作，就是 <code>生成授权码 –&gt; 生成访问令牌 –&gt; 使用访问令牌</code>。</p>
-<p>到这里，我们不难发现，<strong>OAuth 2.0 授权的核心就是颁发访问令牌、使用访问令牌，</strong> 而且不管是哪种类型的授权流程都是这样。你一定要理解，或者记住这句话，它是整个流程的核心。你也可以再回想下，去百度拜访王总的例子。如果你是百度这套机制的设计者的话，会怎么设计这套授权机制呢。想清楚了这个问题，你再去理解令牌、授权码啥的也就简单了。</p>
-<p>在小兔软件这个例子中呢，我们使用的就是授权码许可（Authorization Code）类型。它是 OAuth 2.0 中最经典、最完备、最安全、应用最广泛的许可类型。除了授权码许可类型外，OAuth 2.0 针对不同的使用场景，还有 3 种基础的许可类型，分别是隐式许可（Implicit）、客户端凭据许可（Client Credentials）、资源拥有者凭据许可（Resource Owner Password Credentials）。相对而言，这 3 种授权许可类型的流程，在流程复杂度和安全性上都有所减弱（在后续与你详细分析）。</p>
-<p>因此，在这个课程中，我会频繁用授权码许可类型来举例。至于为什么称它为授权码许可，为什么有两次重定向，以及这种许可类型更详细的通信流程又是怎样的，我会在下一讲给你深入分析，你可以先不用关注。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我来回给你举例子，其实就是希望你能理解 OAuth 到底是什么，为什么需要它，以及它大概的运行逻辑是怎样的。总结来说，我需要你记住以下这 3 个关键点：</p>
-<ul>
-<li><p>OAuth 2.0 的核心是授权许可，更进一步说就是令牌机制。也就是说，像小兔软件这样的第三方软件只有拿到了京东商家开放平台颁发的访问令牌，也就是得到了授权许可，然后才可以 <strong>代表</strong> 用户访问他们的数据。</p>
-</li>
-<li><p>互联网中所有的受保护资源，几乎都是以 Web API 的形式来提供访问的，比如极客时间 App 要获取用户的头像、昵称，小兔软件要获取用户的店铺订单，我们说 OAuth 2.0 与安全相关，是用来保护 Web API 的。另外，第三方软件通过 OAuth 2.0 取得访问权限之后，用户便把这些权限 <strong>委托</strong> 给了第三方软件，我们说 OAuth 2.0 是一种委托协议，也没问题。</p>
-</li>
-<li><p>也正因为像小兔这样的第三方软件，每次都是用访问令牌而不是用户名和密码来请求用户的数据，才大大减少了安全风险上的「攻击面」。不然，我们试想一下，每次都带着用户名和密码来访问数量众多的 Web API ，是不是增加了这个「攻击面」。因此，我们说 OAuth 2.0 的核心，就是颁发访问令牌和使用访问令牌。</p>
-</li>
-</ul>
-<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你可以再花时间想下小兔软件获取用户订单信息的那个场景，如果让你来设计整个的授权流程，你会怎么设计？还有没有更好的方式？</p>
-<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
-<li><p>为什么要用授权码换取 token，而不是直接获取 token？</p>
-<p>直接获取 token 的场景是有的，客户端凭据许可类型就是这样的使用场景，但是我们会在课程里面讲到，<strong>授权码许可类型是 OAuth 2.0 最安全 最完备的许可类型</strong>。</p>
-<p>以 Web 场景为例，第一次用户是跟第三方软件建立的联系，三方软件要把用户引导到平台一方去授权，这个时候用户实际上跟三方软件就失去了联系，平台如果这个时候直接把令牌给了三方软件，因为没了联系，三方软件就不能很方便的告诉用户。</p>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>授权码许可类型中，为什么一定要有授权码？</title>
     <url>/2024/07/19/02/</url>
     <content><![CDATA[<p>在上一讲，我提到了 OAuth 2.0 的授权码许可类型，在小兔打单软件的例子里面，小兔最终是通过 <strong>访问令牌</strong> 请求到小明的店铺里的订单数据。同时呢，我还提到了，这个 <strong>访问令牌是通过授权码换来的</strong>。到这里估计你会问了，为什么要用授权码来换令牌？为什么不能直接颁发访问令牌呢？</p>
@@ -251,6 +179,240 @@
       <tags>
         <tag>oath 角色类型</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>OAuth 2.0 是要通过什么方式解决什么问题？</title>
+    <url>/2024/07/19/01/</url>
+    <content><![CDATA[<p>我想先问你个问题。第一次使用极客时间 App 的时候，你是直接使用了第三方帐号（比如微信、微博）登录，还是选择了重新注册新用户？如果你选择了重新注册用户，那你还得上传头像、输入用户名等信息。但如果你选择了使用第三方帐号微信来登录，那极客时间会直接使用你微信的这些信息作为基础信息，你就能省心很多。</p>
+<p>到这里，我估计你会问，这是怎么实现的？微信把我的个人信息给了极客时间，它又是怎么保证我的数据安全的呢？</p>
+<p>其实，微信这一系列授权背后的原理都可以归到一个词上，那就是 OAuth 2.0。今天这节课，我们就来看看 OAuth 2.0 到底是什么、能干什么以及它是怎么干的。</p>
+<h2 id="OAuth-2-0-是什么？"><a href="#OAuth-2-0-是什么？" class="headerlink" title="OAuth 2.0 是什么？"></a>OAuth 2.0 是什么？</h2><p>用一句话总结来说，<strong>OAuth 2.0 就是一种授权协议</strong>。那如何理解这里的「授权」呢？</p>
+<p>我举个咱们生活中的例子。假如你是一名销售人员，你想去百度拜访你的大客户王总。到了百度的大楼之后，保安拦住了你，问你要工牌。你说：「保安大哥啊，我是来拜访王总的，哪里有什么工牌」。保安大哥说：「那你要去前台做个登记」。</p>
+<p>然后你就赶紧来到前台，前台美女问你是不是做了登记。你说王总秘书昨天有要你的手机号，说是已经做过预约。小姐姐确认之后往你的手机发了个验证码，你把验证码告诉了前台小姐姐之后，她给了你一张门禁卡，于是你就可以开心地去见王总了。</p>
+<p>你看，这个例子里面 <strong>就有一次授权</strong>。本来你是没有权限进入百度大楼的，但是经过前台小姐姐一系列的验证之后，她发现你确实是来拜访客户的，<strong>于是给了你一张临时工牌。这整个过程就是授权</strong>。</p>
+<p>我再举一个电商的场景，你估计更有感觉。假如你是一个卖家，在京东商城开了一个店铺，日常运营中你要将订单打印出来以便给用户发货。但打印这事儿也挺繁琐的，之前你总是手工操作，后来发现有个叫「小兔」的第三方软件，它可以帮你高效率地处理这事。</p>
+<p>但你想想，小兔是怎么访问到这些订单数据的呢？其实是这样，<strong>京东商城提供了开放平台，小兔通过京东商家开放平台的 API 就能访问到用户的订单数据</strong>。</p>
+<p>只要你在软件里点击同意，小兔就可以拿到一个访问令牌，通过访问令牌来获取到你的订单数据帮你干活儿了。你看，<strong>这里也是有一次授权</strong>。你要是不同意，平台肯定不敢把这些数据给到第三方软件。</p>
+<h2 id="为什么用-OAuth-2-0？"><a href="#为什么用-OAuth-2-0？" class="headerlink" title="为什么用 OAuth 2.0？"></a>为什么用 OAuth 2.0？</h2><p>基于上面两种场景的解决方案，关于授权我们最容易想到的方案就是提供钥匙。比如，你要去百度拜访王总，那前台小姐姐就给你张百度的工牌；小兔要获取你的订单信息，那你就把你的用户名和密码给它。但稍微有些安全意识，我们都不会这样做。</p>
+<p><strong>因为你有了百度工牌，那以后都可以随时自由地进出了</strong>，这显然不是百度想要的。所以，百度有一套完整的机制，<strong>通过给你一张临时工牌，实现在保证安全的情况下，还能让你去大楼里面见到王总</strong>。相应地，小兔软件请求访问你的订单数据的过程，也会涉及这样一套授权机制，那就是 OAuth 2.0。它通过给小兔软件一个访问令牌，而不是让小兔软件拿着你的用户名和密码，去获取你的订单数据帮你干活儿。</p>
+<p>其实，除了小兔软件这个场景，在如今的互联网世界里用到 OAuth 2.0 的地方非常多，只是因为它隐藏了实现细节，需要我们多做分析才能发现它。比如，当你使用微信登录其他网站或者 App 的时候，当你开始使用某个小程序的时候，你都在无感知的情况下用到了 OAuth 2.0。</p>
+<p>那总结来说，<strong>OAuth 2.0 这种授权协议，就是保证第三方（软件）只有在获得授权之后，才可以进一步访问授权者的数据</strong>。因此，我们常常还会听到一种说法，OAuth 2.0 是一种安全协议。现在你知道了，这种说法也是正确的。</p>
+<p>现在访问授权者的数据主要是通过 Web API，所以凡是要保护这种对外的 API 时，都需要这样授权的方式。而 OAuth 2.0 的这种颁发访问令牌的机制，是再合适不过的方法了。同时，这样的 Web API 还在持续增加，所以 OAuth 2.0 是目前 Web 上重要的安全手段之一了。</p>
+<h2 id="OAuth-2-0-是怎样运转的？"><a href="#OAuth-2-0-是怎样运转的？" class="headerlink" title="OAuth 2.0 是怎样运转的？"></a>OAuth 2.0 是怎样运转的？</h2><p>现在，我相信你已经对 OAuth 2.0 有了一个整体印象，接下来咱们再看看它是怎么运转的。</p>
+<p>我们还是来看上面提到的小兔打单软件的例子吧。假如小明在京东上面开了一个店铺，小明要管理他的店铺里面的订单，于是选择了使用小兔软件。</p>
+<p>现在，让我们把「小明」「小兔软件」「京东商家开放平台」放到一个对话里面，看看他们是怎么沟通的吧。</p>
+<ul>
+<li><p><strong>小明</strong>：你好，小兔软件。我正在 Google 浏览器上面，需要访问你来帮我处理我在京东商城店铺的订单。</p>
+</li>
+<li><p><strong>小兔软件</strong>：好的，小明，我需要你给我授权。现在我把你引导到京东商家开放平台上，你在那里给我授权吧。</p>
+</li>
+<li><p><strong>京东商家开放平台</strong>：你好，小明。我收到了小兔软件跳转过来的请求，现在已经准备好了一个授权页面。你登录并确认后，点击授权页面上面的授权按钮即可。</p>
+</li>
+<li><p><strong>小明</strong>：好的，京东商家开放平台。我看到了这个授权页面，已经点授权按钮啦😄</p>
+</li>
+<li><p><strong>京东商家开放平台</strong>：你好，小兔打单软件。我收到了小明的授权，现在要给你生成一个授权码 code 值，我通过浏览器重定向到你的回调 URL 地址上面了。</p>
+</li>
+<li><p><strong>小兔软件</strong>：好的，京东商家开放平台。我现在从浏览器上拿到了授权码，现在就用这个授权码来请求你，请给我一个访问令牌 access_token 吧。</p>
+</li>
+<li><p><strong>京东商家开放平台</strong>：好的，小兔打单软件，访问令牌已经发送给你了。</p>
+</li>
+<li><p><strong>小兔打单软件</strong>：太好了，我现在就可以使用访问令牌来获取小明店铺的订单了。</p>
+</li>
+<li><p><strong>小明</strong>：我已经能够看到我的订单了，现在就开始打单操作了。</p>
+</li>
+</ul>
+<p>下面，为了帮助你理解，我再用一张图来描述整个过程：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./assets/77197844a8f41a33cb68947b1dc9ee79.png"
+                      alt="img"
+                ></p>
+<p>再分析下这个流程，我们不难发现小兔软件最终的目的，是要获取一个叫做「访问令牌」的东西。从最后一步也能够看出来，在小兔软件获取到 <strong>访问令牌</strong> 之后，才有足够的 「能力」 去请求小明的店铺的订单，也就是才能够帮助小明打印订单。</p>
+<p>那么，小兔软件是怎么获取访问令牌的值的呢？我们会发现还有一个叫做「授权码」的东西，也就是说小兔软件是 拿<strong>授权码换取的访问令牌</strong>。</p>
+<p>小兔软件又是怎么拿到 <strong>授权码</strong> 的呢？从图中流程刚开始的那一步，我们就会发现，<strong>是在小明授权之后</strong>，才产生的授权码，上面流程中后续的一切动作，实际上都是在小明对小兔软件授权发生以后才产生的。其中主要的动作，就是 <code>生成授权码 –&gt; 生成访问令牌 –&gt; 使用访问令牌</code>。</p>
+<p>到这里，我们不难发现，<strong>OAuth 2.0 授权的核心就是颁发访问令牌、使用访问令牌，</strong> 而且不管是哪种类型的授权流程都是这样。你一定要理解，或者记住这句话，它是整个流程的核心。你也可以再回想下，去百度拜访王总的例子。如果你是百度这套机制的设计者的话，会怎么设计这套授权机制呢。想清楚了这个问题，你再去理解令牌、授权码啥的也就简单了。</p>
+<p>在小兔软件这个例子中呢，我们使用的就是授权码许可（Authorization Code）类型。它是 OAuth 2.0 中最经典、最完备、最安全、应用最广泛的许可类型。除了授权码许可类型外，OAuth 2.0 针对不同的使用场景，还有 3 种基础的许可类型，分别是隐式许可（Implicit）、客户端凭据许可（Client Credentials）、资源拥有者凭据许可（Resource Owner Password Credentials）。相对而言，这 3 种授权许可类型的流程，在流程复杂度和安全性上都有所减弱（在后续与你详细分析）。</p>
+<p>因此，在这个课程中，我会频繁用授权码许可类型来举例。至于为什么称它为授权码许可，为什么有两次重定向，以及这种许可类型更详细的通信流程又是怎样的，我会在下一讲给你深入分析，你可以先不用关注。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我来回给你举例子，其实就是希望你能理解 OAuth 到底是什么，为什么需要它，以及它大概的运行逻辑是怎样的。总结来说，我需要你记住以下这 3 个关键点：</p>
+<ul>
+<li><p>OAuth 2.0 的核心是授权许可，更进一步说就是令牌机制。也就是说，像小兔软件这样的第三方软件只有拿到了京东商家开放平台颁发的访问令牌，也就是得到了授权许可，然后才可以 <strong>代表</strong> 用户访问他们的数据。</p>
+</li>
+<li><p>互联网中所有的受保护资源，几乎都是以 Web API 的形式来提供访问的，比如极客时间 App 要获取用户的头像、昵称，小兔软件要获取用户的店铺订单，我们说 OAuth 2.0 与安全相关，是用来保护 Web API 的。另外，第三方软件通过 OAuth 2.0 取得访问权限之后，用户便把这些权限 <strong>委托</strong> 给了第三方软件，我们说 OAuth 2.0 是一种委托协议，也没问题。</p>
+</li>
+<li><p>也正因为像小兔这样的第三方软件，每次都是用访问令牌而不是用户名和密码来请求用户的数据，才大大减少了安全风险上的「攻击面」。不然，我们试想一下，每次都带着用户名和密码来访问数量众多的 Web API ，是不是增加了这个「攻击面」。因此，我们说 OAuth 2.0 的核心，就是颁发访问令牌和使用访问令牌。</p>
+</li>
+</ul>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你可以再花时间想下小兔软件获取用户订单信息的那个场景，如果让你来设计整个的授权流程，你会怎么设计？还有没有更好的方式？</p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
+<li><p>为什么要用授权码换取 token，而不是直接获取 token？</p>
+<p>直接获取 token 的场景是有的，客户端凭据许可类型就是这样的使用场景，但是我们会在课程里面讲到，<strong>授权码许可类型是 OAuth 2.0 最安全 最完备的许可类型</strong>。</p>
+<p>以 Web 场景为例，第一次用户是跟第三方软件建立的联系，三方软件要把用户引导到平台一方去授权，这个时候用户实际上跟三方软件就失去了联系，平台如果这个时候直接把令牌给了三方软件，因为没了联系，三方软件就不能很方便的告诉用户。</p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>在 OAuth 2.0 中，如何使用 JWT 结构化令牌？</title>
+    <url>/2024/07/19/04/</url>
+    <content><![CDATA[<p>在上一讲，我们讲到了授权服务的核心就是 <strong>颁发访问令牌</strong>，而 OAuth 2.0 规范并没有约束访问令牌内容的生成规则，只要符合唯一性、不连续性、不可猜性就够了。这就意味着，我们 <strong>可以灵活选择令牌的形式</strong>，既可以是没有内部结构且不包含任何信息含义的随机字符串，也可以是具有内部结构且包含有信息含义的字符串。</p>
+<p>随机字符串这样的方式我就不再介绍了，之前课程中我们生成令牌的方式都是默认一个随机字符串。而在结构化令牌这方面，目前用得最多的就是 JWT 令牌了。</p>
+<p>接下来，我就要和你详细讲讲，JWT 是什么、原理是怎样的、优势是什么，以及怎么使用，同时我还会讲到令牌生命周期的问题。</p>
+<h2 id="JWT-结构化令牌"><a href="#JWT-结构化令牌" class="headerlink" title="JWT 结构化令牌"></a>JWT 结构化令牌</h2><p>关于什么是 JWT，官方定义是这样描述的：</p>
+<blockquote>
+<p>JSON Web Token（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑的、自包含的方式，用于作为 JSON 对象在各方之间安全地传输信息。</p>
+</blockquote>
+<p>这个定义是不是很费解？我们简单理解下，JWT 就是用一种 <strong>结构化封装的方式来生成 token 的技术</strong>。结构化后的 token 可以被赋予非常丰富的含义，这也是它与原先毫无意义的、随机的字符串形式 token 的最大区别。</p>
+<p><strong>结构化之后，令牌本身就可以被「塞进」一些有用的信息</strong>，比如小明为小兔软件进行了授权的信息、授权的范围信息等。或者，你可以形象地将其理解为这是一种「自编码」的能力，而这些恰恰是无结构化令牌所不具备的。</p>
+<p>JWT 这种结构化体可以分为：</p>
+<ul>
+<li>HEADER（头部）</li>
+<li>PAYLOAD（数据体）</li>
+<li>SIGNATURE（签名）</li>
+</ul>
+<p>三部分。经过签名之后的 JWT 的整体结构，是被 <strong>句点符号</strong> 分割的三段内容，结构为 <code>header.payload.signature</code>。比如下面这个示例：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.</span><br><span class="line">eyJzdWIiOiJVU0VSVEVTVCIsImV4cCI6MTU4NDEwNTc5MDcwMywiaWF0IjoxNTg0MTA1OTQ4MzcyfQ.</span><br><span class="line">1HbleXbvJ_2SW8ry30cXOBGR9FW4oSWBd3PWaWKsEXE</span><br></pre></td></tr></table></figure></div>
+
+<p>::: tip</p>
+<p>注意：JWT 内部没有换行，这里只是为了展示方便，才将其用三行来表示。</p>
+<p>:::</p>
+<p>你可能会说，这个 JWT 令牌看起来也是毫无意义的、随机的字符串啊。确实，你直接去看这个字符串是没啥意义，但如果你把它拷贝到  <a class="link"   href="https://jwt.io/" >https://jwt.io/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  网站的在线校验工具中，就可以看到解码之后的数据：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./assets/image-20201217100330577.png"
+                      alt="image-20201217100330577"
+                ></p>
+<p>再看解码后的数据，你是不是发现它跟随机的字符串不一样了呢。很显然，现在呈现出来的就是结构化的内容了。接下来，我就具体和你说说 JWT 的这三部分。</p>
+<ul>
+<li><p><strong>HEADER</strong> </p>
+<p>表示装载令牌类型和算法等信息，是 JWT 的头部。其中，</p>
+<ul>
+<li>typ 表示第二部分 PAYLOAD 是 JWT 类型，</li>
+<li>alg 表示使用 HS256 对称签名的算法。</li>
+</ul>
+</li>
+<li><p><strong>PAYLOAD</strong> 表示是 JWT 的数据体，代表了一组数据。其中，</p>
+<ul>
+<li>sub（令牌的主体，一般设为资源拥有者的唯一标识）、</li>
+<li>exp（令牌的过期时间戳）、</li>
+<li>iat（令牌颁发的时间戳）是 JWT 规范性的声明，代表的是常规性操作。</li>
+</ul>
+<p>更多的通用声明，你可以参考 <a class="link"   href="https://tools.ietf.org/html/rfc7519" >RFC 7519 开放标准 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。不过，在一个 JWT 内可以包含一切合法的 JSON 格式的数据，也就是说，PAYLOAD 表示的一组数据允许我们自定义声明。</p>
+</li>
+<li><p><strong>SIGNATURE</strong> 表示对 JWT 信息的签名。</p>
+<p>那么，它有什么作用呢？我们可能认为，有了 HEADER 和 PAYLOAD 两部分内容后，就可以让令牌携带信息了，似乎就可以在网络中传输了，但是在网络中传输这样的信息体是不安全的，因为你在「裸奔」啊。所以，我们还需要对其进行加密签名处理，而 SIGNATURE 就是对信息的签名结果，当受保护资源接收到第三方软件的签名后需要验证令牌的签名是否合法。</p>
+</li>
+</ul>
+<p>现在，我们知道了 JWT 的结构以及每部分的含义，那么具体到 OAuth 2.0 的授权流程中，JWT 令牌是如何被使用的呢？在讲如何使用之前呢，我先和你说说 「令牌内检」。</p>
+<h2 id="令牌内检"><a href="#令牌内检" class="headerlink" title="令牌内检"></a>令牌内检</h2><p>什么是令牌内检呢？授权服务颁发令牌，受保护资源服务就要验证令牌。同时呢，授权服务和受保护资源服务，它俩是「一伙的」，还记得我之前在 <a href="./02.md">第 2 课</a> 讲过的吧。受保护资源来 <strong>调用授权服务提供的检验令牌的服务</strong>，<strong>我们把这种校验令牌的方式称为令牌内检。</strong></p>
+<p>有时候授权服务依赖一个数据库，然后受保护资源服务也依赖这个数据库，也就是我们说的「共享数据库」。不过，在如今已经成熟的分布式以及微服务的环境下，不同的系统之间是依靠 <strong>服务</strong> 而 <strong>不是数据库</strong> 来通信了，比如授权服务给受保护资源服务提供一个 RPC 服务。如下图所示。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./assets/963bb5dfc504c700fce24c8aac0dd2bf.png"
+                      alt="img"
+                ></p>
+<p>那么，在有了 JWT 令牌之后，我们就多了一种选择，<strong>因为 JWT 令牌本身就包含了之前所要依赖数据库或者依赖 RPC 服务才能拿到的信息</strong>，比如我上面提到的哪个用户为哪个软件进行了授权等信息。</p>
+<p>接下来就让我们看看有了 JWT 令牌之后，整体的内检流程会变成什么样子。</p>
+<h2 id="JWT-是如何被使用的？"><a href="#JWT-是如何被使用的？" class="headerlink" title="JWT 是如何被使用的？"></a>JWT 是如何被使用的？</h2><p>有了 JWT 令牌之后的通信方式，就如下面的图 3 所展示的那样了，<strong>授权服务「扔出」一个令牌，受保护资源服务「接住」这个令牌，然后自己开始解析令牌本身所包含的信息就可以了，而不需要再去查询数据库或者请求 RPC 服务</strong>。这样也实现了我们上面说的令牌内检。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./assets/1a4cf53349aeb5d588e27c608e06d539.png"
+                      alt="img"
+                ></p>
+<p>在上面这幅图中呢，为了更能突出 JWT 令牌的位置，我简化了逻辑关系。实际上，授权服务颁发了 JWT 令牌后给到了小兔软件，小兔软件拿着 JWT 令牌来请求受保护资源服务，也就是小明在京东店铺的订单。很显然，JWT 令牌需要在公网上做传输。<strong>所以在传输过程中，JWT 令牌需要进行 Base64 编码以防止乱码，同时还需要进行签名及加密处理来防止数据信息泄露</strong>。</p>
+<p>如果是我们自己处理这些编码、加密等工作的话，就会增加额外的编码负担。好在，我们可以借助一些开源的工具来帮助我们处理这些工作。比如，我在下面的 Demo 中，给出了开源 <code>JJWT（Java JWT）</code> 的使用方法。</p>
+<p>JJWT 是目前 Java 开源的、比较方便的 JWT 工具，封装了 Base64URL 编码和对称 HMAC、非对称 RSA 的一系列签名算法。使用 JJWT，我们只关注上层的业务逻辑实现，而无需关注编解码和签名算法的具体实现，这类开源工具可以做到「开箱即用」。</p>
+<p>这个 Demo 的代码如下，使用 JJWT 可以很方便地生成一个经过签名的 JWT 令牌，以及解析一个 JWT 令牌。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">String sharedTokenSecret=<span class="string">&quot;hellooauthhellooauthhellooauthhellooauth&quot;</span>;<span class="comment">//密钥</span></span><br><span class="line"><span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(sharedTokenSecret.getBytes(),</span><br><span class="line">                SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line"><span class="comment">//生成JWT令牌</span></span><br><span class="line">String jwts=</span><br><span class="line">Jwts.builder().setHeaderParams(headerMap).setClaims(payloadMap).signWith(key,SignatureAlgorithm.HS256).compact()</span><br><span class="line">    </span><br><span class="line"><span class="comment">//解析JWT令牌</span></span><br><span class="line">Jws&lt;Claims&gt; claimsJws =Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwts);</span><br><span class="line"><span class="type">JwsHeader</span> <span class="variable">header</span> <span class="operator">=</span> claimsJws.getHeader();</span><br><span class="line"><span class="type">Claims</span> <span class="variable">body</span> <span class="operator">=</span> claimsJws.getBody();  </span><br></pre></td></tr></table></figure></div>
+
+<p>使用 JJWT 解析 JWT 令牌时包含了验证签名的动作，如果签名不正确就会抛出异常信息。我们可以借助这一点来对签名做校验，从而判断是否是一个没有被伪造过的、合法的 JWT 令牌。</p>
+<p>异常信息，一般是如下的样子：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.</span><br></pre></td></tr></table></figure></div>
+
+<p>以上就是借助开源工具，将 JWT 令牌应用到授权服务流程中的方法了。到这里，你是不是一直都有一个疑问：为什么要绕这么大一个弯子，使用 JWT，而不是使用没有啥内部结构，也不包含任何信息的随机字符串呢？JWT 到底有什么好处？</p>
+<h2 id="为什么要使用-JWT-令牌？"><a href="#为什么要使用-JWT-令牌？" class="headerlink" title="为什么要使用 JWT 令牌？"></a>为什么要使用 JWT 令牌？</h2><p>别急，我这就和你总结下使用 JWT 格式令牌的三大好处。</p>
+<p>第一，<strong>JWT 的核心思想，就是用计算代替存储，有些 「时间换空间」 的 「味道」</strong>。当然，这种经过计算并结构化封装的方式，也减少了共享数据库因远程调用而带来的网络传输消耗，所以也有可能是节省时间的。</p>
+<p>第二，也是一个重要特性，是加密。因为 JWT 令牌内部已经包含了重要的信息，所以在整个传输过程中都必须被要求是密文传输的，<strong>这样被强制要求了加密也就保障了传输过程中的安全性</strong>。这里的加密算法，既可以是对称加密，也可以是非对称加密。</p>
+<p>第三，<strong>使用 JWT 格式的令牌，有助于增强系统的可用性和可伸缩性</strong>。这一点要怎么理解呢？我们前面讲到了，这种 JWT 格式的令牌，通过「自编码」的方式包含了身份验证需要的信息，不再需要服务端进行额外的存储，所以每次的请求都是无状态会话。这就符合了我们尽可能遵循无状态架构设计的原则，也就是增强了系统的可用性和伸缩性。</p>
+<p>但，万物皆有两面性，JWT 令牌也有缺点。</p>
+<p>JWT 格式令牌的最大问题在于 「覆水难收」，也就是说，没办法在使用过程中修改令牌状态。我们还是借助小明使用小兔软件例子，先停下来想一下。</p>
+<p>小明在使用小兔软件的时候，是不是有可能因为某种原因修改了在京东的密码，或者是不是有可能突然取消了给小兔的授权？这时候，令牌的状态是不是就要有相应的变更，将原来对应的令牌置为无效。</p>
+<p>但，使用 JWT 格式令牌时，每次颁发的令牌都不会在服务端存储，这样我们要改变令牌状态的时候，就无能为力了。因为服务端并没有存储这个 JWT 格式的令牌。这就意味着，JWT 令牌在有效期内，是可以横行无止的。</p>
+<p>为了解决这个问题，<strong>我们可以把 JWT 令牌存储到远程的分布式内存数据库中吗？显然不能，因为这会违背 JWT 的初衷（将信息通过结构化的方式存入令牌本身）</strong>。因此，我们通常会有两种做法：</p>
+<ul>
+<li><p>一是，<strong>将每次生成 JWT 令牌时的秘钥粒度缩小到用户级别</strong>，也就是一个用户一个秘钥。这样，当用户取消授权或者修改密码后，就可以让这个密钥一起修改。一般情况下，这种方案需要配套一个单独的密钥管理服务。</p>
+</li>
+<li><p>二是，在不提供用户主动取消授权的环境里面，如果只考虑到修改密码的情况，那么我们就可以把用户密码作为 JWT 的密钥。当然，这也是用户粒度级别的。这样一来，用户修改密码也就相当于修改了密钥。</p>
+</li>
+</ul>
+<h2 id="令牌的生命周期"><a href="#令牌的生命周期" class="headerlink" title="令牌的生命周期"></a>令牌的生命周期</h2><p>我刚才讲了 JWT 令牌有效期的问题，讲到了它的失效处理，另外咱们在 <a href="./03.md">第 3 讲</a> 中提到，授权服务颁发访问令牌的时候，都会设置一个过期时间，其实这都属于令牌的生命周期的管理问题。接下来，我便向你讲一讲令牌的生命周期。</p>
+<p>万物皆有周期，这是自然规律，令牌也不例外，无论是 JWT 结构化令牌还是普通的令牌。它们都有有效期，只不过，JWT 令牌可以把有效期的信息存储在本身的结构体中。</p>
+<p>具体到 OAuth 2.0 的令牌生命周期，通常会有三种情况。</p>
+<p><strong>第一种情况是令牌的自然过期过程</strong>，这也是最常见的情况。这个过程是，从授权服务创建一个令牌开始，到第三方软件使用令牌，再到受保护资源服务验证令牌，最后再到令牌失效。同时，这个过程也不排除主动销毁令牌的事情发生，比如令牌被泄露，授权服务可以做主让令牌失效。</p>
+<p>生命周期的第二种情况，也就是上一讲提到的，<strong>访问令牌失效之后可以使用刷新令牌请求新的访问令牌来代替失效的访问令牌</strong>，以提升用户使用第三方软件的体验。</p>
+<p>生命周期的第三种情况，<strong>就是让第三方软件比如小兔，主动发起令牌失效的请求，然后授权服务收到请求之后让令牌立即失效</strong>。我们来想一下，什么情况下会需要这种机制，也就是想一下第三方软件这样做的 「动机」，毕竟一般情况下 「我们很难放弃已经拥有的事物」。</p>
+<p>比如有些时候，用户和第三方软件之间存在一种订购关系，比如小明购买了小兔软件，那么在订购时长到期或者退订，且小明授权的 token 还没有到期的情况下，就需要有这样的一种令牌撤回协议，来支持小兔软件主动发起令牌失效的请求。作为平台一方比如京东商家开放平台，也建议有责任的第三方软件比如小兔软件，遵守这样的一种令牌撤回协议。</p>
+<p>我将以上三种情况整理成了一份序列图，以便帮助你理解。同时，为了突出令牌，我将访问令牌和刷新令牌，特意用深颜色标识出来，并单独作为两个角色放进了整个序列图中。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/./assets/bc5fde2c813d41c60d863e2919b65565.png"
+                      alt="img"
+                ></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OAuth 2.0 的核心是授权服务，更进一步讲是令牌，<strong>没有令牌就没有 OAuth，</strong>令牌表示的是授权行为之后的结果。</p>
+<p>一般情况下令牌对第三方软件来说是一个随机的字符串，是不透明的。大部分情况下，我们提及的令牌，都是一个无意义的字符串。</p>
+<p>但是，人们「不甘于」这样的满足，于是开始探索有没有其他生成令牌的方式，也就有了 JWT 令牌，这样一来既不需要通过共享数据库，也不需要通过授权服务提供接口的方式来做令牌校验了。这就相当于通过 JWT 这种结构化的方式，我们在做令牌校验的时候多了一种选择。</p>
+<p>通过这一讲呢，我希望你能记住以下几点内容：</p>
+<ol>
+<li><p>我们有了新的令牌生成方式的选择，这就是 JWT 令牌。这是一种结构化、信息化令牌，<strong>结构化可以组织用户的授权信息，信息化就是令牌本身包含了授权信息</strong>。</p>
+</li>
+<li><p>虽然我们这讲的重点是 JWT 令牌，但是呢，不论是结构化的令牌还是非结构化的令牌，对于第三方软件来讲，它都不关心，因为 <strong>令牌在 OAuth 2.0 系统中对于第三方软件都是不透明的</strong> 。需要关心令牌的，是授权服务和受保护资源服务。</p>
+</li>
+<li><p>我们需要注意 JWT 令牌的失效问题。我们使用了 JWT 令牌之后，远程的服务端上面是不存储的，因为不再有这个必要，JWT 令牌本身就包含了信息。那么，如何来控制它的有效性问题呢？本讲中，我给出了两种建议，<strong>一种是建立一个秘钥管理系统，将生成秘钥的粒度缩小到用户级别，另外一种是直接将用户密码当作密钥。</strong></p>
+</li>
+</ol>
+<p>现在，你已经对 JWT 有了更深刻的认识，也知道如何来使用它了。当你构建并生成令牌的时候除了使用随机的、「任性的」字符串，还可以采用这样的结构化的令牌，以便在令牌校验的时候能解析出令牌的内容信息直接进行校验处理。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这部分代码的测试在 <a class="link"   href="https://github.com/zq99299/myoath2-demo/blob/main/oauth-server/src/main/java/cn/mrcode/myoath2/oauthserver/ch04/JWTTest.java" >这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>添加 JWT 的依赖包</p>
+<div class="highlight-container" data-rel="Groovy"><figure class="iseeu highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="attr">group:</span> <span class="string">&#x27;io.jsonwebtoken&#x27;</span>, <span class="attr">name:</span> <span class="string">&#x27;jjwt-api&#x27;</span>, <span class="attr">version:</span> <span class="string">&#x27;0.11.2&#x27;</span></span><br><span class="line">compile <span class="attr">group:</span> <span class="string">&#x27;io.jsonwebtoken&#x27;</span>, <span class="attr">name:</span> <span class="string">&#x27;jjwt-impl&#x27;</span>, <span class="attr">version:</span> <span class="string">&#x27;0.11.2&#x27;</span></span><br><span class="line">compile <span class="attr">group:</span> <span class="string">&#x27;io.jsonwebtoken&#x27;</span>, <span class="attr">name:</span> <span class="string">&#x27;jjwt-jackson&#x27;</span>, <span class="attr">version:</span> <span class="string">&#x27;0.11.2&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="type">String</span> <span class="variable">sharedTokenSecret</span> <span class="operator">=</span> <span class="string">&quot;hellooauthhellooauthhellooauthhellooauth&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用密匙生成 JWT 令牌</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">buildJewTest</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">jwt</span> <span class="operator">=</span> buildJwt();</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt:&quot;</span>);</span><br><span class="line">    System.out.println(jwt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> String <span class="title function_">buildJwt</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(sharedTokenSecret.getBytes(), SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line"></span><br><span class="line">    Map&lt;String, Object&gt; headerMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    headerMap.put(<span class="string">&quot;typ&quot;</span>, <span class="string">&quot;JWT&quot;</span>);</span><br><span class="line">    headerMap.put(<span class="string">&quot;alg&quot;</span>, <span class="string">&quot;HS256&quot;</span>);</span><br><span class="line"></span><br><span class="line">    Map&lt;String, Object&gt; payloadMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    payloadMap.put(<span class="string">&quot;iss&quot;</span>, <span class="string">&quot;http://localhost:8081/&quot;</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;sub&quot;</span>, <span class="string">&quot;XIAOMINGTEST&quot;</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;aud&quot;</span>, <span class="string">&quot;APPID_RABBIT&quot;</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;exp&quot;</span>, <span class="number">1584105790703L</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;iat&quot;</span>, <span class="number">1584105948372L</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成 Jwt 令牌</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">jwt</span> <span class="operator">=</span> Jwts.builder().setHeaderParams(headerMap).setClaims(payloadMap).signWith(key, SignatureAlgorithm.HS256).compact();</span><br><span class="line">    <span class="keyword">return</span> jwt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用密匙解析 JWT 令牌</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">parserJwt</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(sharedTokenSecret.getBytes(), SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line">    <span class="type">String</span> <span class="variable">jwt</span> <span class="operator">=</span> buildJwt();</span><br><span class="line"></span><br><span class="line">    Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);</span><br><span class="line"></span><br><span class="line">    <span class="type">JwsHeader</span> <span class="variable">header</span> <span class="operator">=</span> claimsJws.getHeader();</span><br><span class="line">    <span class="type">Claims</span> <span class="variable">body</span> <span class="operator">=</span> claimsJws.getBody();</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;jwt header:&quot;</span> + header);</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt body:&quot;</span> + body);</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt sub:&quot;</span> + body.getSubject());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt aud:&quot;</span> + body.getAudience());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt iss:&quot;</span> + body.getIssuer());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt exp:&quot;</span> + body.getExpiration());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt iat:&quot;</span> + body.getIssuedAt());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意一点的是：这里 APi 不用密匙，将解析报错。而官网的在线解析不要密匙也是可以看到内容的，所以他的机制应该是：</p>
+<ol>
+<li>解析不需要密匙</li>
+<li>校验签名：需要密匙</li>
+</ol>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你还知道有哪些场景适合 JWT 令牌，又有哪些场景不适合 JWT 令牌吗？</p>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
+<li>在 jwt.io 网站上验证的时候，如果不输入密钥，返回 <code>invalid Signature</code>, 但是 header 和 payload 信息依然可以正确显示。我的理解是，在生成 header 和 payload 部分的时候，是通过 base64 编码，没有进行加密处理。最后的签名是保证整个 body 在传输的过程中没有被篡改。那么是不是意味着使用 JWT 方式，信息的主体还是依然能被未授信的第三方获取到？</li>
+</ul>
+<p>  JWT 肯定要加密传输，这点我们文中强调了，不做加密的结果就是你说的，加密用对称和非对称都可以，看实际需要，追求性能就是对称，可通过管理秘钥来对冲掉对称带来的相比非对称的弱化的那部分安全。</p>
+<ul>
+<li><p>您提到 JWT 的一个优势是资源服务器不需要依赖数据库存储相关的信息，从而易于横向扩容。但是密钥部分还是躲不过需要查询的，可能依然需要存储。另外，如果采取一个用户用一个密钥的方式，资源服务器如何知道某个 JWT token 是给哪个用户使用的？（用户信息包含在 header or payload 中？）</p>
+<p>是的，用生成秘钥的方法，这是管理我们扔出去的 JWT TOKEN 的方式之一，如果只靠有效期当然也可以，但如果追求更进一步管理的话就需要做点额外的消耗。如果通过秘钥来管理，就需要一个秘钥管理系统，另外JWT 肯定是要加密处理，而且加解密的重点不在于加解密算法，而在于秘钥管理，需要我们要把秘钥生成在独立于授权系统之外的秘钥管理系统里面，存储关系就是 <code>app_id + 用户 = 秘钥</code>，这里的用户就是 TOKEN 换取出来的。</p>
+</li>
+<li><p>如果需要从服务器端直接暴力将某些用户「踢出下线」，也就是让 jwt 失效，如何做</p>
+<p>还是通过管理密匙的部分，具体做法是：不用验证签名就能获取 jwt 中的 id 信息，然后获取该 id 的加密密匙，进行验证。 那么当需要让 jwt 失效的时候，修改这个密匙信息。</p>
+</li>
+<li><p>用户密码当做秘钥合适吗？，如果用户修改密码，所有的授权都会失效</p>
+<p>用户修改密码，这个动作本身在安全背后是一件很严密的事情，对授权系统来讲，它接收到的事件，就是密码修改了，它的反应一定要让授权失效，因为授权系统不知道谁修改了密码。</p>
+</li>
+<li><p>jwt 如果每个用户一个密钥，就还需要访问数据库，这种方式和无结构的 token 优化没那么明显，只是省了token 的存储。</p>
+<p>存储节省不明显是在用户量少的情况下。秘钥管理系统是 JWT 和 OAuth 2.0 之外的成本，安全问题的防护是一个成本问题，如果是低等级防护，当然可以直接使用 JWT 的令牌短时过期。</p>
+</li>
+<li><p>jwt 中 signature 已经在签名的时候用到了一个 secret，这样已经能保证只有知道 secret 的第三个方才能验证 jwt 合法性，为什么还要加密，为了防止解密出 head 和 payload？</p>
+<p>是的，为了防止解密出 payload。在将 JWT 用作【访问令牌】的时候，令牌的内容第三方应用也是不能被允许知道的，对于第三方应用来讲【访问令牌】对它不透明。</p>
+<p>后续章节有一个知识点是，通过 OAuth 2.0 来实现一个用户身份认证的时候会用到【ID 令牌】，这个【ID 令牌】允许被第三方软件解析，因为这种情况需要一个用户标识。</p>
+</li>
+<li><p>我对 JWT 的理解是：JWT 本身只对 payload 进行了签名，并没有做加密（base64 编码不算加密）。文中多次提到加密，我比较疑惑，是我的理解错了吗？</p>
+<p>你理解是对的，签名是签名，加密是加密。所以在 jwt.io 网站上，不使用密匙也可以看到 payload 信息。</p>
+</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>授权服务：授权码和访问令牌的颁发流程是怎样的？</title>
@@ -526,166 +688,13 @@
 ]]></content>
   </entry>
   <entry>
-    <title>在 OAuth 2.0 中，如何使用 JWT 结构化令牌？</title>
-    <url>/2024/07/19/04/</url>
-    <content><![CDATA[<p>在上一讲，我们讲到了授权服务的核心就是 <strong>颁发访问令牌</strong>，而 OAuth 2.0 规范并没有约束访问令牌内容的生成规则，只要符合唯一性、不连续性、不可猜性就够了。这就意味着，我们 <strong>可以灵活选择令牌的形式</strong>，既可以是没有内部结构且不包含任何信息含义的随机字符串，也可以是具有内部结构且包含有信息含义的字符串。</p>
-<p>随机字符串这样的方式我就不再介绍了，之前课程中我们生成令牌的方式都是默认一个随机字符串。而在结构化令牌这方面，目前用得最多的就是 JWT 令牌了。</p>
-<p>接下来，我就要和你详细讲讲，JWT 是什么、原理是怎样的、优势是什么，以及怎么使用，同时我还会讲到令牌生命周期的问题。</p>
-<h2 id="JWT-结构化令牌"><a href="#JWT-结构化令牌" class="headerlink" title="JWT 结构化令牌"></a>JWT 结构化令牌</h2><p>关于什么是 JWT，官方定义是这样描述的：</p>
-<blockquote>
-<p>JSON Web Token（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑的、自包含的方式，用于作为 JSON 对象在各方之间安全地传输信息。</p>
-</blockquote>
-<p>这个定义是不是很费解？我们简单理解下，JWT 就是用一种 <strong>结构化封装的方式来生成 token 的技术</strong>。结构化后的 token 可以被赋予非常丰富的含义，这也是它与原先毫无意义的、随机的字符串形式 token 的最大区别。</p>
-<p><strong>结构化之后，令牌本身就可以被「塞进」一些有用的信息</strong>，比如小明为小兔软件进行了授权的信息、授权的范围信息等。或者，你可以形象地将其理解为这是一种「自编码」的能力，而这些恰恰是无结构化令牌所不具备的。</p>
-<p>JWT 这种结构化体可以分为：</p>
-<ul>
-<li>HEADER（头部）</li>
-<li>PAYLOAD（数据体）</li>
-<li>SIGNATURE（签名）</li>
-</ul>
-<p>三部分。经过签名之后的 JWT 的整体结构，是被 <strong>句点符号</strong> 分割的三段内容，结构为 <code>header.payload.signature</code>。比如下面这个示例：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.</span><br><span class="line">eyJzdWIiOiJVU0VSVEVTVCIsImV4cCI6MTU4NDEwNTc5MDcwMywiaWF0IjoxNTg0MTA1OTQ4MzcyfQ.</span><br><span class="line">1HbleXbvJ_2SW8ry30cXOBGR9FW4oSWBd3PWaWKsEXE</span><br></pre></td></tr></table></figure></div>
-
-<p>::: tip</p>
-<p>注意：JWT 内部没有换行，这里只是为了展示方便，才将其用三行来表示。</p>
-<p>:::</p>
-<p>你可能会说，这个 JWT 令牌看起来也是毫无意义的、随机的字符串啊。确实，你直接去看这个字符串是没啥意义，但如果你把它拷贝到  <a class="link"   href="https://jwt.io/" >https://jwt.io/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  网站的在线校验工具中，就可以看到解码之后的数据：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./assets/image-20201217100330577.png"
-                      alt="image-20201217100330577"
-                ></p>
-<p>再看解码后的数据，你是不是发现它跟随机的字符串不一样了呢。很显然，现在呈现出来的就是结构化的内容了。接下来，我就具体和你说说 JWT 的这三部分。</p>
-<ul>
-<li><p><strong>HEADER</strong> </p>
-<p>表示装载令牌类型和算法等信息，是 JWT 的头部。其中，</p>
-<ul>
-<li>typ 表示第二部分 PAYLOAD 是 JWT 类型，</li>
-<li>alg 表示使用 HS256 对称签名的算法。</li>
-</ul>
-</li>
-<li><p><strong>PAYLOAD</strong> 表示是 JWT 的数据体，代表了一组数据。其中，</p>
-<ul>
-<li>sub（令牌的主体，一般设为资源拥有者的唯一标识）、</li>
-<li>exp（令牌的过期时间戳）、</li>
-<li>iat（令牌颁发的时间戳）是 JWT 规范性的声明，代表的是常规性操作。</li>
-</ul>
-<p>更多的通用声明，你可以参考 <a class="link"   href="https://tools.ietf.org/html/rfc7519" >RFC 7519 开放标准 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。不过，在一个 JWT 内可以包含一切合法的 JSON 格式的数据，也就是说，PAYLOAD 表示的一组数据允许我们自定义声明。</p>
-</li>
-<li><p><strong>SIGNATURE</strong> 表示对 JWT 信息的签名。</p>
-<p>那么，它有什么作用呢？我们可能认为，有了 HEADER 和 PAYLOAD 两部分内容后，就可以让令牌携带信息了，似乎就可以在网络中传输了，但是在网络中传输这样的信息体是不安全的，因为你在「裸奔」啊。所以，我们还需要对其进行加密签名处理，而 SIGNATURE 就是对信息的签名结果，当受保护资源接收到第三方软件的签名后需要验证令牌的签名是否合法。</p>
-</li>
-</ul>
-<p>现在，我们知道了 JWT 的结构以及每部分的含义，那么具体到 OAuth 2.0 的授权流程中，JWT 令牌是如何被使用的呢？在讲如何使用之前呢，我先和你说说 「令牌内检」。</p>
-<h2 id="令牌内检"><a href="#令牌内检" class="headerlink" title="令牌内检"></a>令牌内检</h2><p>什么是令牌内检呢？授权服务颁发令牌，受保护资源服务就要验证令牌。同时呢，授权服务和受保护资源服务，它俩是「一伙的」，还记得我之前在 <a href="./02.md">第 2 课</a> 讲过的吧。受保护资源来 <strong>调用授权服务提供的检验令牌的服务</strong>，<strong>我们把这种校验令牌的方式称为令牌内检。</strong></p>
-<p>有时候授权服务依赖一个数据库，然后受保护资源服务也依赖这个数据库，也就是我们说的「共享数据库」。不过，在如今已经成熟的分布式以及微服务的环境下，不同的系统之间是依靠 <strong>服务</strong> 而 <strong>不是数据库</strong> 来通信了，比如授权服务给受保护资源服务提供一个 RPC 服务。如下图所示。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./assets/963bb5dfc504c700fce24c8aac0dd2bf.png"
-                      alt="img"
-                ></p>
-<p>那么，在有了 JWT 令牌之后，我们就多了一种选择，<strong>因为 JWT 令牌本身就包含了之前所要依赖数据库或者依赖 RPC 服务才能拿到的信息</strong>，比如我上面提到的哪个用户为哪个软件进行了授权等信息。</p>
-<p>接下来就让我们看看有了 JWT 令牌之后，整体的内检流程会变成什么样子。</p>
-<h2 id="JWT-是如何被使用的？"><a href="#JWT-是如何被使用的？" class="headerlink" title="JWT 是如何被使用的？"></a>JWT 是如何被使用的？</h2><p>有了 JWT 令牌之后的通信方式，就如下面的图 3 所展示的那样了，<strong>授权服务「扔出」一个令牌，受保护资源服务「接住」这个令牌，然后自己开始解析令牌本身所包含的信息就可以了，而不需要再去查询数据库或者请求 RPC 服务</strong>。这样也实现了我们上面说的令牌内检。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./assets/1a4cf53349aeb5d588e27c608e06d539.png"
-                      alt="img"
-                ></p>
-<p>在上面这幅图中呢，为了更能突出 JWT 令牌的位置，我简化了逻辑关系。实际上，授权服务颁发了 JWT 令牌后给到了小兔软件，小兔软件拿着 JWT 令牌来请求受保护资源服务，也就是小明在京东店铺的订单。很显然，JWT 令牌需要在公网上做传输。<strong>所以在传输过程中，JWT 令牌需要进行 Base64 编码以防止乱码，同时还需要进行签名及加密处理来防止数据信息泄露</strong>。</p>
-<p>如果是我们自己处理这些编码、加密等工作的话，就会增加额外的编码负担。好在，我们可以借助一些开源的工具来帮助我们处理这些工作。比如，我在下面的 Demo 中，给出了开源 <code>JJWT（Java JWT）</code> 的使用方法。</p>
-<p>JJWT 是目前 Java 开源的、比较方便的 JWT 工具，封装了 Base64URL 编码和对称 HMAC、非对称 RSA 的一系列签名算法。使用 JJWT，我们只关注上层的业务逻辑实现，而无需关注编解码和签名算法的具体实现，这类开源工具可以做到「开箱即用」。</p>
-<p>这个 Demo 的代码如下，使用 JJWT 可以很方便地生成一个经过签名的 JWT 令牌，以及解析一个 JWT 令牌。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">String sharedTokenSecret=<span class="string">&quot;hellooauthhellooauthhellooauthhellooauth&quot;</span>;<span class="comment">//密钥</span></span><br><span class="line"><span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(sharedTokenSecret.getBytes(),</span><br><span class="line">                SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line"><span class="comment">//生成JWT令牌</span></span><br><span class="line">String jwts=</span><br><span class="line">Jwts.builder().setHeaderParams(headerMap).setClaims(payloadMap).signWith(key,SignatureAlgorithm.HS256).compact()</span><br><span class="line">    </span><br><span class="line"><span class="comment">//解析JWT令牌</span></span><br><span class="line">Jws&lt;Claims&gt; claimsJws =Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwts);</span><br><span class="line"><span class="type">JwsHeader</span> <span class="variable">header</span> <span class="operator">=</span> claimsJws.getHeader();</span><br><span class="line"><span class="type">Claims</span> <span class="variable">body</span> <span class="operator">=</span> claimsJws.getBody();  </span><br></pre></td></tr></table></figure></div>
-
-<p>使用 JJWT 解析 JWT 令牌时包含了验证签名的动作，如果签名不正确就会抛出异常信息。我们可以借助这一点来对签名做校验，从而判断是否是一个没有被伪造过的、合法的 JWT 令牌。</p>
-<p>异常信息，一般是如下的样子：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.</span><br></pre></td></tr></table></figure></div>
-
-<p>以上就是借助开源工具，将 JWT 令牌应用到授权服务流程中的方法了。到这里，你是不是一直都有一个疑问：为什么要绕这么大一个弯子，使用 JWT，而不是使用没有啥内部结构，也不包含任何信息的随机字符串呢？JWT 到底有什么好处？</p>
-<h2 id="为什么要使用-JWT-令牌？"><a href="#为什么要使用-JWT-令牌？" class="headerlink" title="为什么要使用 JWT 令牌？"></a>为什么要使用 JWT 令牌？</h2><p>别急，我这就和你总结下使用 JWT 格式令牌的三大好处。</p>
-<p>第一，<strong>JWT 的核心思想，就是用计算代替存储，有些 「时间换空间」 的 「味道」</strong>。当然，这种经过计算并结构化封装的方式，也减少了共享数据库因远程调用而带来的网络传输消耗，所以也有可能是节省时间的。</p>
-<p>第二，也是一个重要特性，是加密。因为 JWT 令牌内部已经包含了重要的信息，所以在整个传输过程中都必须被要求是密文传输的，<strong>这样被强制要求了加密也就保障了传输过程中的安全性</strong>。这里的加密算法，既可以是对称加密，也可以是非对称加密。</p>
-<p>第三，<strong>使用 JWT 格式的令牌，有助于增强系统的可用性和可伸缩性</strong>。这一点要怎么理解呢？我们前面讲到了，这种 JWT 格式的令牌，通过「自编码」的方式包含了身份验证需要的信息，不再需要服务端进行额外的存储，所以每次的请求都是无状态会话。这就符合了我们尽可能遵循无状态架构设计的原则，也就是增强了系统的可用性和伸缩性。</p>
-<p>但，万物皆有两面性，JWT 令牌也有缺点。</p>
-<p>JWT 格式令牌的最大问题在于 「覆水难收」，也就是说，没办法在使用过程中修改令牌状态。我们还是借助小明使用小兔软件例子，先停下来想一下。</p>
-<p>小明在使用小兔软件的时候，是不是有可能因为某种原因修改了在京东的密码，或者是不是有可能突然取消了给小兔的授权？这时候，令牌的状态是不是就要有相应的变更，将原来对应的令牌置为无效。</p>
-<p>但，使用 JWT 格式令牌时，每次颁发的令牌都不会在服务端存储，这样我们要改变令牌状态的时候，就无能为力了。因为服务端并没有存储这个 JWT 格式的令牌。这就意味着，JWT 令牌在有效期内，是可以横行无止的。</p>
-<p>为了解决这个问题，<strong>我们可以把 JWT 令牌存储到远程的分布式内存数据库中吗？显然不能，因为这会违背 JWT 的初衷（将信息通过结构化的方式存入令牌本身）</strong>。因此，我们通常会有两种做法：</p>
-<ul>
-<li><p>一是，<strong>将每次生成 JWT 令牌时的秘钥粒度缩小到用户级别</strong>，也就是一个用户一个秘钥。这样，当用户取消授权或者修改密码后，就可以让这个密钥一起修改。一般情况下，这种方案需要配套一个单独的密钥管理服务。</p>
-</li>
-<li><p>二是，在不提供用户主动取消授权的环境里面，如果只考虑到修改密码的情况，那么我们就可以把用户密码作为 JWT 的密钥。当然，这也是用户粒度级别的。这样一来，用户修改密码也就相当于修改了密钥。</p>
-</li>
-</ul>
-<h2 id="令牌的生命周期"><a href="#令牌的生命周期" class="headerlink" title="令牌的生命周期"></a>令牌的生命周期</h2><p>我刚才讲了 JWT 令牌有效期的问题，讲到了它的失效处理，另外咱们在 <a href="./03.md">第 3 讲</a> 中提到，授权服务颁发访问令牌的时候，都会设置一个过期时间，其实这都属于令牌的生命周期的管理问题。接下来，我便向你讲一讲令牌的生命周期。</p>
-<p>万物皆有周期，这是自然规律，令牌也不例外，无论是 JWT 结构化令牌还是普通的令牌。它们都有有效期，只不过，JWT 令牌可以把有效期的信息存储在本身的结构体中。</p>
-<p>具体到 OAuth 2.0 的令牌生命周期，通常会有三种情况。</p>
-<p><strong>第一种情况是令牌的自然过期过程</strong>，这也是最常见的情况。这个过程是，从授权服务创建一个令牌开始，到第三方软件使用令牌，再到受保护资源服务验证令牌，最后再到令牌失效。同时，这个过程也不排除主动销毁令牌的事情发生，比如令牌被泄露，授权服务可以做主让令牌失效。</p>
-<p>生命周期的第二种情况，也就是上一讲提到的，<strong>访问令牌失效之后可以使用刷新令牌请求新的访问令牌来代替失效的访问令牌</strong>，以提升用户使用第三方软件的体验。</p>
-<p>生命周期的第三种情况，<strong>就是让第三方软件比如小兔，主动发起令牌失效的请求，然后授权服务收到请求之后让令牌立即失效</strong>。我们来想一下，什么情况下会需要这种机制，也就是想一下第三方软件这样做的 「动机」，毕竟一般情况下 「我们很难放弃已经拥有的事物」。</p>
-<p>比如有些时候，用户和第三方软件之间存在一种订购关系，比如小明购买了小兔软件，那么在订购时长到期或者退订，且小明授权的 token 还没有到期的情况下，就需要有这样的一种令牌撤回协议，来支持小兔软件主动发起令牌失效的请求。作为平台一方比如京东商家开放平台，也建议有责任的第三方软件比如小兔软件，遵守这样的一种令牌撤回协议。</p>
-<p>我将以上三种情况整理成了一份序列图，以便帮助你理解。同时，为了突出令牌，我将访问令牌和刷新令牌，特意用深颜色标识出来，并单独作为两个角色放进了整个序列图中。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./assets/bc5fde2c813d41c60d863e2919b65565.png"
-                      alt="img"
-                ></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OAuth 2.0 的核心是授权服务，更进一步讲是令牌，<strong>没有令牌就没有 OAuth，</strong>令牌表示的是授权行为之后的结果。</p>
-<p>一般情况下令牌对第三方软件来说是一个随机的字符串，是不透明的。大部分情况下，我们提及的令牌，都是一个无意义的字符串。</p>
-<p>但是，人们「不甘于」这样的满足，于是开始探索有没有其他生成令牌的方式，也就有了 JWT 令牌，这样一来既不需要通过共享数据库，也不需要通过授权服务提供接口的方式来做令牌校验了。这就相当于通过 JWT 这种结构化的方式，我们在做令牌校验的时候多了一种选择。</p>
-<p>通过这一讲呢，我希望你能记住以下几点内容：</p>
-<ol>
-<li><p>我们有了新的令牌生成方式的选择，这就是 JWT 令牌。这是一种结构化、信息化令牌，<strong>结构化可以组织用户的授权信息，信息化就是令牌本身包含了授权信息</strong>。</p>
-</li>
-<li><p>虽然我们这讲的重点是 JWT 令牌，但是呢，不论是结构化的令牌还是非结构化的令牌，对于第三方软件来讲，它都不关心，因为 <strong>令牌在 OAuth 2.0 系统中对于第三方软件都是不透明的</strong> 。需要关心令牌的，是授权服务和受保护资源服务。</p>
-</li>
-<li><p>我们需要注意 JWT 令牌的失效问题。我们使用了 JWT 令牌之后，远程的服务端上面是不存储的，因为不再有这个必要，JWT 令牌本身就包含了信息。那么，如何来控制它的有效性问题呢？本讲中，我给出了两种建议，<strong>一种是建立一个秘钥管理系统，将生成秘钥的粒度缩小到用户级别，另外一种是直接将用户密码当作密钥。</strong></p>
-</li>
-</ol>
-<p>现在，你已经对 JWT 有了更深刻的认识，也知道如何来使用它了。当你构建并生成令牌的时候除了使用随机的、「任性的」字符串，还可以采用这样的结构化的令牌，以便在令牌校验的时候能解析出令牌的内容信息直接进行校验处理。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这部分代码的测试在 <a class="link"   href="https://github.com/zq99299/myoath2-demo/blob/main/oauth-server/src/main/java/cn/mrcode/myoath2/oauthserver/ch04/JWTTest.java" >这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>添加 JWT 的依赖包</p>
-<div class="highlight-container" data-rel="Groovy"><figure class="iseeu highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="attr">group:</span> <span class="string">&#x27;io.jsonwebtoken&#x27;</span>, <span class="attr">name:</span> <span class="string">&#x27;jjwt-api&#x27;</span>, <span class="attr">version:</span> <span class="string">&#x27;0.11.2&#x27;</span></span><br><span class="line">compile <span class="attr">group:</span> <span class="string">&#x27;io.jsonwebtoken&#x27;</span>, <span class="attr">name:</span> <span class="string">&#x27;jjwt-impl&#x27;</span>, <span class="attr">version:</span> <span class="string">&#x27;0.11.2&#x27;</span></span><br><span class="line">compile <span class="attr">group:</span> <span class="string">&#x27;io.jsonwebtoken&#x27;</span>, <span class="attr">name:</span> <span class="string">&#x27;jjwt-jackson&#x27;</span>, <span class="attr">version:</span> <span class="string">&#x27;0.11.2&#x27;</span></span><br></pre></td></tr></table></figure></div>
-
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="type">String</span> <span class="variable">sharedTokenSecret</span> <span class="operator">=</span> <span class="string">&quot;hellooauthhellooauthhellooauthhellooauth&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用密匙生成 JWT 令牌</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">buildJewTest</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">jwt</span> <span class="operator">=</span> buildJwt();</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt:&quot;</span>);</span><br><span class="line">    System.out.println(jwt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> String <span class="title function_">buildJwt</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(sharedTokenSecret.getBytes(), SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line"></span><br><span class="line">    Map&lt;String, Object&gt; headerMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    headerMap.put(<span class="string">&quot;typ&quot;</span>, <span class="string">&quot;JWT&quot;</span>);</span><br><span class="line">    headerMap.put(<span class="string">&quot;alg&quot;</span>, <span class="string">&quot;HS256&quot;</span>);</span><br><span class="line"></span><br><span class="line">    Map&lt;String, Object&gt; payloadMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    payloadMap.put(<span class="string">&quot;iss&quot;</span>, <span class="string">&quot;http://localhost:8081/&quot;</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;sub&quot;</span>, <span class="string">&quot;XIAOMINGTEST&quot;</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;aud&quot;</span>, <span class="string">&quot;APPID_RABBIT&quot;</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;exp&quot;</span>, <span class="number">1584105790703L</span>);</span><br><span class="line">    payloadMap.put(<span class="string">&quot;iat&quot;</span>, <span class="number">1584105948372L</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生成 Jwt 令牌</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">jwt</span> <span class="operator">=</span> Jwts.builder().setHeaderParams(headerMap).setClaims(payloadMap).signWith(key, SignatureAlgorithm.HS256).compact();</span><br><span class="line">    <span class="keyword">return</span> jwt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用密匙解析 JWT 令牌</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">parserJwt</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecretKeySpec</span>(sharedTokenSecret.getBytes(), SignatureAlgorithm.HS256.getJcaName());</span><br><span class="line">    <span class="type">String</span> <span class="variable">jwt</span> <span class="operator">=</span> buildJwt();</span><br><span class="line"></span><br><span class="line">    Jws&lt;Claims&gt; claimsJws = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);</span><br><span class="line"></span><br><span class="line">    <span class="type">JwsHeader</span> <span class="variable">header</span> <span class="operator">=</span> claimsJws.getHeader();</span><br><span class="line">    <span class="type">Claims</span> <span class="variable">body</span> <span class="operator">=</span> claimsJws.getBody();</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;jwt header:&quot;</span> + header);</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt body:&quot;</span> + body);</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt sub:&quot;</span> + body.getSubject());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt aud:&quot;</span> + body.getAudience());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt iss:&quot;</span> + body.getIssuer());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt exp:&quot;</span> + body.getExpiration());</span><br><span class="line">    System.out.println(<span class="string">&quot;jwt iat:&quot;</span> + body.getIssuedAt());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>注意一点的是：这里 APi 不用密匙，将解析报错。而官网的在线解析不要密匙也是可以看到内容的，所以他的机制应该是：</p>
-<ol>
-<li>解析不需要密匙</li>
-<li>校验签名：需要密匙</li>
-</ol>
-<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>你还知道有哪些场景适合 JWT 令牌，又有哪些场景不适合 JWT 令牌吗？</p>
-<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
-<li>在 jwt.io 网站上验证的时候，如果不输入密钥，返回 <code>invalid Signature</code>, 但是 header 和 payload 信息依然可以正确显示。我的理解是，在生成 header 和 payload 部分的时候，是通过 base64 编码，没有进行加密处理。最后的签名是保证整个 body 在传输的过程中没有被篡改。那么是不是意味着使用 JWT 方式，信息的主体还是依然能被未授信的第三方获取到？</li>
-</ul>
-<p>  JWT 肯定要加密传输，这点我们文中强调了，不做加密的结果就是你说的，加密用对称和非对称都可以，看实际需要，追求性能就是对称，可通过管理秘钥来对冲掉对称带来的相比非对称的弱化的那部分安全。</p>
-<ul>
-<li><p>您提到 JWT 的一个优势是资源服务器不需要依赖数据库存储相关的信息，从而易于横向扩容。但是密钥部分还是躲不过需要查询的，可能依然需要存储。另外，如果采取一个用户用一个密钥的方式，资源服务器如何知道某个 JWT token 是给哪个用户使用的？（用户信息包含在 header or payload 中？）</p>
-<p>是的，用生成秘钥的方法，这是管理我们扔出去的 JWT TOKEN 的方式之一，如果只靠有效期当然也可以，但如果追求更进一步管理的话就需要做点额外的消耗。如果通过秘钥来管理，就需要一个秘钥管理系统，另外JWT 肯定是要加密处理，而且加解密的重点不在于加解密算法，而在于秘钥管理，需要我们要把秘钥生成在独立于授权系统之外的秘钥管理系统里面，存储关系就是 <code>app_id + 用户 = 秘钥</code>，这里的用户就是 TOKEN 换取出来的。</p>
-</li>
-<li><p>如果需要从服务器端直接暴力将某些用户「踢出下线」，也就是让 jwt 失效，如何做</p>
-<p>还是通过管理密匙的部分，具体做法是：不用验证签名就能获取 jwt 中的 id 信息，然后获取该 id 的加密密匙，进行验证。 那么当需要让 jwt 失效的时候，修改这个密匙信息。</p>
-</li>
-<li><p>用户密码当做秘钥合适吗？，如果用户修改密码，所有的授权都会失效</p>
-<p>用户修改密码，这个动作本身在安全背后是一件很严密的事情，对授权系统来讲，它接收到的事件，就是密码修改了，它的反应一定要让授权失效，因为授权系统不知道谁修改了密码。</p>
-</li>
-<li><p>jwt 如果每个用户一个密钥，就还需要访问数据库，这种方式和无结构的 token 优化没那么明显，只是省了token 的存储。</p>
-<p>存储节省不明显是在用户量少的情况下。秘钥管理系统是 JWT 和 OAuth 2.0 之外的成本，安全问题的防护是一个成本问题，如果是低等级防护，当然可以直接使用 JWT 的令牌短时过期。</p>
-</li>
-<li><p>jwt 中 signature 已经在签名的时候用到了一个 secret，这样已经能保证只有知道 secret 的第三个方才能验证 jwt 合法性，为什么还要加密，为了防止解密出 head 和 payload？</p>
-<p>是的，为了防止解密出 payload。在将 JWT 用作【访问令牌】的时候，令牌的内容第三方应用也是不能被允许知道的，对于第三方应用来讲【访问令牌】对它不透明。</p>
-<p>后续章节有一个知识点是，通过 OAuth 2.0 来实现一个用户身份认证的时候会用到【ID 令牌】，这个【ID 令牌】允许被第三方软件解析，因为这种情况需要一个用户标识。</p>
-</li>
-<li><p>我对 JWT 的理解是：JWT 本身只对 payload 进行了签名，并没有做加密（base64 编码不算加密）。文中多次提到加密，我比较疑惑，是我的理解错了吗？</p>
-<p>你理解是对的，签名是签名，加密是加密。所以在 jwt.io 网站上，不使用密匙也可以看到 payload 信息。</p>
-</li>
-</ul>
+    <title>GAS优化（一）</title>
+    <url>/2024/07/22/GAS%20%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>![alt text]</p>
 ]]></content>
+      <tags>
+        <tag>Excerpt</tag>
+      </tags>
   </entry>
   <entry>
     <title>除了授权码许可类型，OAuth 2.0 还支持什么授权流程？</title>
@@ -834,21 +843,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>test01</title>
-    <url>/2024/07/11/test01/</url>
-    <content><![CDATA[<p>This is test aritcle.</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>GAS优化（一）</title>
-    <url>/2024/07/22/GAS%20%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>![alt text]</p>
-]]></content>
-      <tags>
-        <tag>Excerpt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2024/07/18/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
@@ -882,6 +876,12 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
 
 <p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>test01</title>
+    <url>/2024/07/11/test01/</url>
+    <content><![CDATA[<p>This is test aritcle.</p>
 ]]></content>
   </entry>
   <entry>

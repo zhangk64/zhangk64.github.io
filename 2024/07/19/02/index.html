@@ -606,13 +606,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/07/19/01/"
+                        href="/2024/07/19/03/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">OAuth 2.0 是要通过什么方式解决什么问题？</span>
+                                <span class="post-nav-title-item">授权服务：授权码和访问令牌的颁发流程是怎样的？</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -622,10 +622,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/07/19/solidity-security-comprehensive-list-of-known-attack-vectors-and-common-anti-patterns_zh-cn/"
+                        href="/2024/07/19/01/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Solidity 安全：已知攻击方法和常见防御模式综合列表</span>
+                                <span class="post-nav-title-item">OAuth 2.0 是要通过什么方式解决什么问题？</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -649,29 +649,44 @@
 
         
             
-    <div id="waline"></div>
-    <script type="module" data-swup-reload-script>
-      import { init } from '/js/libs/waline.mjs';
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
 
-      function loadWaline() {
-        init({
-          el: '#waline',
-          serverURL: 'https://example.example.com',
-          lang: 'zh-CN',
-          dark: 'body[class~="dark-mode"]',
-          reaction: false,
-          requiredMeta: ['nick', 'mail'],
-          emoji: [],
-          recaptchaV3Key: "wasd",
-          
-        });
-      }
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
 
-      if (typeof swup !== 'undefined') {
-        loadWaline();
-      } else {
-        window.addEventListener('DOMContentLoaded', loadWaline);
-      }
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23lifSZ4HS3yzxANtY',
+                    clientSecret: 'a1beaac955d6a3d4a9a96537a87ceebc742ae368',
+                    repo: 'zhangk64.github.io',
+                    owner: 'zhangk64',
+                    admin: ['zhangk64'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
     </script>
 
 
