@@ -1,13 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
-  <entry>
-    <title>Gas优化（一）</title>
-    <url>/2024/07/22/GAS%20%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>以太坊网络上的每个操作，从简单的转账到复杂的合约交互，都需要消耗Gas。Gas机制不仅防止了网络资源的滥用，还通过设置交易的 Gas Limit 确保每个操作计算资源使用在合理范围内，从而保障网络的安全性和稳定性。</p>
-<h2 id="存储优化"><a href="#存储优化" class="headerlink" title="存储优化"></a>存储优化</h2><h3 id="减少存储变量的读取"><a href="#减少存储变量的读取" class="headerlink" title="减少存储变量的读取"></a>减少存储变量的读取</h3><p>读取存储变量至少需要100gas，因为Solidity不会缓存存储读取。</p>
-]]></content>
-      <tags>
-        <tag>智能合约审计</tag>
-      </tags>
-  </entry>
 </search>
