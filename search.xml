@@ -7,7 +7,8 @@
 <h2 id="存储优化"><a href="#存储优化" class="headerlink" title="存储优化"></a>存储优化</h2><h3 id="减少存储变量的读取"><a href="#减少存储变量的读取" class="headerlink" title="减少存储变量的读取"></a>减少存储变量的读取</h3><p>读取存储变量至少需要100gas，因为Solidity不会缓存存储读取。</p>
 ]]></content>
       <tags>
-        <tag>智能合约审计  Solidity</tag>
+        <tag>智能合约审计</tag>
+        <tag>Solidity</tag>
       </tags>
   </entry>
 </search>
