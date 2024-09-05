@@ -55,7 +55,7 @@
 <p>分母为0或负数的情况，以上代码不需要检查，添加unchecked可以节省Gas。</p>
 ]]></content>
       <tags>
-        <tag>智能合约审计</tag>
+        <tag>智能合约安全审计</tag>
         <tag>Solidity</tag>
       </tags>
   </entry>
@@ -121,7 +121,7 @@
 <h3 id="避免死代码"><a href="#避免死代码" class="headerlink" title="避免死代码"></a>避免死代码</h3><p>死代码是指永远也不会执行的代码，例如某个条件永远不可能满足，消耗了以太坊 gas 但没有任何作用。</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (balance &lt; 100) &#123;</span><br><span class="line">    if (balance &gt; 300) &#123;</span><br><span class="line">        ...</span><br><span class="line">        return balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>]]></content>
       <tags>
-        <tag>智能合约审计</tag>
+        <tag>智能合约安全审计</tag>
         <tag>Solidity</tag>
       </tags>
   </entry>
