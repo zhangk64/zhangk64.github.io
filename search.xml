@@ -10,13 +10,13 @@
 <p><strong>call</strong><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/image.png"
+                     data-src="https://avatars.githubusercontent.com/u/29709035"
                       alt="alt text"
                 ><br>当用户A通过合约B来call合约C的时候，执行的是合约C的函数，上下文(Context，可以理解为包含变量和状态的环境)也是合约C的：msg.sender是B的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约C的变量上。</p>
 <p><strong>delegatecall</strong><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/image-1.png"
+                     data-src="https://avatars.githubusercontent.com/u/29709035"
                       alt="alt text"
                 ><br>当用户A通过合约B来delegatecall合约C的时候，执行的是合约C的函数，但是上下文仍是合约B的：msg.sender是A的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约B的变量上。</p>
 <p>另外，当使用 delegatecall 函数进行外部调用涉及到 storage 变量的修改时是根据插槽位置来修改的而不是变量名。如下代码：</p>
