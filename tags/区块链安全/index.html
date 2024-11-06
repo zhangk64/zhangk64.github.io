@@ -19,23 +19,17 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://zhangk64.github.io/2023/07/15/整型溢出/"/>
+    <link rel="canonical" href="https://zhangk64.github.io/tags/区块链安全/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="介绍以太坊虚拟机（EVM）为整型设置了固定大小，因此它只能表示特定范围的数字。当把超过某个数据类型范围的数值保存到这个变量时，就会产生溢出。整型溢出一般分为上溢或下溢，根据运算形式又可以分为：  uint8类型变量，值为0时进行减1操作，计算结果会等于255，称为减法溢出； uint8类型变量，值为255时进行加1操作，计算结果会等于0，称为加法溢出； uint8类型变量，值为128时进行乘2操作">
-<meta property="og:type" content="article">
-<meta property="og:title" content="整型溢出">
-<meta property="og:url" content="https://zhangk64.github.io/2023/07/15/%E6%95%B4%E5%9E%8B%E6%BA%A2%E5%87%BA/index.html">
+        <meta property="og:type" content="website">
+<meta property="og:title" content="Fsociety&#39;s Blog">
+<meta property="og:url" content="https://zhangk64.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/index.html">
 <meta property="og:site_name" content="Fsociety&#39;s Blog">
-<meta property="og:description" content="介绍以太坊虚拟机（EVM）为整型设置了固定大小，因此它只能表示特定范围的数字。当把超过某个数据类型范围的数值保存到这个变量时，就会产生溢出。整型溢出一般分为上溢或下溢，根据运算形式又可以分为：  uint8类型变量，值为0时进行减1操作，计算结果会等于255，称为减法溢出； uint8类型变量，值为255时进行加1操作，计算结果会等于0，称为加法溢出； uint8类型变量，值为128时进行乘2操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-15T03:47:00.000Z">
-<meta property="article:modified_time" content="2024-09-10T07:18:44.477Z">
 <meta property="article:author" content="fsociety">
-<meta property="article:tag" content="Solidity">
-<meta property="article:tag" content="智能合约安全">
 <meta name="twitter:card" content="summary">
     
     
@@ -48,7 +42,7 @@
     
     <title>
         
-            整型溢出 -
+            标签: 区块链安全 -
         
         Fsociety&#39;s Blog
     </title>
@@ -304,270 +298,59 @@
             <div class="main-content">
 
                 
-                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
-    <div class="article-content-container">
-
-        <div class="article-title relative w-full">
-            
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">整型溢出</h1>
-                </div>
-            
+                    <div class="tag-container">
+	<div class="tag-name">
+		<i class="fa-solid fa-tag"></i>&nbsp;区块链安全
+	</div>
+	<div class="tag-post-list">
+		
+<div class="archive-list-container">
+    
+        <section class="archive-item mb-spacing-unit last:mb-0">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2023</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">2</span>
             </div>
-
-        
-            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/header.jpg">
-                </div>
-                <div class="info flex flex-col justify-between">
-                    <div class="author flex items-center">
-                        <span class="name text-default-text-color text-lg font-semibold">fsociety</span>
+            
+            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+                
+                    
+                    
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-22'>
+                    
+                    <a href="/2023/10/22/%E4%BA%A4%E6%98%93%E9%A1%BA%E5%BA%8F%E4%BE%9D%E8%B5%96%E6%BC%8F%E6%B4%9E/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">交易顺序依赖漏洞</span>
+                    </a>
+                    
+                
+                    
+                    
                         
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-07-15 11:47</span>
-        <span class="mobile">2023-07-15 11:47</span>
-        <span class="hover-info">创建</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-10 15:18:44</span>
-            <span class="mobile">2024-09-10 15:18:44</span>
-            <span class="hover-info">更新</span>
-        </span>
-    
-
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
+                            </li>
+                         <!-- Close the previous LI if not the first item -->
+                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-14'>
+                    
+                    <a href="/2023/10/14/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BF%A1%E6%81%AF%E4%BE%9D%E8%B5%96%E6%BC%8F%E6%B4%9E/" class="block w-fit">
+                        <span class="article-title my-0.5 text-2xl">区块链信息依赖漏洞</span>
+                    </a>
+                    
                 
-                    <li>
-                        <a href="/tags/Solidity/">Solidity</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%AE%89%E5%85%A8/">智能合约安全</a>&nbsp;
-                    </li>
-                
+                </li> <!-- Ensure the last item is properly closed -->
             </ul>
-        </span>
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
+        </section>
     
 </div>
 
-                    </div>
-                </div>
-            </div>
-        
-
-        
-
-
-        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>以太坊虚拟机（EVM）为整型设置了固定大小，因此它只能表示特定范围的数字。当把超过某个数据类型范围的数值保存到这个变量时，就会产生溢出。<br>整型溢出一般分为上溢或下溢，根据运算形式又可以分为：</p>
-<ul>
-<li>uint8类型变量，值为0时进行减1操作，计算结果会等于255，称为减法溢出；</li>
-<li>uint8类型变量，值为255时进行加1操作，计算结果会等于0，称为加法溢出；</li>
-<li>uint8类型变量，值为128时进行乘2操作，计算结果会等于0，称为乘法溢出；<br><strong>注：</strong> 由于 solidity 0.8.0 版本之后已内置 Safemath ，此类漏洞很少出现。<br>另外，solidity 0.8.0 版本之后，算术运算有两个计算模式，检查模式（checked）和截断模式（wrapping，也叫不检查模式（unchecked））。默认情况下是检查模式，会进行溢出检查，如果计算结果溢出，会出现失败异常回退；截断模式（不检查模式）在发生溢出的情况下，会进行截断，不会触发异常。</li>
-</ul>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><ul>
-<li><p>Solidity 0.8.0 之前的版本，默认只有截断模式</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.7.5;</span><br><span class="line"></span><br><span class="line">contract Calc &#123;</span><br><span class="line"></span><br><span class="line">    function test() external pure returns(uint8) &#123;</span><br><span class="line">        uint8 a = 255;</span><br><span class="line">        uint8 b = 2;</span><br><span class="line">        return a + b;   // 发出溢出，结果为 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>Solidity 0.8.0 之后的版本</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.17;</span><br><span class="line"></span><br><span class="line">contract Calc &#123;</span><br><span class="line"></span><br><span class="line">    function testChecked() external pure returns(uint8) &#123;</span><br><span class="line">        uint8 a = 255;</span><br><span class="line">        uint8 b = 2;</span><br><span class="line">        return a + b;  // 发生异常回退</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function testUnchecked() external pure returns(uint8) &#123;</span><br><span class="line">        unchecked &#123;    // 此处慎用，需在确保不可能出现溢出的情况下使用，否则还是会导致溢出。</span><br><span class="line">            uint8 a = 255;</span><br><span class="line">            uint8 b = 2;</span><br><span class="line">            return a + b;   // 发生溢出，结果为 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="安全事件"><a href="#安全事件" class="headerlink" title="安全事件"></a>安全事件</h3><ul>
-<li>2018年4月22日，黑客对BEC智能合约发起攻击，凭空取出 57,896,044,618,658,100,000,000,000,000,000,000,000,000,000,000,000,000,000,000.792003956564819968 个BEC代币并在市场上进行抛售，BEC随即急剧贬值，价值几乎为0，该市场瞬间土崩瓦解；</li>
-<li>2018年4月25日，SMT项目方发现其交易存在异常，黑客利用其函数漏洞创造了 65,133,050,195,990,400,000,000,000,000,000,000,000,000,000,000,000,000,000,000 + 50,659,039,041,325,800,000,000,000,000,000,000,000,000,000,000,000,000,000,000 的SMT币，火币Pro随即暂停了所有币种的充值提取业务；</li>
-<li>2018年12月27日，以太坊智能合约Fountain(FNT)出现整数溢出漏洞，黑客利用其函数漏洞创造了2 + 115792089237316195423570985008687907853269984665640564039457584007913129639935 的SMT币。</li>
-</ul>
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>Solidity &lt; 0.8.0，使用openzeppelin提供的SafeMath库函数进行数值的加减乘除操作；</li>
-<li>Solidity &gt;&#x3D; 0.8.0, Solidity编译器自动集成SafeMath, 直接使用<code>+ - * /</code>即可，发生溢出时会自动回退交易.</li>
-</ul>
-
-        </div>
-
-        
-            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-                <div class="article-copyright-info-container">
-    <ul>
-        <li><strong>标题:</strong> 整型溢出</li>
-        <li><strong>作者:</strong> fsociety</li>
-        <li><strong>创建于
-                :</strong> 2023-07-15 11:47:00</li>
-        
-            <li>
-                <strong>更新于
-                    :</strong> 2024-09-10 15:18:44
-            </li>
-        
-        <li>
-            <strong>链接:</strong> https://zhangk64.github.io/2023/07/15/整型溢出/
-        </li>
-        <li>
-            <strong>
-                版权声明:
-            </strong>
-            
-
-            
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
-            
-        </li>
-    </ul>
+	</div>
 </div>
 
-            </div>
-        
-
-        
-            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/Solidity/">#Solidity</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%AE%89%E5%85%A8/">#智能合约安全</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
-
-        
-
-        
-            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-                
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2023/07/22/%E7%9F%AD%E5%9C%B0%E5%9D%80%E6%94%BB%E5%87%BB/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">短地址攻击</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/2023/06/24/%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%94%BB%E5%87%BB/"
-                        >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">随机数攻击</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-
-        
-            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-                <div class="comments-container mt-10 w-full ">
-    <div id="comment-anchor" class="w-full h-2.5"></div>
-    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
-    </div>
-    
-
-        
-            
-    <div id="gitalk-container"></div>
-    <script data-swup-reload-script
-            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
-    <script data-swup-reload-script>
-
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
-            }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: 'Ov23lifSZ4HS3yzxANtY',
-                    clientSecret: 'a1beaac955d6a3d4a9a96537a87ceebc742ae368',
-                    repo: 'zhangk64.github.io',
-                    owner: 'zhangk64',
-                    admin: ['zhangk64'],
-                    id: __gitalk__pathname,
-                    language: 'zh-CN',
-                    proxy: 'https://github.com/login/oauth/access_token'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('true') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
-    </script>
-
-
-
-        
-    
+<div class="tag-paginator">
+	<div class="paginator">
+    <span class="page-number current">1</span>
 </div>
 
-            </div>
-        
-    </div>
-
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">目录</div>
-        <div class="page-title">整型溢出</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%A4%BA%E4%BE%8B"><span class="nav-text">漏洞示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6"><span class="nav-text">安全事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="nav-text">修复建议</span></a></li></ol>
-
-    </div>
 </div>
-        </div>
-    
-</div>
-
 
 
                 
@@ -650,27 +433,6 @@
         </div>
     </div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fa-regular fa-comments"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
     
 
     <div class="right-side-tools-container">
