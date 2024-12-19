@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="fsociety">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://zhangk64.github.io/2024/12/14/clamav开源杀毒软件实践/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="简介  Clam AntiVirus（简称ClamAV）是一款免费且开源的杀毒软件，以其开放的源代码和社区驱动的更新机制而受到广泛欢迎。ClamAV主要应用于Linux和FreeBSD等类Unix操作系统，但其适用范围并不局限于此。该软件的病毒定义数据库与软件本身均由社区成员免费维护和更新，这使得ClamAV能够及时应对新出现的安全威胁。  开源性 ：ClamAV的源代码完全公开，这意味着任何人都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ClamAV开源杀毒软件实践">
+<meta property="og:url" content="https://zhangk64.github.io/2024/12/14/ClamAV%E5%BC%80%E6%BA%90%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="Fsociety&#39;s Blog">
+<meta property="og:description" content="简介  Clam AntiVirus（简称ClamAV）是一款免费且开源的杀毒软件，以其开放的源代码和社区驱动的更新机制而受到广泛欢迎。ClamAV主要应用于Linux和FreeBSD等类Unix操作系统，但其适用范围并不局限于此。该软件的病毒定义数据库与软件本身均由社区成员免费维护和更新，这使得ClamAV能够及时应对新出现的安全威胁。  开源性 ：ClamAV的源代码完全公开，这意味着任何人都">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhangk64.github.io/2024/12/14/ClamAV%E5%BC%80%E6%BA%90%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AE%9E%E8%B7%B5/clamav_logo.jpg">
+<meta property="article:published_time" content="2024-12-14T09:30:50.000Z">
+<meta property="article:modified_time" content="2024-12-19T09:39:10.942Z">
+<meta property="article:author" content="fsociety">
+<meta property="article:tag" content="ClamAV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhangk64.github.io/2024/12/14/ClamAV%E5%BC%80%E6%BA%90%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AE%9E%E8%B7%B5/clamav_logo.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            ClamAV开源杀毒软件实践 -
+        
+        Fsociety&#39;s Blog
+    </title>
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/assets/build/styles.css">
+    
+
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"zhangk64.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"simple","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"所念皆星河","artist":"CMJ","url":"/snjxh.mp3","cover":"/snjxh.jpg","lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"path":"https://github.com/zhangk64","icon":"fa-regular fa-user"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/6/1 0:0:0"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Fsociety&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangk64"
+                                        >
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangk64"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">ClamAV开源杀毒软件实践</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/header.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">fsociety</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-12-14 17:30:50</span>
+        <span class="mobile">2024-12-14 17:30:50</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-12-19 17:39:10</span>
+            <span class="mobile">2024-12-19 17:39:10</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ClamAV/">ClamAV</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><img lazyload src="/images/loading.svg" data-src="/2024/12/14/ClamAV%E5%BC%80%E6%BA%90%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AE%9E%E8%B7%B5/clamav_logo.jpg" class alt="alt text">
+
+<p>Clam AntiVirus（简称ClamAV）是一款免费且开源的杀毒软件，以其开放的源代码和社区驱动的更新机制而受到广泛欢迎。ClamAV主要应用于Linux和FreeBSD等类Unix操作系统，但其适用范围并不局限于此。该软件的病毒定义数据库与软件本身均由社区成员免费维护和更新，这使得ClamAV能够及时应对新出现的安全威胁。</p>
+<ul>
+<li><strong>开源性</strong> ：ClamAV的源代码完全公开，这意味着任何人都可以查看、修改和分发其代码。这种开放性不仅促进了软件本身的改进和发展，也为用户提供了高度的透明度和信任感。</li>
+<li><strong>社区驱动的更新机制</strong> ：ClamAV的病毒定义数据库是由一个庞大的社区维护的，这意味着每当有新的病毒或恶意软件出现时，社区成员会迅速响应并更新数据库，确保ClamAV能够及时识别并清除这些威胁。</li>
+<li><strong>跨平台支持</strong> ：虽然ClamAV最初是为Linux设计的，但它现在已经支持多种操作系统，包括FreeBSD和其他类Unix系统。这种广泛的兼容性使得ClamAV成为了一个非常灵活的选择，适用于各种不同的计算环境。</li>
+<li><strong>命令行界面</strong> ：ClamAV主要通过命令行界面操作，这使得它非常适合自动化任务和脚本编写。对于那些熟悉命令行操作的用户来说，ClamAV提供了一种高效且强大的方式来执行扫描任务。</li>
+<li><strong>丰富的API接口</strong> ：ClamAV提供了丰富的API接口，允许开发者轻松地将其集成到其他应用程序和服务中，从而实现更高级别的自动化和定制化功能。</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><p>安装有2种方式，yum和源码安装，由于Centos7默认安装的是0.103.12版本，更高版本需要源码编译安装，这里采用centos8环境下的yum安装最新版本（也支持Docker部署）；</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc  gcc-c++ openssl openssl-devel libcurl-devel  # 安装依赖，可能还有其它的</span><br><span class="line">yum -y install https://www.clamav.net/downloads/production/clamav-1.4.1.linux.x86_64.rpm   # 安装当前最新版1.4.1</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">clamconf -g clamd.conf &gt; /usr/local/etc/clamd.conf     # 生成守护进程clamd的配置文件clamd.conf</span><br><span class="line">clamconf -g freshclam.conf &gt; /usr/local/etc/freshclam.conf  # 更新病毒库的配置</span><br><span class="line"></span><br><span class="line">sed -i &#x27;/^Example/s/^/#/&#x27; /usr/local/etc/clamd.conf  # 取消 Example</span><br><span class="line">sed -i &#x27;/^Example/s/^/#/&#x27; /usr/local/etc/freshclam.conf # 取消 Example</span><br><span class="line"></span><br><span class="line">sed -i &#x27;1i\DatabaseMirror db.cn.clamav.net&#x27; /usr/local/etc/freshclam.conf  # 设置病毒库地址</span><br><span class="line">sed -i &#x27;1i\DatabaseOwner root&#x27; /usr/local/etc/freshclam.conf  # 设置病毒库所属用户（这里使用root，也可以设置其它）</span><br><span class="line"></span><br><span class="line">#其它配置参考配置文件内容</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="更新病毒库"><a href="#更新病毒库" class="headerlink" title="更新病毒库"></a>更新病毒库</h3><p>执行命令<br><code>freshclam</code></p>
+<p>病毒库默认下载如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/share/clamav/daily.cld</span><br><span class="line">/usr/local/share/clamav/main.cld</span><br><span class="line">/usr/local/share/clamav/bytecode.cvd</span><br></pre></td></tr></table></figure></div>
+
+<p>可设置定时任务定期进行病毒库更新</p>
+<h3 id="扫描测试"><a href="#扫描测试" class="headerlink" title="扫描测试"></a>扫描测试</h3><p>clamscan命令进行扫描，可以扫描文件或目录</p>
+<p><code>clamscan -r  /tmp               #clamscan [选项/参数] [文件/目录]</code></p>
+<p>运行结果</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Loading:    10s, ETA:   0s [========================&gt;]    8.70M/8.70M sigs       </span><br><span class="line">Compiling:   2s, ETA:   0s [========================&gt;]       41/41 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1: Eicar-Signature FOUND</span><br><span class="line">/tmp/2.txt: OK</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 8702280</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 6</span><br><span class="line">Scanned files: 3</span><br><span class="line">Infected files: 1</span><br><span class="line">Data scanned: 0.00 MB</span><br><span class="line">Data read: 0.00 MB (ratio 0.00:1)</span><br><span class="line">Time: 13.692 sec (0 m 13 s)</span><br><span class="line">Start Date: 2024:12:19 02:06:52</span><br><span class="line">End Date:   2024:12:19 02:07:06</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="远程扫描"><a href="#远程扫描" class="headerlink" title="远程扫描"></a>远程扫描</h3><p>修改配置文件<code>/usr/local/etc/clamd.conf</code>中的监听信息，如：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LocalSocket /run/clamav/clamd.sock</span><br><span class="line">TCPSocket 3310</span><br><span class="line">TCPAddr 0.0.0.0</span><br></pre></td></tr></table></figure></div>
+
+<p>启动服务</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# clamd  </span><br><span class="line">Localserver: Creating socket directory: /run/clamav</span><br></pre></td></tr></table></figure></div>
+
+<p>python代码远程扫描病毒文件示例</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#! usr/bin/env python</span><br><span class="line">#-*-coding=utf-8-*-</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line">import pyclamd # type: ignore</span><br><span class="line">from threading import Thread</span><br><span class="line"></span><br><span class="line">class Scan(Thread):</span><br><span class="line">    def __init__(self,scan_type,file):</span><br><span class="line">        &quot;&quot;&quot;构造方法，参数初始化&quot;&quot;&quot;</span><br><span class="line">        Thread.__init__(self)</span><br><span class="line">        #self.ip = &quot;172.16.184.48&quot;</span><br><span class="line">        self.ip = &quot;192.168.100.139&quot;</span><br><span class="line">        self.port = 3310</span><br><span class="line">        self.scan_type = scan_type</span><br><span class="line">        self.file = file</span><br><span class="line">        self.connstr = &quot;&quot;</span><br><span class="line">        self.scanresult = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        &quot;&quot;&quot;多线程 run 方法 &quot;&quot;&quot;</span><br><span class="line">        try:</span><br><span class="line">            cd = pyclamd.ClamdNetworkSocket(self.ip,self.port)    #创建网络套接字连接对</span><br><span class="line">            if cd.ping():   #探测连通性</span><br><span class="line">                self.connstr=self.ip+&quot; connection [OK]&quot;</span><br><span class="line">                cd.reload()         #重载clamd病毒特征库，建议更新病毒库后做reload()</span><br><span class="line">                if self.scan_type == &quot;contscan_file&quot;:       #选择不用扫描模式</span><br><span class="line">                    self.scanresult=&quot;&#123;0&#125;\n&quot;.format(cd.contscan_file(self.file))</span><br><span class="line">                elif self.scan_type==&quot;multiscan_file&quot;:</span><br><span class="line">                    self.scanresult=&quot;&#123;0&#125;\n&quot;.format(cd.multiscan_file(self.file))</span><br><span class="line">                elif self.scan_type==&quot;scan_file&quot;:</span><br><span class="line">                    self.scanresult=&quot;&#123;0&#125;\n&quot;.format(cd.scan_file(self.file))</span><br><span class="line">                # time.sleep(1)   #线程挂起1秒</span><br><span class="line">            else:</span><br><span class="line">                self.connstr=self.ip+ &quot;connection error,exit&quot;</span><br><span class="line">                return</span><br><span class="line">        except Exception as e:</span><br><span class="line">            self.connstr=self.ip+&quot; &quot;+str(e)</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    scantype = &quot;multiscan_file&quot;</span><br><span class="line">    scanfile = &quot;/root&quot; #clamav所在主机目录</span><br><span class="line">    currp = Scan(scantype,scanfile)  </span><br><span class="line">    currp.start()  #启动线程</span><br><span class="line">    currp.join()  #等待所有子线程退出，并输出扫描结果</span><br><span class="line">    print(currp.connstr)</span><br><span class="line">    print(currp.scanresult)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></div>
+<p>执行结果</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS D:\code\report&gt; python .\remoteCallClamAv.py</span><br><span class="line">192.168.100.139 connection [OK]</span><br><span class="line">&#123;&#x27;/root/1&#x27;: (&#x27;FOUND&#x27;, &#x27;Eicar-Signature&#x27;)&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Linux下检测应用上传的文件是否安全：应用系统文件上传功能采用非对象存储，需对用户上传的文件进行安全扫描，防止恶意文件的传播。而开源免费的ClamAV是Linux下病毒扫描的最佳选择。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>检测能力测试，测试过程中准备了几个一句话木马和其它病毒木马，发现一句话木马并未识别出来。因为应用系统的文件上传功能，一般是通过上传webshell，然后通过加载webshell进一步执行命令来控制服务器，所以当前测试的结果并没有达到预期的效果。如下：<br><code> clamscan -r /tmp</code>扫描结果</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Loading:     9s, ETA:   0s [========================&gt;]    8.70M/8.70M sigs       </span><br><span class="line">Compiling:   3s, ETA:   0s [========================&gt;]       41/41 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1.asp: OK</span><br><span class="line">/tmp/cmd.jsp: OK</span><br><span class="line">/tmp/test: Eicar-Signature FOUND</span><br><span class="line">/tmp/2.php: OK</span><br><span class="line">/tmp/3.txt: OK</span><br><span class="line">/tmp/shell.php: OK</span><br><span class="line">/tmp/xiema.jpg: OK</span><br><span class="line">/tmp/phpinfo.php: OK</span><br><span class="line">/tmp/1.php4: OK</span><br><span class="line">/tmp/dama1.jpg: OK</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 8702280</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 6</span><br><span class="line">Scanned files: 11</span><br><span class="line">Infected files: 1</span><br><span class="line">Data scanned: 0.16 MB</span><br><span class="line">Data read: 0.08 MB (ratio 2.00:1)</span><br><span class="line">Time: 13.384 sec (0 m 13 s)</span><br><span class="line">Start Date: 2024:12:19 02:08:54</span><br><span class="line">End Date:   2024:12:19 02:09:07</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="验证原因"><a href="#验证原因" class="headerlink" title="验证原因"></a>验证原因</h3><p>由于有的病毒木马能检测出来有的不能，ClamAV扫描病毒是基于病毒特征库进行，大概可以判断出是特征库的问题，下面进行验证。</p>
+<ul>
+<li><p>构造测试特征库</p>
+<p>  利用clamav提供的签名工具sigtool，针对cmd.jsp生成一个md5特征库</p>
+  <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost tmp]# sigtool --md5 cmd.jsp &gt; /root/test.hdb</span><br><span class="line">[root@localhost tmp]# ls /root/test.hdb</span><br><span class="line">/root/test.hdb</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>利用测试特征库进行扫描</p>
+  <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Loading:     0s, ETA:   0s [========================&gt;]        1/1 sigs    </span><br><span class="line">Compiling:   0s, ETA:   0s [========================&gt;]       10/10 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1.asp: OK</span><br><span class="line">/tmp/cmd.jsp: cmd.jsp.UNOFFICIAL FOUND</span><br><span class="line">/tmp/test: OK</span><br><span class="line">/tmp/2.php: OK</span><br><span class="line">/tmp/3.txt: OK</span><br><span class="line">/tmp/shell.php: OK</span><br><span class="line">/tmp/xiema.jpg: OK</span><br><span class="line">/tmp/phpinfo.php: OK</span><br><span class="line">/tmp/1.php4: OK</span><br><span class="line">/tmp/dama1.jpg: OK</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 1</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 1</span><br><span class="line">Scanned files: 11</span><br><span class="line">Infected files: 1</span><br><span class="line">Data scanned: 0.16 MB</span><br><span class="line">Data read: 0.08 MB (ratio 2.00:1)</span><br><span class="line">Time: 0.007 sec (0 m 0 s)</span><br><span class="line">Start Date: 2024:12:19 02:56:37</span><br><span class="line">End Date:   2024:12:19 02:56:37</span><br></pre></td></tr></table></figure></div>
+<p>  指定刚刚生成的特征库进行扫描，发现可以识别出病毒，因此证明clamav的官方病毒特征库不够全面。</p>
+</li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="收集公开的非官方病毒库"><a href="#收集公开的非官方病毒库" class="headerlink" title="收集公开的非官方病毒库"></a>收集公开的非官方病毒库</h4><p>  本次直接搜集或通过github工具进行自动化搜集指定安全厂商的病毒库。</p>
+<ul>
+<li><p>通过整理安全厂商公开的病毒库URL，修改配置文件<code>/usr/local/etc/freshclam.conf</code>的DatabaseCustomURL参数行，包含多个安全公司&#x2F;组织病毒库（SecuriteInfo，InterServer，RFXN，SaneSecurity ，Sanesecurity + Foxhole，winnow，bofhland，Porcupine，maldet，Malware.Expert，URLHaus ），如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">#SecuriteInfo Signatures (Get them from your own account)</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.ign2</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/javascript.ndb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/spam_marketing.ndb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfohtml.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoascii.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoandroid.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoold.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfopdf.hdb</span><br><span class="line"># Below this line, the downloads will not work if you have Basic (free) account</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo0hour.hdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.mdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.yara</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.pdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.wdb</span><br><span class="line"></span><br><span class="line">#InterServer Signatures</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/interservertopline.db</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/shell.ldb</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/whitelist.fp</span><br><span class="line"></span><br><span class="line">#RFXN Signatures</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.ndb</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.hdb</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.yara</span><br><span class="line"></span><br><span class="line">#SaneSecurity Signatures</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/sigwhitelist.ign2</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/sanesecurity.ftm</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/hackingteam.hsb</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/crdfam.clamav.hdb</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/bofhland_malware_attach.hdb</span><br><span class="line"></span><br><span class="line"># Sanesecurity + Foxhole</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/MiscreantPunch099-INFO-Low.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/MiscreantPunch099-Low.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_BlackEnergy.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_sigtest.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_spam.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/badmacro.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/blurl.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_cracked_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_attach.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_phishing_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/crdfam.clamav.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern-phishtank.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_all.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_all.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_filename.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_generic.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_js.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_mail.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/hackingteam.hsb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/junk.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/jurlbl.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/jurlbla.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/lott.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/malwarehash.hsb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/phish.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/rogue.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/scam.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/scamnailer.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/shelter.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/sigwhitelist.ign2</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spam.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spamattach.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spamimg.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spear.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spearl.ndb</span><br><span class="line"></span><br><span class="line"># winnow</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow.attachments.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow.complex.patterns.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_bad_cw.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_extended_malware.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_extended_malware_links.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_malware.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_phish_complete.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_phish_complete_url.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_spam_complete.ndb</span><br><span class="line"></span><br><span class="line"># bofhland</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_cracked_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_phishing_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_attach.hdb</span><br><span class="line"></span><br><span class="line"># Porcupine</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/porcupine.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/phishtank.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/porcupine.hsb</span><br><span class="line"></span><br><span class="line">#maldet</span><br><span class="line">DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.ndb</span><br><span class="line">DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.hdb</span><br><span class="line"></span><br><span class="line">#Malware.Expert Signatures</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.ndb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.hdb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.ldb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.fp</span><br><span class="line"></span><br><span class="line">#URLHaus Signatures</span><br><span class="line">DatabaseCustomURL https://urlhaus.abuse.ch/downloads/urlhaus.ndb</span><br></pre></td></tr></table></figure></div>
+<p>由于国内更新较慢，可通过<code>freshclam.conf</code>配置代理进行下载。</p>
+</li>
+<li><p>使用github的工具定期更新非官方的病毒库，也包含了市面上多个安全公司&#x2F;组织（securiteinfo，interserver，malware patrol，Sanesecurity, URLhaus）的病毒库，参考文档<a class="link" target="_blank" rel="noopener" href="https://github.com/rseichter/fangfrisch%EF%BC%8C%E7%B1%BB%E4%BC%BC%E5%B7%A5%E5%85%B7%E8%BF%98%E6%9C%89https://github.com/extremeshok/clamav-unofficial-sigs%EF%BC%8C%E4%B8%8D%E8%BF%87%E6%AD%A4%E5%B7%A5%E5%85%B7%E7%9B%AE%E5%89%8D%E5%81%9C%E6%AD%A2%E7%BB%B4%E6%8A%A4%E3%80%82">https://github.com/rseichter/fangfrisch，类似工具还有https://github.com/extremeshok/clamav-unofficial-sigs，不过此工具目前停止维护。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</li>
+<li><p>更新完所有病毒库后，重新进行扫描，检测能力有所提升</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    </span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h4 id="自研病毒库"><a href="#自研病毒库" class="headerlink" title="自研病毒库"></a>自研病毒库</h4><p>  主要通过yara语法实现自定义的病毒库检测规则，需要研究并识别现有规则之外的病毒特征，并通过yara实现，参考<a class="link" target="_blank" rel="noopener" href="https://docs.clamav.net/manual/Signatures/YaraRules.html?highlight=yara#using-yara-rules-in-clamav%E3%80%82%E7%9C%8B%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3clamav%E4%B8%ADyara%E8%A7%84%E5%88%99%E7%9A%84%E4%BD%BF%E7%94%A8%E6%9C%89%E4%BA%9B%E9%99%90%E5%88%B6%EF%BC%8C%E8%80%8C%E4%B8%94%E4%B8%93%E4%B8%9A%E6%80%A7%E8%A6%81%E6%B1%82%E9%AB%98%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%97%B6%E9%97%B4%E7%B2%BE%E5%8A%9B%E6%88%90%E6%9C%AC%E7%AD%89%E5%9B%A0%E7%B4%A0%E8%BF%99%E9%87%8C%E4%B8%8D%E5%B1%95%E5%BC%80%E3%80%82">https://docs.clamav.net/manual/Signatures/YaraRules.html?highlight=yara#using-yara-rules-in-clamav。看官方文档clamav中yara规则的使用有些限制，而且专业性要求高，由于时间精力成本等因素这里不展开。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">https://www.clamav.net</span><br><span class="line">https://docs.clamav.net</span><br><span class="line">https://github.com/Cisco-Talos/clamav</span><br><span class="line">https://wiki.archlinuxcn.org/wiki/ClamAV</span><br><span class="line">https://xuxiaowei-com-cn.frama.io/blog/clamav.html</span><br><span class="line">https://ozgurkazancci.com/freebsd-protect-your-web-server-against-php-shells-and-malwares/</span><br><span class="line">https://gist.github.com/alsyundawy/9df58b03506bad8ccd08e06d15a8fa93#file-freshclam-conf</span><br></pre></td></tr></table></figure></div>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> ClamAV开源杀毒软件实践</li>
+        <li><strong>作者:</strong> fsociety</li>
+        <li><strong>创建于
+                :</strong> 2024-12-14 17:30:50</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2024-12-19 17:39:10
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://zhangk64.github.io/2024/12/14/ClamAV开源杀毒软件实践/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/ClamAV/">#ClamAV</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/05/18/GAS%E4%BC%98%E5%8C%96%EF%BC%88%E4%BA%8C%EF%BC%89/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">GAS优化（二）</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23lifSZ4HS3yzxANtY',
+                    clientSecret: 'a1beaac955d6a3d4a9a96537a87ceebc742ae368',
+                    repo: 'zhangk64.github.io',
+                    owner: 'zhangk64',
+                    admin: ['zhangk64'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN',
+                    proxy: 'https://github.com/login/oauth/access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">ClamAV开源杀毒软件实践</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="nav-text">安装部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">修改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%97%85%E6%AF%92%E5%BA%93"><span class="nav-text">更新病毒库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F%E6%B5%8B%E8%AF%95"><span class="nav-text">扫描测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E6%89%AB%E6%8F%8F"><span class="nav-text">远程扫描</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%8E%9F%E5%9B%A0"><span class="nav-text">验证原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">fsociety</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 14 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.1</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+            <li class="right-bottom-tools tool-aplayer flex justify-center items-center">
+
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    <script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/Swup.min.js"></script><script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/SwupSlideTheme.min.js"></script><script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/SwupScriptsPlugin.min.js"></script><script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/SwupProgressPlugin.min.js"></script><script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/SwupScrollPlugin.min.js"></script><script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/SwupPreloadPlugin.min.js"></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+<script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/imageViewer.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/utils.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/main.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/layouts/navbarShrink.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/scrollTopBottom.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/lightDarkSwitch.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/layouts/categoryList.js"></script>
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/localSearch.js"></script>
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/codeBlock.js"></script>
+
+
+
+    <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/layouts/lazyload.js"></script>
+
+
+
+    <script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/runtime.js"></script>
+    <script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/odometer.min.js"></script>
+    <link rel="stylesheet" href="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/Typed.min.js"></script>
+  <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+    <script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/anime.min.js"></script>
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        <script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/tools/tocToggle.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/layouts/toc.js"></script><script type="module" src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/plugins/tabs.js"></script>
+    
+</div>
+
+
+    <div id="aplayer"></div>
+<script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/libs/APlayer.min.js"></script>
+<script src="https://registry.npmmirror.com/hexo-theme-redefine/2.7.1/files/source/js/plugins/aplayer.js"></script>
+
+</body>
+</html>
